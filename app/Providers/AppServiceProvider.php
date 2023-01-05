@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
-		Blade::anonymousComponentNamespace('templates', 'templates');
+		Blade::anonymousComponentNamespace('layouts', 'layouts');
 		Blade::anonymousComponentNamespace('components', 'components');
 		Blade::anonymousComponentNamespace('sections', 'sections');
 		Blade::anonymousComponentNamespace('forms', 'forms');

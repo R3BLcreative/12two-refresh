@@ -1,4 +1,4 @@
-<x-templates::default
+<x-layouts::default
 	:seo="[
 	'name' => '12Two Missions',
 	'title' => '12Two Missions | Home',
@@ -8,4 +8,4 @@
 
 	<x-slot:main></x-slot:main>
 
-</x-templates::default>
+</x-layouts::default>

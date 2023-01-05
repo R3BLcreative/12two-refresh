@@ -4,10 +4,10 @@
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<x-templates::default-head />
+<x-layouts::default-head />
 
-<x-templates::default-body class="" />
+<x-layouts::default-body class="" />
 
-<x-templates::default-foot />
+<x-layouts::default-foot />
 
 </html>
