@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors');
+
 module.exports = {
 	content: [
 		'./resources/views/**/**/*.blade.php',
@@ -13,34 +16,58 @@ module.exports = {
 			desktop: '1281px',
 		},
 		fontFamily: {
-			sans: ['Poppins', 'sans-serif'],
-			serif: ['noto-serif', 'serif'],
+			body: ['Source Sans Pro', 'sans-serif'],
+			heading: ['Oswald', 'sans-serif'],
 		},
 		extend: {
 			colors: {
 				primary: {
-					100: '#0042c6', //magicBlue
-					200: '#00247f', //seaBlue
-					300: '#00002c', //midnightBlue
+					50: 'hsl(358, 82%, 77%)',
+					100: 'hsl(358, 82%, 67%)',
+					200: 'hsl(358, 82%, 57%)',
+					300: 'hsl(358, 82%, 47%)',
+					400: 'hsl(358, 82%, 40%)',
+					500: 'hsl(358, 82%, 37%)',
+					600: 'hsl(358, 82%, 30%)',
+					700: 'hsl(358, 82%, 27%)',
+					800: 'hsl(358, 82%, 20%)',
+					900: 'hsl(358, 82%, 17%)',
 				},
 				secondary: {
-					100: '#21dbbc', //green
-				},
-				tertiary: {
-					200: '#cc3e3f', //red
-					400: '#7b160f', //red
-					500: '4d0d09', //red
+					50: 'hsl(45, 97%, 90%)',
+					100: 'hsl(45, 97%, 80%)',
+					200: 'hsl(45, 97%, 70%)',
+					300: 'hsl(45, 97%, 60%)',
+					400: 'hsl(45, 97%, 55%)',
+					500: 'hsl(45, 97%, 50%)',
+					600: 'hsl(45, 97%, 40%)',
+					700: 'hsl(45, 97%, 30%)',
+					800: 'hsl(45, 97%, 20%)',
+					900: 'hsl(45, 97%, 10%)',
 				},
 				surface: {
-					50: '#ffffff', //white
-					100: '#fafafa', //grey
-					200: '#f0f0f0', //grey
-					300: '#ededed', //grey
-					400: '#bbbbbb', //grey
+					50: 'hsl(0, 0%, 98%)',
+					100: 'hsl(0, 0%, 80%)',
+					200: 'hsl(0, 0%, 70%)',
+					300: 'hsl(0, 0%, 60%)',
+					400: 'hsl(0, 0%, 55%)',
+					500: 'hsl(0, 0%, 50%)',
+					600: 'hsl(0, 0%, 40%)',
+					700: 'hsl(0, 0%, 30%)',
+					800: 'hsl(0, 0%, 20%)',
+					900: 'hsl(0, 0%, 10%)',
 				},
 				body: {
-					50: '#616161', //grey
-					100: '#404040', //grey
+					50: 'hsl(0, 0%, 98%)',
+					100: 'hsl(0, 0%, 80%)',
+					200: 'hsl(0, 0%, 70%)',
+					300: 'hsl(0, 0%, 60%)',
+					400: 'hsl(0, 0%, 55%)',
+					500: 'hsl(0, 0%, 50%)',
+					600: 'hsl(0, 0%, 40%)',
+					700: 'hsl(0, 0%, 30%)',
+					800: 'hsl(0, 0%, 20%)',
+					900: 'hsl(0, 0%, 10%)',
 				},
 				alert: {
 					100: '#cc3e3f', //red

@@ -17,22 +17,22 @@
 @php
 $actives = [
 'none' => '',
-'primary' => 'bg-primary-100 text-white rounded-full inline-block font-semibold border-none cursor-pointer leading-none tracking-wide hover:bg-primary-200 active:bg-primary-300 text-center',
-'secondary' => 'bg-white text-primary-100 border-primary-100 border-2 rounded-full inline-block font-semibold leading-none tracking-wide hover:bg-primary-200 hover:border-primary-200 hover:text-white active:bg-primary-300 active:border-primary-300 active:text-white cursor-pointer text-center',
+'primary' => 'bg-primary-500 text-white rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-primary-400 active:bg-primary-600 text-center',
+'secondary' => 'bg-secondary-500 text-body-800 rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-secondary-400 active:bg-secondary-600 text-center',
 'tertiary' => 'text-primary-100 font-semibold hover:text-primary-200 hover:underline active:text-primary-300 active:no-underline',
 ];
 
 $disables = [
 'none' => '',
-'primary' => 'bg-surface-400 text-white rounded-full inline-block font-semibold border-none leading-none tracking-wide hover:bg-alert-100 pointer-events-none text-center',
+'primary' => 'bg-body-400 text-white rounded-full inline-block font-semibold border-none leading-none tracking-wide hover:bg-alert-100 pointer-events-none text-center',
 'secondary' => 'bg-white text-surface-400 border-surface-400 border-2 rounded-full inline-block font-semibold leading-none tracking-wide pointer-events-none text-center',
-'tertiary' => 'text-surface-400 font-semibold mobile:text-sm desktop:text-base pointer-events-none',
+'tertiary' => 'text-body-400 font-semibold mobile:text-sm desktop:text-base pointer-events-none',
 ];
 
 $sizes = [
 'none' => '',
-'small' => 'px-3 py-1 text-sm',
-'default' => 'px-4 py-3 mobile:text-sm desktop:text-base',
+'small' => 'px-5 py-1 text-sm',
+'default' => 'mobile:px-5 mobile:py-1 mobile:text-sm latop:px-7 laptop:py-2 laptop:text-base',
 ];
 
 // Set class
@@ -43,7 +43,7 @@ $class = $actives[$style] . ' ' . $sizes[$size] . ' ' . $class;
 }
 
 // Class atts applied to all
-$class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-nowrap';
+$class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-nowrap uppercase';
 
 // Convert atts array to string
 if(count($atts) > 0) {

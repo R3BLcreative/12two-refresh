@@ -21,23 +21,20 @@
 	<meta property="og:description" content="{{ $seo['desc'] }}">
 	<meta property="og:url" content="{{ request()->url() }}">
 	<meta property="og:site_name" content="{{ $seo['name'] }}">
-	<meta property="article:publisher" content="https://www.facebook.com/AliceConnects">
+	<meta property="article:publisher" content="">
 	<meta property="article:modified_time" content="">
 	<meta property="og:image" content="">
 	<meta property="og:image:width" content="">
 	<meta property="og:image:height" content="">
 	<meta property="og:image:type" content="">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="@HelloAlice">
+	<meta name="twitter:site" content="">
 	{{-- END SEO OpenGraph and Meta --}}
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://dykt6xofqo07l.cloudfront.net">
-	<link rel="preconnect" href="https://use.typekit.net">
 
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.typekit.net/zys0act.css">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
 
 	{{-- FAV/SHORTCUT ICONS --}}
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">

@@ -1,4 +1,4 @@
-<header class="fixed top-0 z-40 w-full border-b border-b-surface-300" role="banner">
+<header class="fixed top-0 z-40 w-full border-b border-b-surface-300 text-body-800" role="banner">
 	<section class="!bg-white !py-0">
 		<row class="min-h-[90px] max-h-screen !gap-y-0">
 			<div class="min-h-[90px] mobile:col-span-3 tablet:col-span-4 laptop:col-span-3 order-1 flex gap-2 items-center">
