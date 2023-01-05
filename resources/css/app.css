@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DO NOT CREATE CUSTOM CLASS DEFINITIONS - CREATE COMPONENTS INSTEAD */
+
+header > section,
+main > section,
+footer > section {
+	@apply mobile:flex mobile:flex-col mobile:items-center mobile:justify-center py-20 even:bg-white odd:bg-surface-200;
+}
+
+header > section > row,
+main > section > row,
+footer > section > row {
+	@apply grid mobile:grid-cols-4 mobile:w-full mobile:max-w-[432px] mobile:gap-6 mobile:px-6 tablet:grid-cols-8 tablet:max-w-full tablet:px-12 laptop:grid-cols-12 laptop:gap-8 laptop:px-[70px] desktop:max-w-[1140px] desktop:w-[1140px] desktop:px-0 mx-auto items-center even:my-6 last:!mb-0;
+}
