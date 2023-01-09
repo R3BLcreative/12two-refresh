@@ -8,12 +8,13 @@
 
 @php
 $classes = [
-'h1' => 'mb-3 text-secondary-500 font-heading font-bold uppercase tracking-wider leading-loose mobile:text-5xl laptop:text-6xl',
-'h2' => 'mb-3 text-secondary-300 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-4xl laptop:text-5xl',
-'h3' => 'mb-3 text-secondary-300 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-3xl laptop:text-4xl',
-'h4' => 'mb-3 text-secondary-400 font-heading font-medium uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
-'h5' => 'mb-3 text-secondary-400 font-heading font-normal uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
-'h6' => 'mb-3 text-secondary-400 font-heading font-light uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
+	'none' => '',
+	'h1' => 'mb-3 text-secondary-500 font-heading font-bold uppercase tracking-wider leading-loose mobile:text-5xl laptop:text-6xl',
+	'h2' => 'mb-3 text-secondary-300 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-4xl laptop:text-5xl',
+	'h3' => 'mb-3 text-secondary-300 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-3xl laptop:text-4xl',
+	'h4' => 'mb-3 text-secondary-400 font-heading font-medium uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
+	'h5' => 'mb-3 text-secondary-400 font-heading font-normal uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
+	'h6' => 'mb-3 text-secondary-400 font-heading font-light uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
 ];
 
 $class = $classes[$style].' '.$class;
