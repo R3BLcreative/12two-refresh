@@ -7,8 +7,8 @@
 
 @php
 $classes = [
-'default' => 'text-primary-300 font-sans font-semibold mobile:text-lg laptop:text-[.9rem] uppercase tracking-widest transition-all ease-in-out hover:text-primary-100',
-'active' => 'text-primary-100 font-sans font-semibold mobile:text-lg laptop:text-[.9rem] uppercase tracking-widest transition-all ease-in-out hover:text-primary-200',
+'default' => 'text-body-800 font-serif font-semibold mobile:text-lg laptop:text-xl uppercase tracking-widest transition-all ease-in-out hover:text-primary-300 active:text-primary-700',
+'active' => 'text-primary-500 font-serif font-semibold mobile:text-lg laptop:text-xl uppercase tracking-widest transition-all ease-in-out hover:text-primary-500 active:text-primary-700',
 ];
 
 if(request()->segment(1) == $route) {

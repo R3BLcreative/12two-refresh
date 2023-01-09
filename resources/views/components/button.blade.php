@@ -17,8 +17,8 @@
 @php
 $actives = [
 'none' => '',
-'primary' => 'bg-primary-500 text-white rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-primary-400 active:bg-primary-600 text-center',
-'secondary' => 'bg-secondary-500 text-body-800 rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-secondary-400 active:bg-secondary-600 text-center',
+'primary' => 'bg-primary-500 text-white rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-primary-300 active:bg-primary-700 text-center',
+'secondary' => 'bg-secondary-500 text-body-800 rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-secondary-300 active:bg-secondary-600 text-center',
 'tertiary' => 'text-primary-100 font-semibold hover:text-primary-200 hover:underline active:text-primary-300 active:no-underline',
 ];
 

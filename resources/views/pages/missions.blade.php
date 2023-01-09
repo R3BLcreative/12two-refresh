@@ -10,8 +10,7 @@
 		<section>
 			<row>
 				<div class="col-span-full">
-					<x-components::heading tag="h1" style="h1" text="Home" />
-				</div>
+					<x-components::heading tag="h1" style="h1" text="Missions" />
 			</row>
 		</section>
 	</x-slot:main>

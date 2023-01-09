@@ -31,13 +31,19 @@
 	<meta name="twitter:site" content="">
 	{{-- END SEO OpenGraph and Meta --}}
 
+	<link rel="preconnect" href="https://kit.fontawesome.com">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
 
 	{{-- FAV/SHORTCUT ICONS --}}
-	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+	<link rel="manifest" href="./site.webmanifest">
+
+	<script src="https://kit.fontawesome.com/406a508ef0.js" crossorigin="anonymous"></script>
 
 	<!-- Scripts & Styles -->
 	@vite(['resources/css/app.css', 'resources/js/app.js'])

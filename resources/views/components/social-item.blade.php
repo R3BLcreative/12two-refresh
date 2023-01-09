@@ -1,37 +1,33 @@
 @props([
 'network' => '', // Social icon reference
-'class' => '', // Class decs
+'class' => '', // Class defs
 ])
 
 @php
 $networks = [
 'instagram' => [
-'url' => 'https://www.instagram.com/helloalice_com/',
-'label' => 'Follow Hello Alice on Instagram',
-],
-'tiktok' => [
-'url' => 'https://www.tiktok.com/@helloalice.com',
-'label' => 'Follow Hello Alice on TikTok',
+'url' => 'https://www.instagram.com/12twomissions/',
+'label' => 'Follow 12Two Missions on Instagram',
+'class' => 'fa-brands fa-instagram fa-lg',
 ],
 'facebook' => [
-'url' => 'https://www.facebook.com/AliceConnects',
-'label' => 'Follow Hello Alice on Facebook',
+'url' => 'https://www.facebook.com/12twomissions/',
+'label' => 'Follow 12Two Missions on Facebook',
+'class' => 'fa-brands fa-facebook-f fa-lg',
 ],
 'twitter' => [
-'url' => 'https://twitter.com/HelloAlice',
-'label' => 'Follow Hello Alice on Twitter',
-],
-'linkedin' => [
-'url' => 'https://www.linkedin.com/company/helloalice',
-'label' => 'Follow Hello Alice on LinkedIn',
+'url' => 'https://twitter.com/12TwoMissions',
+'label' => 'Follow 12Two Missions on Twitter',
+'class' => 'fa-brands fa-twitter fa-lg',
 ],
 'youtube' => [
-'url' => 'https://www.youtube.com/channel/UCfhLefUi2bhYoImQlUrVFaw',
-'label' => 'Like and Subscribe to the Hello Alice YouTube channel',
+'url' => 'https://www.youtube.com/channel/UC-2iqRvA0N6NiFNRvC5LZPQ',
+'label' => 'Like and Subscribe to the 12Two Missions YouTube channel',
+'class' => 'fa-brands fa-youtube fa-lg',
 ],
 ]
 @endphp
 
 <a href="{{ $networks[$network]['url'] }}" target="_blank" rel="external nofollow noopener" aria-label="{{ $networks[$network]['label'] }}" class="{{ $class }}">
-	{!! setting($network) !!}
+	<i class="{{ $networks[$network]['class'] }}"></i>
 </a>
