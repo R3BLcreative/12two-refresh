@@ -1,27 +1,29 @@
 <header class="fixed top-0 z-40 w-full border-b border-b-surface-300 text-body-800" role="banner">
 	<section class="!bg-primary-500 !py-2 text-body-50 font-semibold mobile:hidden tablet:block">
 		<row>
-			<x-components::socials id="header-social-nav" class="tablet:flex tablet:col-span-4 laptop:col-span-2 !justify-start !gap-8" style="fill-body-50 hover:opacity-80 active:opacity-100 h-fit" />
-			<nav id="user-nav" class="tablet:col-span-4 laptop:col-span-10 flex flex-row items-center justify-end gap-2">
+			<x-components::socials id="header-social-nav" class="tablet:flex tablet:col-span-4 laptop:col-span-2 !justify-start !gap-10" style="fill-body-50 hover:opacity-80 active:opacity-100 h-fit" />
+			<nav id="user-nav" class="tablet:col-span-4 laptop:col-span-10 flex flex-row items-center justify-end gap-8">
 
 				@auth
 					<a href="{{ route('dashboard') }}" class="flex items-center gap-2 hover:opacity-80 active:opacity-100" aria-label="Login to your 12Two Account">
-						<span class="flex relative">
-							<i class="fa-duotone fa-circle-user fa-lg animate-ping absolute inline-flex opacity-75"></i>
-							<i class="fa-duotone fa-circle-user fa-lg relative inline-flex"></i>
-						</span>
+						<i class="fa-duotone fa-circle-user fa-lg"></i>
 						ACCOUNT
 					</a>
 				@endauth
 				@guest
 					<a href="{{ route('login') }}" class="flex items-center gap-2 hover:opacity-80 active:opacity-100" aria-label="Login to your 12Two Account">
-						<span class="flex relative">
-							<i class="fa-duotone fa-right-to-bracket fa-lg animate-ping absolute inline-flex opacity-75"></i>
-							<i class="fa-duotone fa-right-to-bracket fa-lg relative inline-flex"></i>
-						</span>
+						<i class="fa-duotone fa-right-to-bracket fa-lg"></i>
 						LOGIN
 					</a>
 				@endguest
+
+				<a href="{{ route('home') }}" class="flex items-center gap-2 hover:opacity-80 active:opacity-100" aria-label="Make a Donation">
+					<span class="flex relative">
+						<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>
+						<i class="fa-duotone fa-gift fa-lg relative inline-flex"></i>
+					</span>
+					DONATE
+				</a>
 
 			</nav>
 		</row>
@@ -42,7 +44,7 @@
 				<x-components::main-nav-item route="12two" text="12Two" />
 				<x-components::main-nav-item route="programs" text="Programs" />
 				<x-components::main-nav-item route="missions" text="Missions" />
-				<x-components::main-nav-item route="journal" text="Journal" />
+				<x-components::main-nav-item route="journals" text="Journals" />
 			</nav>
 
 			<div class="mobile:col-span-2 tablet:col-span-6 laptop:hidden order-1 flex justify-end items-center">

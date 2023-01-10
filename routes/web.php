@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\FallbackController;
 
 /*
@@ -20,8 +21,12 @@ Route::get('/', function () {
 
 Route::prefix('12two')->group(function () {
 	Route::get('/', function () {
-		return view('pages.about');
+		return view('pages.12two');
 	})->name('12two');
+
+	Route::get('/beliefs', function () {
+		return view('pages.beliefs');
+	})->name('beliefs');
 
 	Route::get('/connect', function () {
 		return view('pages.connect');
@@ -64,11 +69,39 @@ Route::prefix('missions')->group(function () {
 	})->name('disaster-relief');
 });
 
-Route::prefix('journal')->group(function () {
+Route::prefix('journals')->group(function () {
 	Route::get('/', function () {
-		return view('pages.journal');
-	})->name('journal');
+		return view('pages.journals');
+	})->name('journals');
+
+	Route::get('/news', function () {
+		return view('pages.news');
+	})->name('news');
+
+	Route::get('/blog', function () {
+		return view('pages.blog');
+	})->name('blog');
+
+	Route::get('/trips', function () {
+		return view('pages.trip-journals');
+	})->name('journals.trips');
 });
+
+Route::prefix('subscribe')->group(function () {
+	Route::post('/', [SubscribeController::class, 'subscribe'])->name('subscribe.store');
+});
+
+Route::get('/privacy', function () {
+	return view('pages.privacy');
+})->name('privacy');
+
+Route::get('/cookies', function () {
+	return view('pages.cookies');
+})->name('cookies');
+
+Route::get('/terms', function () {
+	return view('pages.terms');
+})->name('terms');
 
 // FALLBACK
 Route::fallback(FallbackController::class)->name('fallback');

@@ -11,6 +11,7 @@
 			<row>
 				<div class="col-span-full">
 					<x-components::heading tag="h1" style="h1" text="Journal" />
+				</div>
 			</row>
 		</section>
 	</x-slot:main>

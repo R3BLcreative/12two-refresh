@@ -31,8 +31,8 @@ $disables = [
 
 $sizes = [
 'none' => '',
-'small' => 'px-5 py-1 text-sm',
-'default' => 'mobile:px-5 mobile:py-1 mobile:text-sm latop:px-7 laptop:py-2 laptop:text-base',
+'small' => 'px-7 py-2 text-sm',
+'default' => 'px-9 py-4 text-base',
 ];
 
 // Set class
