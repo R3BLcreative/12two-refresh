@@ -17,7 +17,7 @@
 					</a>
 				@endguest
 
-				<a href="{{ route('home') }}" class="flex items-center gap-2 hover:opacity-80 active:opacity-100" aria-label="Make a Donation">
+				<a href="{{ route('donate') }}" class="flex items-center gap-2 hover:opacity-80 active:opacity-100" aria-label="Make a Donation">
 					<span class="flex relative">
 						<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>
 						<i class="fa-duotone fa-gift fa-lg relative inline-flex"></i>
@@ -29,29 +29,89 @@
 		</row>
 	</section>
 	<section class="!bg-white !py-0">
-		<row class="min-h-[90px] max-h-screen !gap-y-0">
-			<div class="min-h-[90px] mobile:col-span-2 tablet:col-span-2 laptop:col-span-2 order-1 flex gap-2 items-center">
+		<row class="max-h-screen !gap-y-0">
+			<div class="col-span-2 order-1 flex gap-2 items-center">
 				{{-- LOGOS --}}
 				<a href="{{ route('home') }}" class="" aria-label="Return to homepage">
-					<x-components::image id="header-logo" image="logo_header_12twoBlack.png" alt="12Two Missions" class="py-2 px-2" loading="" />
+					<x-components::image id="header-logo" image="logo_header_12twoBlack.png" alt="12Two Missions" class="m-2" loading="" />
 				</a>
 			</div>
 
 			{{-- MAIN NAV --}}
-			<nav id="main-nav" class="transition-all ease-in-out duration-500 flex overflow-hidden mobile:gap-8 mobile:h-0 mobile:col-span-full mobile:flex-col mobile:items-center mobile:order-3 laptop:gap-14 laptop:h-fit laptop:col-span-10 laptop:flex-row laptop:justify-end laptop:order-2" aria-expanded="false" aria-label="Main Navigation">
-				<div class="mobile:border-t mobile:border-t-surface-300 laptop:hidden h-px w-full"></div>
+			<nav id="main-nav" class="flex mobile:flex-col mobile:justify-start mobile:overflow-hidden laptop:flex-row laptop:overflow-visible gap-8 transition-all ease-in-out duration-500 mobile:h-0 mobile:col-span-full mobile:order-3 laptop:h-fit laptop:col-span-10 laptop:order-2 laptop:justify-end" aria-expanded="false" aria-label="Main Navigation">
+				<div class="border-b border-surface-100 mb-6 laptop:hidden"></div>
 
-				<x-components::main-nav-item route="12two" text="12Two" />
-				<x-components::main-nav-item route="programs" text="Programs" />
-				<x-components::main-nav-item route="missions" text="Missions" />
-				<x-components::main-nav-item route="journals" text="Journals" />
+				<ul class="mobile:grid mobile:gap-8 mobile:grid-cols-2 laptop:flex laptop:gap-14 laptop:flex-row laptop:justify-end">
+					<x-components::main-nav-item route="12two" text="12Two" :items="[
+						[
+							'route' => '12two',
+							'text' => 'About Us',
+						],
+						[
+							'route' => 'beliefs',
+							'text' => 'Our Beliefs',
+						],
+						[
+							'route' => 'connect',
+							'text' => 'Connect With Us',
+						]
+					]" />
+					<x-components::main-nav-item route="programs" text="Programs" :items="[
+						[
+							'route' => 'sports',
+							'text' => 'Sports Program',
+						],
+						[
+							'route' => 'churches',
+							'text' => 'Church Plants',
+						],
+						[
+							'route' => 'ambassadors',
+							'text' => 'Leadership Journey',
+						]
+					]" />
+					<x-components::main-nav-item route="missions" text="Missions" :items="[
+						[
+							'route' => 'communities',
+							'text' => 'Our Communities',
+						],
+						[
+							'route' => 'missionaries',
+							'text' => '12Two Missionaries',
+						],
+						[
+							'route' => 'disaster-relief',
+							'text' => 'Disaster Relief',
+						]
+					]" />
+					<x-components::main-nav-item route="journals" text="Journals" :items="[
+						[
+							'route' => 'news',
+							'text' => 'News / Updates',
+						],
+						[
+							'route' => 'blog',
+							'text' => 'Blog Posts',
+						],
+						[
+							'route' => 'journals.trips',
+							'text' => 'Trip Journals',
+						]
+					]" />
+				</ul>
+
+				<x-components::button id="login-responsive-button" tag="a" href="{{ route('login') }}" style="primary" text="Login" class="tablet:hidden" icon="fa-duotone fa-right-to-bracket" />
+
+				<x-components::button id="donate-responsive-button" tag="a" href="{{ route('donate') }}" style="secondary" text="Donate" class="tablet:hidden" icon="fa-duotone fa-gift" />
+
+				<x-components::socials id="header-responsive-social-nav" class="mobile:flex tablet:hidden !justify-center gap-10" style="text-body-800 hover:text-primary-500 active:text-primary-700 h-fit" />
 			</nav>
 
-			<div class="mobile:col-span-2 tablet:col-span-6 laptop:hidden order-1 flex justify-end items-center">
+			<div class="mobile:col-span-2 tablet:col-span-6 laptop:hidden order-2 flex justify-end items-center">
 				{{-- NAV TOGGLE --}}
-				<x-components::toggle id="main-nav-toggle" class="mobile:block laptop:hidden fill-body-700 hover:fill-primary-500 active:fill-primary-700 w-6" itemID="#main-nav" type="nav" label="Main Navigation Toggle" controls="Main Navigation" expanded="false" icon="burger" />
+				<x-components::toggle id="main-nav-toggle" class="mobile:block laptop:hidden text-black hover:text-primary-500 active:text-primary-700 w-6" itemID="#main-nav" type="nav" label="Main Navigation Toggle" controls="Main Navigation" expanded="false" icon="fa-light fa-bars fa-2xl" />
 			</div>
 		</row>
 	</section>
 </header>
-<div class="z-10 h-[90px]"></div>
+<div class="z-10 h-[154px]"></div>

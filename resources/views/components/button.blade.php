@@ -1,16 +1,17 @@
 @props([
-'id' => '',// ID attribute text
-'tag' => 'a',// a, button, input
-'href' => '#',// url, #, null
-'text' => 'This is a button',// link/button text
-'alt' => 'Button descriptive text',// A11Y descriptive text
-'style' => 'none',// none, primary, secondary, tertiary, alternative
-'disabled' => false,// boolean
-'size' => 'default',// none, small, default
-'rel' => '',// nofollow, noopener, external
-'target' => '_self',// _blank, _self
-'atts' => [],// Additional attributes to add to the button/link ie: data-atts
-'class' => '',// Additional class atts/overrides
+'id' => '', // ID attribute text
+'tag' => 'a', // a, button, submit
+'href' => '#', // url, #, null
+'text' => 'This is a button', // link/button text
+'alt' => 'Button descriptive text', // A11Y descriptive text
+'style' => 'none', // none, primary, secondary, tertiary, alternative
+'disabled' => false, // boolean
+'size' => 'default', // none, small, default
+'rel' => '', // nofollow, noopener, external
+'target' => '_self', // _blank, _self
+'atts' => [], // Additional attributes to add to the button/link ie: data-atts
+'class' => '', // Additional class atts/overrides
+'icon' => '', //
 ])
 
 {{-- CLASS DEFINITIONS --}}
@@ -43,7 +44,7 @@ $class = $actives[$style] . ' ' . $sizes[$size] . ' ' . $class;
 }
 
 // Class atts applied to all
-$class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-nowrap uppercase';
+$class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-nowrap uppercase flex flex-row items-center justify-center gap-4';
 
 // Convert atts array to string
 if(count($atts) > 0) {
@@ -53,25 +54,23 @@ $attributes = '';
 }
 @endphp
 
-{{-- INPUT --}}
-@if($tag == 'input')
-<input
-	id="{{ $id }}"
-	type="button"
-	aria-label="{{ $alt }}"
-	class="{{ $class }}"
-	value="{{ $text }}"
-	{{ $attributes }} @if($disabled) disabled @endif>
-
 {{-- SUBMIT --}}
-@elseif($tag == 'submit')
-<input
+@if($tag == 'submit')
+<button
 	id="{{ $id }}"
 	type="submit"
 	aria-label="{{ $alt }}"
 	class="{{ $class }}"
-	value="{{ $text }}"
 	{{ $attributes }} @if($disabled) disabled @endif>
+
+	@if($icon)
+	<i class="{{ $icon }} fa-lg"></i>
+	@endif
+
+	{{-- BUTTON TEXT --}}
+	{{ $text }}
+	{{-- --}}
+</button>
 
 {{-- BUTTON --}}
 @elseif($tag == 'button')
@@ -81,7 +80,11 @@ $attributes = '';
 	class="{{ $class }}"
 	{{ $attributes }} @if($disabled) disabled @endif>
 
-	{{-- LINK TEXT --}}
+	@if($icon)
+	<i class="{{ $icon }} fa-lg"></i>
+	@endif
+
+	{{-- BUTTON TEXT --}}
 	{{ $text }}
 	{{-- --}}
 
@@ -97,6 +100,10 @@ $attributes = '';
 	target="{{ $target }}"
 	class="{{ $class }}"
 	{{ $attributes }}>
+
+	@if($icon)
+	<i class="{{ $icon }} fa-lg"></i>
+	@endif
 
 	{{-- LINK TEXT --}}
 	{{ $text }}

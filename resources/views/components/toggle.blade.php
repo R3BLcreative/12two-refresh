@@ -20,7 +20,7 @@
 	aria-expanded="{{ $expanded }}">
 
 	@if($icon)
-	{!! setting($icon) !!}
+	<i class="{{ $icon }}"></i>
 	@else
 	{{ $text }}
 	@endif

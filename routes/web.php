@@ -87,6 +87,12 @@ Route::prefix('journals')->group(function () {
 	})->name('journals.trips');
 });
 
+Route::prefix('donate')->group(function () {
+	Route::get('/', function () {
+		return view('pages.donate');
+	})->name('donate');
+});
+
 Route::prefix('subscribe')->group(function () {
 	Route::post('/', [SubscribeController::class, 'subscribe'])->name('subscribe.store');
 });

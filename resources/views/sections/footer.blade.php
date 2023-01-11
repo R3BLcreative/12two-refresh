@@ -25,7 +25,7 @@
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
 						<x-components::footer-nav-item route="12two" text="About Us" />
 						<x-components::footer-nav-item route="beliefs" text="Our Beliefs" />
-						<x-components::footer-nav-item route="connect" text="Connect" />
+						<x-components::footer-nav-item route="connect" text="Connect With Us" />
 					</ul>
 				</nav>
 			</div>
@@ -35,9 +35,9 @@
 
 				<nav id="programs-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="sports" text="Sports" />
-						<x-components::footer-nav-item route="churches" text="Churches" />
-						<x-components::footer-nav-item route="ambassadors" text="Ambassadors" />
+						<x-components::footer-nav-item route="sports" text="Sports Program" />
+						<x-components::footer-nav-item route="churches" text="Church Plants" />
+						<x-components::footer-nav-item route="ambassadors" text="Leadership Journey" />
 					</ul>
 				</nav>
 			</div>
@@ -55,8 +55,8 @@
 
 				<nav id="missions-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="communities" text="Communities" />
-						<x-components::footer-nav-item route="missionaries" text="Missionaries" />
+						<x-components::footer-nav-item route="communities" text="Our Communities" />
+						<x-components::footer-nav-item route="missionaries" text="12Two Missionaries" />
 						<x-components::footer-nav-item route="disaster-relief" text="Disaster Relief" />
 					</ul>
 				</nav>
@@ -67,9 +67,9 @@
 
 				<nav id="journal-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="news" text="News" />
-						<x-components::footer-nav-item route="blog" text="Blog" />
-						<x-components::footer-nav-item route="journals.trips" text="Trips" />
+						<x-components::footer-nav-item route="news" text="News / Updates" />
+						<x-components::footer-nav-item route="blog" text="Blog Posts" />
+						<x-components::footer-nav-item route="journals.trips" text="Trip Journals" />
 					</ul>
 				</nav>
 			</div>
