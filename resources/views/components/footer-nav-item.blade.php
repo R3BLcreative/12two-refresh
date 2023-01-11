@@ -9,7 +9,7 @@ $classes = [
 	'active' => 'text-base font-semibold underline hover:opacity-80 hover:no-underline active:opacity-100',
 ];
 
-if(Request::is($route)) {
+if(Route::currentRouteName() == $route) {
 	$class = $classes['active'];
 }else{
 	$class = $classes['default'];

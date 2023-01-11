@@ -11,7 +11,7 @@ $classes = [
 'active' => 'text-primary-500 font-serif font-semibold whitespace-nowrap text-base tracking-wide transition-all ease-in-out group-hover/item:text-primary-300 group-active/item:text-primary-700',
 ];
 
-if(Request::is($route)) {
+if(Route::currentRouteName() == $route) {
 $class = $classes['active'] . ' ' . $class;
 }else{
 $class = $classes['default'] . ' ' . $class;

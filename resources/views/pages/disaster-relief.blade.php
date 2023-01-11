@@ -1,7 +1,7 @@
 <x-layouts::default
 	:seo="[
 	'name' => '12Two Missions',
-	'title' => '12Two Missions | About Us',
+	'title' => '12Two Missions | Disaster Relief',
 	'desc' => '',
 	'indexing' => false
 	]">
@@ -10,7 +10,7 @@
 		<section>
 			<row>
 				<div class="col-span-full">
-					<x-components::heading tag="h1" style="h1" text="About Us" />
+					<x-components::heading tag="h1" style="h1" text="Disaster Relief" />
 				</div>
 			</row>
 		</section>
