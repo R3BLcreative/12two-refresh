@@ -1,19 +1,19 @@
 <x-layouts::default
 	:seo="[
 	'name' => '12Two Missions',
-	'title' => '12Two Missions | Home',
+	'title' => '12Two Missions | Programs',
 	'desc' => '',
 	'indexing' => false
 	]">
 
 	<x-slot:main>
-		<section>
+		<x-sections::section>
 			<row>
 				<div class="col-span-full">
-					<x-components::heading tag="h1" style="h1" text="Programs" />
+					<x-components::heading tag="h1" style="h1">Programs</x-components::heading>
 				</div>
 			</row>
-		</section>
+		</x-sections::section>
 	</x-slot:main>
 
 </x-layouts::default>

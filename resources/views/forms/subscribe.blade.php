@@ -15,6 +15,6 @@
 <x-fields::input class="laptop:col-span-full" id="email" type="email" placeholder="john@email.com" label="Email" value="{{ old('email') }}" required="1" />
 <x-fields::input class="laptop:col-span-full" id="cemail" type="email" placeholder="john@email.com" label="Confirm Email" value="{{ old('cemail') }}" required="1" />
 
-<x-components::button id="" tag="submit" style="secondary" size="default" text="Subscribe" class="!w-full col-span-full" />
+<x-components::button id="" tag="submit" style="secondary" size="default" class="!w-full col-span-full">Subscribe</x-components::button>
 
 </form>

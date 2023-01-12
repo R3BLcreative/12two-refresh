@@ -109,5 +109,15 @@ Route::get('/terms', function () {
 	return view('pages.terms');
 })->name('terms');
 
+Route::prefix('faq')->group(function () {
+	Route::get('/', function () {
+		return view('pages.faq');
+	})->name('faq');
+
+	Route::get('/{cat}', function ($cat) {
+		return view('pages.faq');
+	})->name('faq.category');
+});
+
 // FALLBACK
 Route::fallback(FallbackController::class)->name('fallback');

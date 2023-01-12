@@ -2,7 +2,6 @@
 	'href' => '', // URL for external links
 	'route' => '', // Route name for internal links
 	'class' => '', // Additional classes/overrides
-	'text' => '', // Link text
 ])
 
 @php
@@ -20,6 +19,6 @@ $class = $classes['default'] . ' ' . $class;
 
 <li class="px-4 py-2 group/item border-b border-surface-200 last:border-b-0 transition-all ease-in-out hover:bg-surface-100">
 	<a href="{{ ($route) ? route($route) : $href }}" class="{{ $class }}">
-		{{ $text }}
+		{{ $slot }}
 	</a>
 </li>

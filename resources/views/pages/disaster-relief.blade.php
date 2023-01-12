@@ -7,13 +7,13 @@
 	]">
 
 	<x-slot:main>
-		<section>
+		<x-sections::section>
 			<row>
 				<div class="col-span-full">
-					<x-components::heading tag="h1" style="h1" text="Disaster Relief" />
+					<x-components::heading tag="h1" style="h1">Disaster Relief</x-components::heading>
 				</div>
 			</row>
-		</section>
+		</x-sections::section>
 	</x-slot:main>
 
 </x-layouts::default>

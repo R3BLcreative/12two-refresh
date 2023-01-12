@@ -2,7 +2,6 @@
 'id' => '', // ID attribute text
 'tag' => 'a', // a, button, submit
 'href' => '#', // url, #, null
-'text' => 'This is a button', // link/button text
 'alt' => 'Button descriptive text', // A11Y descriptive text
 'style' => 'none', // none, primary, secondary, tertiary, alternative
 'disabled' => false, // boolean
@@ -16,18 +15,19 @@
 
 {{-- CLASS DEFINITIONS --}}
 @php
+$defaults = 'rounded-full inline-block font-bold cursor-pointer leading-none tracking-wider text-center';
+
 $actives = [
 'none' => '',
-'primary' => 'bg-primary-500 text-white rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-primary-300 active:bg-primary-700 text-center',
-'secondary' => 'bg-secondary-500 text-body-800 rounded-full inline-block font-bold border-none cursor-pointer leading-none tracking-wider hover:bg-secondary-300 active:bg-secondary-600 text-center',
-'tertiary' => 'text-primary-100 font-semibold hover:text-primary-200 hover:underline active:text-primary-300 active:no-underline',
+'primary' => 'bg-primary-500 text-body-50 hover:bg-primary-300 active:bg-primary-600',
+'secondary' => 'bg-secondary-500 text-body-800 hover:bg-secondary-300 active:bg-secondary-600',
+'accent' => 'group-odd/section:bg-secondary-accent-500 group-odd/section:text-body-50 group-odd/section:hover:bg-secondary-accent-300 group-odd/section:active:bg-secondary-accent-600 group-even/section:bg-primary-accent-500 group-even/section:text-body-50 group-even/section:hover:bg-primary-accent-300 group-even/section:active:bg-primary-accent-600',
 ];
 
 $disables = [
 'none' => '',
-'primary' => 'bg-body-400 text-white rounded-full inline-block font-semibold border-none leading-none tracking-wide hover:bg-alert-100 pointer-events-none text-center',
-'secondary' => 'bg-white text-surface-400 border-surface-400 border-2 rounded-full inline-block font-semibold leading-none tracking-wide pointer-events-none text-center',
-'tertiary' => 'text-body-400 font-semibold mobile:text-sm desktop:text-base pointer-events-none',
+'primary' => 'pointer-events-none',
+'secondary' => 'pointer-events-none',
 ];
 
 $sizes = [
@@ -38,9 +38,9 @@ $sizes = [
 
 // Set class
 if($disabled === true) {
-$class = $disables[$style] . ' ' . $sizes[$size] . ' ' . $class;
+$class = $defaults . ' ' . $disables[$style] . ' ' . $sizes[$size] . ' ' . $class;
 }else{
-$class = $actives[$style] . ' ' . $sizes[$size] . ' ' . $class;
+$class = $defaults . ' ' . $actives[$style] . ' ' . $sizes[$size] . ' ' . $class;
 }
 
 // Class atts applied to all
@@ -68,7 +68,7 @@ $attributes = '';
 	@endif
 
 	{{-- BUTTON TEXT --}}
-	{{ $text }}
+	{{ $slot }}
 	{{-- --}}
 </button>
 
@@ -85,7 +85,7 @@ $attributes = '';
 	@endif
 
 	{{-- BUTTON TEXT --}}
-	{{ $text }}
+	{{ $slot }}
 	{{-- --}}
 
 </button>
@@ -106,7 +106,7 @@ $attributes = '';
 	@endif
 
 	{{-- LINK TEXT --}}
-	{{ $text }}
+	{{ $slot }}
 	{{-- --}}
 
 </a>

@@ -1,6 +1,5 @@
 @props([
 	'route' => '',
-	'text' => '',
 ])
 
 @php
@@ -16,4 +15,4 @@ if(Route::currentRouteName() == $route) {
 }
 @endphp
 
-<li><span class="fa-li"><i class="fa-regular fa-l"></i></span><a href="{{ route($route) }}" class="{{ $class }}">{{ $text }}</a></li>
+<li><span class="fa-li"><i class="fa-regular fa-l"></i></span><a href="{{ route($route) }}" class="{{ $class }}">{{ $slot }}</a></li>
