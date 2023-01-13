@@ -5,7 +5,7 @@
 
 <x-forms::notifications :errors="$errors" />
 
-<form id="subscribe-form" action="{{ route('subscribe.store') }}" class="{{ $class }}" method="post" enctype="multipart/form-data" novalidate>
+<form id="signup-form" action="{{ route('register') }}" class="{{ $class }}" method="post" enctype="multipart/form-data" novalidate>
 	@csrf
 	@method('post')
 
@@ -18,6 +18,6 @@
 
 	<span class="">&nbsp;</span>
 
-	<x-components::button id="" tag="submit" style="{{ $btnStyle }}" size="default" class="!w-full col-span-full">Subscribe</x-components::button>
+	<x-components::button id="" tag="submit" style="{{ $btnStyle }}" class="!w-full col-span-full">Create Account</x-components::button>
 
 </form>

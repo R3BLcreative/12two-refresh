@@ -5,6 +5,7 @@ import './carousels';
 import './toggles';
 import './cookie-consent';
 import './counters';
+import './forms';
 
 document.addEventListener('DOMContentLoaded', function () {
 	// SKIP TO MAIN CONTENT BUTTON --------------------------------

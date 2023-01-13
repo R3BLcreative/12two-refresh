@@ -1,4 +1,15 @@
-@props(['class', 'id', 'type', 'placeholder', 'label', 'desc', 'value', 'required', 'slots', 'accepts'])
+@props([
+	'class', // Wrapper class decs
+	'id', // Field ID
+	'type', // Input type
+	'placeholder', // Field placeholder text or default ID
+	'label', // Field label text
+	'desc', // Field description text
+	'value', // Field init value
+	'required', // Set field as required
+	'slots', // Input masking slot defs
+	'accepts' // Input masking type casting
+])
 
 <div @isset($class)class="{{ $class }}" @endisset>
 	<label for="{{ $id }}" class="block mb-2 font-bold @empty($label) invisible @endempty @error($id) text-alert-100 @enderror">{{ $label ?? $desc }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>

@@ -13,7 +13,7 @@
 			</x-slot:body>
 
 			<x-slot:ctas class="flex flex-row gap-6">
-				<x-components::button tag="a" style="secondary" href="#donation-form">Donate Today</x-components::button>
+				<x-components::button tag="a" style="secondary" href="#donate">Donate Today</x-components::button>
 				<x-components::button tag="a" style="accent" href="{{ route('faq.category', ['cat' => 'donations']) }}">
 					Donations FAQ
 				</x-components::button>
@@ -25,6 +25,7 @@
 			No one has ever become poor by giving.
 		</x-sections::quote>
 
+		{{-- BY THE NUMBERS --}}
 		<x-sections::numbers />
 
 		{{-- WAYS TO DONATE --}}
@@ -35,8 +36,7 @@
 			<row class="!items-start !justify-stretch">
 				<div class="mobile:col-span-full tablet:col-span-4 laptop:col-span-4">
 					<x-components::heading tag="h3" style="h3" class="text-center">Online</x-components::heading>
-					<p class="text-center">This is the best way to make your donation. Your payment will be processed securely using <x-components::link href="https://stripe.com" target="_blank" rel="nofollow noopener external">Stripe</x-components::link>. Simply fill out the form below and follow the prompts.</p>
-					<p class="text-center font-semibold">A 12Two user account will be required to setup a regular monthly donation.</p>
+					<p class="text-center">This is the best way to make your donation. Your payment will be processed securely using <x-components::link href="https://stripe.com" target="_blank" rel="nofollow noopener external">Stripe.com</x-components::link>. Simply fill out the form below and follow the prompts.</p>
 				</div>
 				<div class="mobile:col-span-full tablet:col-span-4 laptop:col-span-4 flex flex-col items-center">
 					<x-components::heading tag="h3" style="h3" class="text-center">Facebook</x-components::heading>
@@ -55,18 +55,22 @@
 		</x-sections::section>
 
 		{{-- DONATE/SIGNUP --}}
-		<x-sections::section id="donation-form">
+		<x-sections::section>
+			<x-components::anchor id="donate" />
+
 			<row class="!items-start">
-				{{-- ONE TIME --}}
-				<div class="mobile:col-span-full tablet:col-span-4 laptop:col-span-6">
-					<x-components::heading tag="h2" style="h3">One-Time Donation</x-components::heading>
-					<p>Use this form to make a one-time donation to 12Two Missions. No account creation neccassary. Check out our <x-components::link href="{{ route('faq.category', ['cat' => 'donations']) }}">FAQ page</x-components::link> for answers to common questions regarding donations to 12Two Missions.</p>
+				<div class="mobile:col-span-full tablet:col-span-3 laptop:col-span-5">
+					<x-components::heading tag="span" style="preheader">Become a</x-components::heading>
+					<x-components::heading tag="h2" style="h2">Financial Partner</x-components::heading>
+
+					<p>No matter the amount <em>(substanial, with-in the budget, monthly, or one-time)</em>, we are grateful for your support and pray that God's abundant favor and blessings are poured out on you and your loved ones in response to your gift today.</p>
+
+					<p>Complete the form to make a donation. Your payment info will be entered and processed securely via <x-components::link href="https://stripe.com" target="_blank" rel="nofollow noopener external">Stripe.com</x-components::link> in the next step.</p>
 				</div>
 
-				{{-- ACCOUNT SIGNUP --}}
-				<div class="mobile:col-span-full tablet:col-span-4 laptop:col-span-6">
-					<x-components::heading tag="h2" style="h3">Account Creation</x-components::heading>
-					<p>If you would like to become a regular monthly financial partner, please create a user account in order to access features for managing your donations.</p>
+				{{-- ONE TIME --}}
+				<div class="mobile:col-span-full tablet:col-span-5 laptop:col-span-7">
+					<x-forms::donate class="grid grid-cols-2 gap-4 rounded-xl bg-body-50 p-6 text-body-800 shadow-lg border-2 border-surface-800" />
 				</div>
 			</row>
 		</x-sections::section>

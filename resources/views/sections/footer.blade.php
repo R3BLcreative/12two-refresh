@@ -43,7 +43,9 @@
 			</div>
 
 			<div class="mobile:col-span-full laptop:col-span-3 mobile:row-span-1 laptop:row-span-3 mobile:order-1 laptop:order-4 self-stretch">
-				<x-components::heading tag="h2" style="h5" class="!text-body-50 border-l-secondary-300 !text-2xl !tracking-widest py-1 block border-l-8 pl-3">Newsletter</x-components::heading>
+				<x-components::anchor id="subscribe" />
+
+				<x-components::heading tag="h2" style="h5" class="!text-body-50 border-l-secondary-300 !text-2xl !tracking-widest py-1 block border-l-8 pl-3">Join Our List</x-components::heading>
 
 				<p>Subscribe to our mailing list to receive trip notifications, news, and updates.</p>
 

@@ -18,6 +18,11 @@
 					</a>
 				@endguest
 
+				<a href="#subscribe" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
+					<i class="fa-duotone fa-envelope fa-lg"></i>
+					SUBSCRIBE
+				</a>
+
 				<a href="{{ route('donate') }}" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
 					<span class="flex relative">
 						<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>

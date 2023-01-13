@@ -1,13 +1,13 @@
 @props([
-'class',
-'id',
-'label',
-'desc',
-'options',
-'required',
-'cols',
-'details',
-'detailsMax',
+'class' => '', // Wrapper class decs
+'id', // Field ID
+'label', // Field label text
+'desc', // Field description text
+'options', // Checkbox options
+'required', // Set field as required
+'cols', // Break checkboxes into columns
+'details', // Show details box flag
+'detailsMax', // Char count for details box
 'showDetails' => false
 ])
 

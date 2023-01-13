@@ -1,4 +1,16 @@
-@props(['class', 'id', 'placeholder', 'label', 'desc', 'value', 'required', 'max', 'disabled', 'rows' => 6])
+@props([
+	'class', // Wrapper class decs
+	'id', // Field ID
+	'type', // Input type
+	'placeholder', // Field placeholder text or default ID
+	'label', // Field label text
+	'desc', // Field description text
+	'value', // Field init value
+	'required', // Set field as required
+	'max', // Max chars allowed
+	'disabled', // Disable editing the textarea
+	'rows' => 6 // Textarea rows
+])
 
 
 

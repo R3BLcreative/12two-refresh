@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\FallbackController;
+use App\Http\Controllers\DonateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,8 @@ Route::prefix('donate')->group(function () {
 	Route::get('/', function () {
 		return view('pages.donate');
 	})->name('donate');
+
+	Route::post('/', [DonateController::class, 'store'])->name('donate.store');
 });
 
 Route::prefix('subscribe')->group(function () {
