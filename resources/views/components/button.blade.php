@@ -15,13 +15,13 @@
 
 {{-- CLASS DEFINITIONS --}}
 @php
-$defaults = 'rounded-full inline-block font-bold cursor-pointer leading-none tracking-wider text-center';
+$defaults = 'rounded-full inline-block font-bold cursor-pointer leading-none tracking-wider text-center shadow hover:shadow-xl active:shadow-none';
 
 $actives = [
 'none' => '',
 'primary' => 'bg-primary-500 text-body-50 hover:bg-primary-300 active:bg-primary-600',
 'secondary' => 'bg-secondary-500 text-body-800 hover:bg-secondary-300 active:bg-secondary-600',
-'accent' => 'group-odd/section:bg-secondary-accent-500 group-odd/section:text-body-50 group-odd/section:hover:bg-secondary-accent-300 group-odd/section:active:bg-secondary-accent-600 group-even/section:bg-primary-accent-500 group-even/section:text-body-50 group-even/section:hover:bg-primary-accent-300 group-even/section:active:bg-primary-accent-600',
+'accent' => 'group-odd/section:bg-secondary-accent-500 group-odd/section:text-body-50 group-odd/section:hover:bg-secondary-accent-400 group-odd/section:active:bg-secondary-accent-600 group-even/section:bg-primary-accent-500 group-even/section:text-body-50 group-even/section:hover:bg-primary-accent-400 group-even/section:active:bg-primary-accent-600',
 ];
 
 $disables = [

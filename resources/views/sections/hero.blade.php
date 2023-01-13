@@ -8,7 +8,7 @@
 'alt' => '',
 ])
 
-<x-sections::section id="hero" class="">
+<x-sections::section id="hero" class="!bg-surface-900 bg-map-dark bg-no-repeat bg-cover bg-center">
 	<row class="!items-center">
 		<div class="mobile:col-span-full mobile:order-2 tablet:col-span-4 tablet:order-1 laptop:col-span-7">
 

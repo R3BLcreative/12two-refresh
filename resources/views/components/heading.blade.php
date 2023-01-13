@@ -9,13 +9,13 @@
 @php
 $classes = [
 	'none' => '',
-	'h1' => 'mb-3 group-even/section:text-primary-500 group-odd/section:text-secondary-500 font-heading font-bold uppercase tracking-wider leading-loose mobile:text-5xl laptop:text-6xl',
-	'h2' => 'mb-3 group-even/section:text-primary-500 group-odd/section:text-secondary-500 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-4xl laptop:text-5xl',
-	'h3' => 'mb-3 group-even/section:text-primary-accent-200 group-odd/section:text-secondary-accent-200 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-3xl laptop:text-4xl',
+	'h1' => 'mb-3 group-even/section:text-primary-500 group-odd/section:text-secondary-500 font-heading font-bold uppercase tracking-wider leading-loose mobile:text-5xl laptop:text-6xl drop-shadow-sm',
+	'h2' => 'mb-3 group-even/section:text-primary-500 group-odd/section:text-secondary-500 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-4xl laptop:text-5xl drop-shadow',
+	'h3' => 'mb-3 group-even/section:text-primary-accent-500 group-odd/section:text-secondary-accent-400 font-heading font-semibold uppercase tracking-wider leading-loose mobile:text-3xl laptop:text-4xl drop-shadow-sm',
 	'h4' => 'mb-3 group-even/section:text-primary-400 group-odd/section:text-secondary-400 font-heading font-medium uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
 	'h5' => 'mb-3 group-even/section:text-primary-400 group-odd/section:text-secondary-400 font-heading font-normal uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
 	'h6' => 'mb-3 group-even/section:text-primary-400 group-odd/section:text-secondary-400 font-heading font-light uppercase tracking-wider leading-loose mobile:text-2xl laptop:text-3xl',
-	'preheader' => 'mb-3 group-even/section:text-primary-accent-200 group-odd/section:text-secondary-accent-200 font-heading font-light uppercase tracking-wider leading-loose mobile:text-xl laptop:text-xl',
+	'preheader' => 'mb-3 group-even/section:text-primary-accent-400 group-odd/section:text-secondary-accent-400 font-heading font-light uppercase tracking-wider leading-loose mobile:text-xl laptop:text-xl',
 ];
 
 $class = $classes[$style].' '.$class;

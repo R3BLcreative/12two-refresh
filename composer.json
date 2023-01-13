@@ -17,7 +17,8 @@
 		"laravel/tinker": "^2.7",
 		"laravel/vapor-core": "^2.26",
 		"laravel/vapor-ui": "^1.6",
-		"spatie/laravel-newsletter": "^5.0"
+		"spatie/laravel-newsletter": "^5.0",
+		"stripe/stripe-php": "^10.3"
 	},
 	"require-dev": {
 		"fakerphp/faker": "^1.9.1",

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\FallbackController;
 
 /*
@@ -118,6 +119,10 @@ Route::prefix('faq')->group(function () {
 		return view('pages.faq');
 	})->name('faq.category');
 });
+
+// STRIPE WEBHOOK
+Route::get('/wh-stripe', [StripeWebhookController::class, 'test'])->name('stripe.test');
+Route::post('/wh-stripe', StripeWebhookController::class)->name('webhook.stripe');
 
 // FALLBACK
 Route::fallback(FallbackController::class)->name('fallback');
