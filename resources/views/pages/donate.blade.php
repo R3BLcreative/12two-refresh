@@ -70,7 +70,7 @@
 
 				{{-- ONE TIME --}}
 				<div class="mobile:col-span-full tablet:col-span-5 laptop:col-span-7">
-					<x-forms::donate class="grid grid-cols-2 gap-4 rounded-xl bg-body-50 p-6 text-body-800 shadow-lg border-2 border-surface-800" />
+					<x-forms::donate />
 				</div>
 			</row>
 		</x-sections::section>

@@ -5,7 +5,7 @@
 'desc', // Field description text
 'options', // Checkbox options
 'required', // Set field as required
-'cols', // Break checkboxes into columns
+'cols' => 1, // Break checkboxes into columns
 'details', // Show details box flag
 'detailsMax', // Char count for details box
 'showDetails' => false
@@ -13,7 +13,9 @@
 
 <div class="{{ $class }} flex flex-col gap-4" @isset($details) data-hasDeps="1" @endisset>
 	<div class="">
-		<label for="{{ $id }}" class="block font-bold @error($id) text-accent-alert @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
+		@isset($label)
+			<label for="{{ $id }}" class="block font-bold @error($id) text-accent-alert @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
+		@endisset
 
 		@isset($desc)
 		<span class="text-sm italic">{{ $desc }}</span>
@@ -38,7 +40,7 @@
 		@foreach($options as $optval => $option)
 		<div class="flex flex-row items-center justify-start gap-4">
 			<input type="checkbox" value="{{ $optval }}" id="{{ $id }}_{{ $i }}" name="{{ $id }}_{{ $i }}" class="cursor-pointer" @isset($details) @if(old($id.'_'.$i))aria-expanded="true" @else aria-expanded="false" @endif aria-controls="{{ $id }}-details-wrap" data-deps="" @endisset @if(old($id.'_'.$i))checked="checked" @endif>
-			<label for="{{ $id }}_{{ $i }}" class="cursor-pointer">{{ $option }}</label>
+			<label for="{{ $id }}_{{ $i }}" class="cursor-pointer text-sm leading-snug">{{ $option }}</label>
 			@php
 			if(old($id.'_'.$i)) {
 			$showDetails = true;
