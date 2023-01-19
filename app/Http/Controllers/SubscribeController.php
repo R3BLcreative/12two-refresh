@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class SubscribeController extends Controller {
 
 	public function subscribe(Request $request) {
-		$request->validate(
+		$request->validateWithBag(
+			'subscribe',
 			[
 				'fname'			=> 'required|string',
 				'lname'			=> 'required|string',

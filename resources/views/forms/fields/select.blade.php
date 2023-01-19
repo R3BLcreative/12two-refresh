@@ -7,12 +7,13 @@
 	'value', // Field init value
 	'required', // Set field as required
 	'options', // Select field options
+	'bag', // Error bag name
 ])
 
 <div class="{{ $class }}">
-	<label for="{{ $id }}" class="block mb-2 font-bold @error($id) text-accent-alert @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
+	<label for="{{ $id }}" class="block mb-2 font-bold @error($id, $bag) text-error-100 @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
 
-	<select id="{{ $id }}" name="{{ $id }}" class="w-full @error($id) border-accent-alert @enderror">
+	<select id="{{ $id }}" name="{{ $id }}" class="w-full @error($id, $bag) border-error-100 @enderror">
 		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder }}</option>
 		@foreach ($options as $optval => $option)
 		@if(is_array($option))
@@ -31,7 +32,7 @@
 	<span class="text-sm italic">{{ $desc }}</span>
 	@endisset
 
-	@error($id)
-	<span class="text-sm italic font-semibold text-accent-alert">{{ $message }}</span>
+	@error($id, $bag)
+	<span class="text-sm italic font-semibold text-error-100">{{ $message }}</span>
 	@enderror
 </div>

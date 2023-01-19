@@ -8,7 +8,8 @@ use App\Models\Donate;
 
 class DonateController extends Controller {
 	public function store(Request $request) {
-		$request->validate(
+		$request->validateWithBag(
+			'donate',
 			[
 				'fname'			=> 'required|string',
 				'lname'			=> 'required|string',
@@ -22,27 +23,30 @@ class DonateController extends Controller {
 		);
 
 		// Setup Stripe API call here
+		$env = env('APP_ENV');
 		$fmt = new NumberFormatter('en-US', NumberFormatter::CURRENCY);
 		$donation = $fmt->parseCurrency($request->amount, $curr);
 		$fee = $fmt->parseCurrency($request->ccfee, $curr);
+		$prodDonate = ($env == 'production') ? setting('prod_live_donation') : setting('prod_test_donation');
+		$prodFee = ($env == 'production') ? setting('prod_live_fee') : setting('prod_test_fee');
 
 		$line_items = [];
 		// donation
 		$line_items[] = [
 			'price_data' => [
 				'currency' => 'usd',
-				'product' => setting('prod_test_donation'),
+				'product' => $prodDonate,
 				'unit_amount' => $donation * 100,
 			],
 			'quantity' => 1,
 		];
 
 		// fee
-		if ($request->addFee_1) {
+		if ($request->addFee == 'yes') {
 			$line_items[] = [
 				'price_data' => [
 					'currency' => 'usd',
-					'product' => setting('prod_test_fee'),
+					'product' => $prodFee,
 					'unit_amount' => $fee * 100,
 				],
 				'quantity' => 1,

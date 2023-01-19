@@ -1,4 +1,6 @@
-@if ($errors->any())
+@props(['errors','bag'])
+
+@if ($errors->$bag->any())
 <div class="w-full rounded-lg mb-6 bg-surface-50 text-red-700 border-2 border-red-400 p-3 leading-normal">
 	<p class="font-semibold mb-12px text-sm">There are errors with your submission. Please check the highlighted fields below for correctness.</p>
 </div>
