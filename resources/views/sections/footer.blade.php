@@ -65,7 +65,7 @@
 			</div>
 
 			<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 mobile:order-5 laptop:order-6">
-				<x-components::heading tag="h2" style="h5" class="!text-body-50 border-l-secondary-300 !text-2xl !tracking-widest py-1 block border-l-8 pl-3">Journal</x-components::heading>
+				<x-components::heading tag="h2" style="h5" class="!text-body-50 border-l-secondary-300 !text-2xl !tracking-widest py-1 block border-l-8 pl-3">Journals</x-components::heading>
 
 				<nav id="journal-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">

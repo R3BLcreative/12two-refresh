@@ -20,24 +20,30 @@ document.addEventListener('DOMContentLoaded', function () {
 	const inputAmount = document.querySelector('#amount');
 	const displayFee = document.querySelector('#ccFeeDisplay');
 	const inputFee = document.querySelector('#ccfee');
-	inputAmount.addEventListener('keyup', (e) => {
-		let amount = e.target.value
-			.replace(',', '')
-			.replace('$', '')
-			.replace('.', '');
 
-		let feeAmount = amount * fee;
-		inputFee.value = moneyMask(feeAmount.toString());
-		displayFee.value = moneyMask(feeAmount.toString());
-	});
+	if (inputAmount) {
+		inputAmount.addEventListener('keyup', (e) => {
+			let amount = e.target.value
+				.replace(',', '')
+				.replace('$', '')
+				.replace('.', '');
+
+			let feeAmount = amount * fee;
+			inputFee.value = moneyMask(feeAmount.toString());
+			displayFee.value = moneyMask(feeAmount.toString());
+		});
+	}
 
 	// INPUT MASKING
 
 	// Currency input masking
-	let inputUSD = document.querySelector("input[data-type='currency']");
-	inputUSD.addEventListener('keyup', (e) => {
-		e.target.value = moneyMask(e.target.value);
-	});
+	const inputUSD = document.querySelector("input[data-type='currency']");
+
+	if (inputUSD) {
+		inputUSD.addEventListener('keyup', (e) => {
+			e.target.value = moneyMask(e.target.value);
+		});
+	}
 
 	// This code empowers all input tags having a placeholder and data-slots attribute for masking
 	for (const el of document.querySelectorAll('[placeholder][data-slots]')) {
