@@ -61,7 +61,7 @@
 					],
 				];
 			@endphp
-			<row class="!items-stretch !gap-5 relative">
+			<row class="!items-stretch !gap-9 relative">
 
 				@foreach ($cards as $card)
 					<x-components::card-do :image="$card['image']" :alt="$card['alt']" :title="$card['title']" :href="$card['href']" />
