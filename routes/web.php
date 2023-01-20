@@ -20,6 +20,8 @@ Route::get('/', function () {
 	return view('pages.home');
 })->name('home');
 
+
+// ABOUT
 Route::prefix('12two')->group(function () {
 	Route::get('/', function () {
 		return view('pages.12two');
@@ -34,6 +36,8 @@ Route::prefix('12two')->group(function () {
 	})->name('connect');
 });
 
+
+// PROGRAMS
 Route::prefix('programs')->group(function () {
 	Route::get('/', function () {
 		return view('pages.programs');
@@ -52,6 +56,8 @@ Route::prefix('programs')->group(function () {
 	})->name('ambassadors');
 });
 
+
+// MISSIONS
 Route::prefix('missions')->group(function () {
 	Route::get('/', function () {
 		return view('pages.missions');
@@ -70,6 +76,8 @@ Route::prefix('missions')->group(function () {
 	})->name('disaster-relief');
 });
 
+
+// JOURNALS
 Route::prefix('journals')->group(function () {
 	Route::get('/', function () {
 		return view('pages.journals');
@@ -88,6 +96,14 @@ Route::prefix('journals')->group(function () {
 	})->name('journals.trips');
 });
 
+
+// BOOKING/TEACHING
+Route::get('/teaching', function () {
+	return view('pages.teaching');
+})->name('teaching');
+
+
+// DONATIONS
 Route::prefix('donate')->group(function () {
 	Route::get('/', function () {
 		return view('pages.donate');
@@ -100,10 +116,14 @@ Route::prefix('donate')->group(function () {
 	Route::post('/', [DonateController::class, 'store'])->name('donate.store');
 });
 
+
+// SUBSCRIBE
 Route::prefix('subscribe')->group(function () {
 	Route::post('/', [SubscribeController::class, 'subscribe'])->name('subscribe.store');
 });
 
+
+// LEGAL
 Route::get('/privacy', function () {
 	return view('pages.privacy');
 })->name('privacy');
@@ -116,6 +136,8 @@ Route::get('/terms', function () {
 	return view('pages.terms');
 })->name('terms');
 
+
+// FAQS
 Route::prefix('faq')->group(function () {
 	Route::get('/', function () {
 		return view('pages.faq');
@@ -126,5 +148,6 @@ Route::prefix('faq')->group(function () {
 	})->name('faq.category');
 });
 
-// FALLBACK
+
+// 404
 Route::fallback(FallbackController::class)->name('fallback');

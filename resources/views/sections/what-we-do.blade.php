@@ -1,4 +1,4 @@
-<x-sections::section>
+<x-sections::section class="bg-cover odd:bg-map-light even:bg-map-white bg-center">
 			<row>
 				<div class="col-span-full text-center">
 					<x-components::heading tag="h2" style="h2" class="text-center">
@@ -15,64 +15,56 @@
 						'image' => 'img_individualTrips.jpg',
 						'alt' => 'A young woman hugging a young child on a dirt road.',
 						'title' => 'Individual Trips',
-						'text' => 'We plan and organize regular domestic & foreign trips every year that are open for individuals and families to participate on.',
-						'href' => '#'
+						'href' => route('missions')
 					],
 					[
 						'image' => 'img_groupTrips.jpg',
 						'alt' => 'A large group of teenagers and adults posing in front of a church bus.',
 						'title' => 'Group Trips',
-						'text' => 'Want to include missions as part of your group culture, but lacking the time and resources? Let us do the planning instead!',
-						'href' => '#'
+						'href' => route('missions')
 					],
 					[
-						'image' => 'img_teaching.jpg',
-						'alt' => 'An image of a young man with a tattoo reading the Bible',
+						'image' => 'img_longterm.jpg',
+						'alt' => 'An image of a young man and a young woman praying with a man in the middle of a park.',
 						'title' => 'Long-Term Missions',
-						'text' => '',
-						'href' => '#'
+						'href' => route('missionaries')
 					],
 					[
-						'image' => 'img_teaching.jpg',
-						'alt' => 'An image of a young man with a tattoo reading the Bible',
+						'image' => 'img_disasterRelief.jpg',
+						'alt' => 'An arial image of a hurricane over Florida',
 						'title' => 'Disaster Relief',
-						'text' => '',
-						'href' => '#'
+						'href' => route('disaster-relief')
 					],
 					[
-						'image' => 'img_individualTrips.jpg',
-						'alt' => 'A young woman hugging a young child on a dirt road.',
+						'image' => 'img_sports.jpg',
+						'alt' => 'An image of a group of men and boys from the 9U Cypress Slam baseball team.',
 						'title' => 'Sports',
-						'text' => '',
-						'href' => '#'
+						'href' => route('sports')
 					],
 					[
-						'image' => 'img_groupTrips.jpg',
-						'alt' => 'A large group of teenagers and adults posing in front of a church bus.',
+						'image' => 'img_churchPlanting.jpg',
+						'alt' => 'An image of three people sitting around a coffee table holding hand in prayer with Bibles opened.',
 						'title' => 'Church Planting',
-						'text' => '',
-						'href' => '#'
+						'href' => route('churches')
 					],
 					[
-						'image' => 'img_teaching.jpg',
-						'alt' => 'An image of a young man with a tattoo reading the Bible',
+						'image' => 'img_leadership.jpg',
+						'alt' => 'An image of several teenagers lined up in a row next to train tracks.',
 						'title' => 'Leadership Training',
-						'text' => '',
-						'href' => '#'
+						'href' => route('ambassadors')
 					],
 					[
 						'image' => 'img_teaching.jpg',
 						'alt' => 'An image of a young man with a tattoo reading the Bible',
 						'title' => 'Teaching',
-						'text' => 'Book us to preach or teach at your next revival, DNOW, or other ministry event.',
-						'href' => '#'
+						'href' => route('teaching')
 					],
 				];
 			@endphp
-			<row class="!items-stretch !gap-5">
+			<row class="!items-stretch !gap-5 relative">
 
 				@foreach ($cards as $card)
-					<x-components::card-do :image="$card['image']" :alt="$card['alt']" :title="$card['title']" :text="$card['text']" :href="$card['href']" />
+					<x-components::card-do :image="$card['image']" :alt="$card['alt']" :title="$card['title']" :href="$card['href']" />
 				@endforeach
 
 			</row>

@@ -134,6 +134,7 @@ module.exports = {
 			backgroundImage: {
 				'map-dark': "url('./images/bkg_map_dark.png')",
 				'map-light': "url('./images/bkg_map_light.png')",
+				'map-white': "url('./images/bkg_map_white.png')",
 			},
 		},
 	},

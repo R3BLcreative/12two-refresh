@@ -36,22 +36,28 @@
 					</x-components::heading>
 				</div>
 			</row>
+			<row>
+				<div class="col-span-full border-b border-b-secondary-400"></div>
+			</row>
 			<row class="!py-6">
 				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3">
-					<x-components::image image="img_revolution.jpg" alt="An image with the word REVOLUTION on top of several illustrated fists" class="" />
+					<x-components::image image="img_revolution.jpg" alt="An image with the word REVOLUTION on top of several illustrated fists" class="shadow-md rounded-md" />
 				</div>
-				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 italic">
-					<p><strong>/revə'lo͞oSH(ə)n/ - noun</strong></p>
+				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 italic font-semibold">
+					<p class="text-secondary-accent-400 font-black tracking-widest">/revə'lo͞oSH(ə)n/ - noun</p>
 					<p>A dramatic and wide-reaching change in the way something works or is organized or in people's ideas about it.</p>
 				</div>
 
 				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3">
-					<x-components::image image="img_revelation.jpg" alt="An image with the word REVELATION on top of clouds with sun rays shinning through" class="" />
+					<x-components::image image="img_revelation.jpg" alt="An image with the word REVELATION on top of clouds with sun rays shinning through" class="shadow-md rounded-md" />
 				</div>
-				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 italic">
-					<p><strong>/revə'lāSH(ə)n/ - noun</strong></p>
+				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 italic font-semibold">
+					<p class="text-secondary-accent-400 font-black tracking-widest">/revə'lāSH(ə)n/ - noun</p>
 					<p>A surprising and previously unknown fact, especially one that is made known in a dramatic way.</p>
 				</div>
+			</row>
+			<row>
+				<div class="col-span-full border-b border-b-secondary-400"></div>
 			</row>
 			<row>
 				<div class="col-span-full text-lg leading-loose">

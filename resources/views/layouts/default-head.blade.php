@@ -45,6 +45,8 @@
 
 	<script src="https://kit.fontawesome.com/406a508ef0.js" crossorigin="anonymous"></script>
 
+	<script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="on" data-website-uuid="0537e4ad-c9bb-4819-8a63-aabde5a63ab0"></script>
+
 	<!-- Scripts & Styles -->
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
