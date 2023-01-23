@@ -15,7 +15,7 @@
 
 {{-- CLASS DEFINITIONS --}}
 @php
-$defaults = 'rounded-full inline-block font-bold cursor-pointer leading-none tracking-wider text-center shadow hover:shadow-xl active:shadow-none';
+$defaults = 'rounded-lg inline-block font-bold cursor-pointer leading-none tracking-wider text-center shadow hover:shadow-xl active:shadow-none';
 
 $actives = [
 'none' => '',

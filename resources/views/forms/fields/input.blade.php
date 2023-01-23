@@ -17,7 +17,7 @@
 <div class="{{ $class }} text-body-700">
 	<label for="{{ $id }}" class="block mb-2 font-bold @empty($label) !hidden @endempty @error($id, $bag) text-error-100 @enderror">{{ $label ?? $desc }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
 
-	<input type="{{ $type }}" id="{{ $id }}" name="{{ $id }}" @isset($placeholder)placeholder="{{ $placeholder }}" @endisset value="{{ $value ?? '' }}" class="w-full @error($id, $bag) border-error-100 @enderror" @isset($slots)data-slots="{{ $slots }}" @endisset @isset($accepts)data-accepts="{{ $accepts }}" @endisset @isset($disabled)disabled @endisset @isset($currency)data-type="currency" @endisset>
+	<input type="{{ $type }}" id="{{ $id }}" name="{{ $id }}" @isset($placeholder)placeholder="{{ $placeholder }}" @endisset value="{{ $value ?? '' }}" class="w-full rounded-md @error($id, $bag) border-error-100 @enderror" @isset($slots)data-slots="{{ $slots }}" @endisset @isset($accepts)data-accepts="{{ $accepts }}" @endisset @isset($disabled)disabled @endisset @isset($currency)data-type="currency" @endisset>
 
 	@isset($desc)
 	<span class="text-sm italic">{{ $desc }}</span>

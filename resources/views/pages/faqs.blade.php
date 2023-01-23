@@ -13,8 +13,6 @@
 			</x-slot:body>
 		</x-sections::hero>
 
-		<x-sections::section />
-
 		{{-- CONNECT FORM --}}
 		<x-sections::connect />
 

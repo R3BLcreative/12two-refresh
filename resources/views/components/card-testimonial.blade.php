@@ -7,7 +7,7 @@
 	$iconc = 'opacity-30 text-2xl relative z-10 -top-1 group-odd/section:text-secondary-accent-500 group-even/section:text-primary-accent-500';
 @endphp
 
-<div id="{{ $id }}" class="swiper-slide bg-white rounded-md border border-surface-100 !h-auto flex flex-col justify-between items-center py-4 gap-4 my-4 shadow-md">
+<div id="{{ $id }}" class="swiper-slide bg-white rounded-md border-2 border-surface-700 !h-auto flex flex-col justify-between items-center py-4 gap-4 my-4">
 	<div class="flex items-start justify-center gap-0 relative px-4">
 		<i class="fa-sharp fa-solid fa-quote-left left-2 {{ $iconc }}"></i>
 		<span class="text-body-700 text-xl font-bold italic leading-normal relative z-20 text-center">

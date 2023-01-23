@@ -9,7 +9,7 @@
 	<x-slot:main>
 		<x-sections::hero preheader="Who we are" title="A Revolution of Revelation" image="" alt="">
 			<x-slot:body>
-				<p>At 12Two, we are driven to create a <em>"Revolution of Revelation"</em> in the American church with missions as our tool for change. What do we mean by a <em>"Revolution of Revelation"</em>? We're glad you asked!</p>
+				<p>At 12Two, we are driven to incite a <em>"Revolution of Revelation"</em> in the American church with missions as our tool for change. What do we mean by a <em>"Revolution of Revelation"</em>? We're glad you asked!</p>
 			</x-slot:body>
 
 			{{-- <x-slot:ctas class="flex flex-row gap-6">
@@ -25,7 +25,7 @@
 			Everything will line up perfectly when knowing and living the truth becomes more important than looking good.
 		</x-sections::quote>
 
-		<x-sections::section>
+		<x-sections::section class="!bg-horizon-dark bg-center bg-cover bg-no-repeat">
 			<row>
 				<div class="col-span-full text-center">
 					<x-components::heading tag="span" style="preheader">
@@ -37,35 +37,45 @@
 				</div>
 			</row>
 			<row>
-				<div class="col-span-full border-b border-b-secondary-400"></div>
+				<div class="col-span-full border-b border-b-surface-500 border-dotted"></div>
 			</row>
 			<row class="!py-6">
-				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3">
+				<div class="mobile:col-span-full tablet:col-span-4 laptop:col-span-3">
 					<x-components::image image="img_revolution.jpg" alt="An image with the word REVOLUTION on top of several illustrated fists" class="shadow-md rounded-md" />
 				</div>
-				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 italic font-semibold">
+
+				<div class="mobile:col-span-full tablet:col-span-4 laptop:col-span-3 italic font-semibold">
 					<p class="text-secondary-accent-400 font-black tracking-widest">/revə'lo͞oSH(ə)n/ - noun</p>
 					<p>A dramatic and wide-reaching change in the way something works or is organized or in people's ideas about it.</p>
 				</div>
 
-				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3">
-					<x-components::image image="img_revelation.jpg" alt="An image with the word REVELATION on top of clouds with sun rays shinning through" class="shadow-md rounded-md" />
+				<div class="mobile:col-span-full laptop:col-span-6 bg-surface-50 text-body-700 p-4 rounded-tr-lg rounded-bl-lg">
+					<p>We want to incite a <strong>revolution</strong> of love that prompts change in the way we live out our faith. The current model for doing church and living out our faith seems to be broken. With a church on almost every street corner, the culture of our country should look different. This country is desperate for revival.</p>
 				</div>
-				<div class="mobile:col-span-2 tablet:col-span-4 laptop:col-span-3 italic font-semibold">
+			</row>
+			<row>
+				<div class="col-span-full border-b border-b-surface-500 border-dotted"></div>
+			</row>
+			<row class="!py-6">
+				<div class="mobile:col-span-full mobile:order-3 laptop:order-1 laptop:col-span-6 bg-surface-50 text-body-700 p-4 rounded-tr-lg rounded-bl-lg">
+					<p>Something needs to change. We don't want to just create change for the sake of change. This change should be rooted and built upon the foundations of divine <strong>revelation</strong>. Luckily, we have the Bible and the Holy Spirit to look too for this. God has given us the blueprint, we just need to follow it. Transformation begins here.</p>
+				</div>
+
+				<div class="mobile:col-span-full mobile:order-2 tablet:order-1 tablet:col-span-4 laptop:order-2 laptop:col-span-3 italic font-semibold">
 					<p class="text-secondary-accent-400 font-black tracking-widest">/revə'lāSH(ə)n/ - noun</p>
 					<p>A surprising and previously unknown fact, especially one that is made known in a dramatic way.</p>
 				</div>
+
+				<div class="mobile:col-span-full mobile:order-1 tablet:order-2 tablet:col-span-4 laptop:order-3 laptop:col-span-3">
+					<x-components::image image="img_revelation.jpg" alt="An image with the word REVELATION on top of clouds with sun rays shinning through" class="shadow-md rounded-md" />
+				</div>
 			</row>
 			<row>
-				<div class="col-span-full border-b border-b-secondary-400"></div>
+				<div class="col-span-full border-b border-b-surface-500 border-dotted"></div>
 			</row>
 			<row>
-				<div class="col-span-full text-lg leading-loose">
-					<p>We want to incite a <strong>revolution</strong> of love that prompts change in the way we live out our faith. The current model for doing church and living out our faith seems to be broken. With a church on almost every street corner, the culture of our country should look different. God's people are the catalysts for change in culture, but that doesn't seem to be happening.</p>
-
-					<p>Something needs to change. However, we don't want to just create change for the sake of change. This change should be rooted and built upon the foundations of divine <strong>revelation</strong>. Luckily, we have the Bible and the Holy Spirit to look too for this. God has given us the blueprint, we just need to follow it.</p>
-
-					<p>It's time that the American church be more than a place we go to. It's time for the American church to fullfill God's purpose and intention. Where His people stop attending and start going. Where the broken find healing, the proud find humility, and the lost find grace. It's time for a <em>"Revolution of Revelation"</em>!</p>
+				<div class="col-span-full text-xl text-center leading-loose">
+					<p>It's time that the American church be more than a place we go to. It's time for His people to stop attending and start going. Let the broken find healing, the proud find humility, and the lost find grace. It's time for a <em>"Revolution of Revelation"</em>!</p>
 				</div>
 			</row>
 		</x-sections::section>

@@ -13,7 +13,7 @@
 <div class="{{ $class }} text-body-700">
 	<label for="{{ $id }}" class="block mb-2 font-bold @empty($label) !hidden @endempty @error($id, $bag) text-error-100 @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
 
-	<select id="{{ $id }}" name="{{ $id }}" class="w-full @error($id, $bag) border-error-100 @enderror">
+	<select id="{{ $id }}" name="{{ $id }}" class="w-full rounded-md @error($id, $bag) border-error-100 @enderror">
 		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder }}</option>
 		@foreach ($options as $optval => $option)
 		@if(is_array($option))
