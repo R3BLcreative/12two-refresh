@@ -12,7 +12,7 @@
 'bag', // Error bag name
 ])
 
-<div class="{{ $class }} flex flex-col gap-4" @isset($details) data-hasDeps="1" @endisset>
+<div class="{{ $class }} text-body-700 flex flex-col gap-4" @isset($details) data-hasDeps="1" @endisset>
 	<div class="">
 		@isset($label)
 			<label for="{{ $id }}" class="block font-bold @error($id, $bag) text-error-100 @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>

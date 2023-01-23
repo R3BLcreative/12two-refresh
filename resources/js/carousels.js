@@ -49,11 +49,11 @@ const testimonials = new Swiper('.testimonials-carousel', {
 	speed: 400,
 	breakpoints: {
 		767: {
-			slidesPerView: 2,
+			slidesPerView: 1,
 			spaceBetween: 24,
 		},
 		991: {
-			slidesPerView: 3,
+			slidesPerView: 2,
 			spaceBetween: 32,
 		},
 	},

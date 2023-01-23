@@ -9,7 +9,7 @@
 		@php
 			$slides = [
 				[
-					'quote' => "James is one of the most inspiring people I have ever met. His testimony spoke to me so much and showed me how real grace is.",
+					'quote' => "James is one of the most inspiring people I have ever met. His testimony spoke to me so much and showed me what real grace is.",
 					'author' => 'Dani',
 					'trip' => 'Haiti 2017',
 				],

@@ -39,7 +39,7 @@
 			<div class="col-span-2 order-1 flex gap-2 items-center">
 				{{-- LOGOS --}}
 				<a href="{{ route('home') }}" class="" aria-label="Return to homepage">
-					<x-components::image id="header-logo" image="logo_header_12twoBlack.png" alt="12Two Missions" class="m-2" loading="" />
+					<x-components::image id="header-logo" image="logo_header_12twoBlack.png" alt="12Two Missions" class="m-2 mobile:max-w-[135px] tablet:max-w-[140px] laptop:max-w-[105px] desktop:max-w-[150px]" loading="" />
 				</a>
 			</div>
 
@@ -58,8 +58,8 @@
 							'text' => 'Our Beliefs',
 						],
 						[
-							'route' => 'connect',
-							'text' => 'Connect With Us',
+							'route' => 'faqs',
+							'text' => 'FAQS',
 						]
 					]">12Two</x-components::main-nav-item>
 					<x-components::main-nav-item route="programs" :items="[
@@ -97,7 +97,7 @@
 						],
 						[
 							'route' => 'blog',
-							'text' => 'Blog Posts',
+							'text' => 'Our Blog',
 						],
 						[
 							'route' => 'journals.trips',
@@ -120,4 +120,4 @@
 		</row>
 	</x-sections::section>
 </header>
-<div class="z-10 h-[154px]"></div>
+<div class="z-10 mobile:h-[97px] tablet:h-[144px] laptop:h-[123px] desktop:h-[150px]"></div>

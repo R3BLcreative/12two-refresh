@@ -9,12 +9,12 @@
 	<x-slot:main>
 		<x-sections::hero preheader="Become a financial partner" title="None of us is as strong as all of us" image="" alt="">
 			<x-slot:body>
-				<p>We are a 501c3 nonprofit organization that depends on gifts and donations to operate. What you give today will help us help millions of lives experience the transformative power of an authentic encounter with Jesus. Check out our <x-components::link href="{{ route('faq.category', ['cat' => 'donations']) }}">FAQ page</x-components::link> for answers to common questions regarding donations to 12Two Missions.</p>
+				<p>We are a 501c3 nonprofit organization that depends on gifts and donations to operate. What you give today will help us help millions of lives experience the transformative power of an authentic encounter with Jesus. Check out our <x-components::link href="{{ route('faqs.category', ['cat' => 'donations']) }}">FAQS page</x-components::link> for answers to common questions regarding donations to 12Two Missions.</p>
 			</x-slot:body>
 
 			<x-slot:ctas class="flex flex-row gap-6">
 				<x-components::button tag="a" style="secondary" href="#donate">Donate Today</x-components::button>
-				<x-components::button tag="a" style="accent" href="{{ route('faq.category', ['cat' => 'donations']) }}">
+				<x-components::button tag="a" style="accent" href="{{ route('faqs.category', ['cat' => 'donations']) }}">
 					Donation FAQS
 				</x-components::button>
 			</x-slot:ctas>

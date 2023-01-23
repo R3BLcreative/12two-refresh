@@ -30,6 +30,6 @@
 
 	<x-components::button id="" tag="submit" style="{{ $btnStyle }}" class="!w-full col-span-full" icon="fa-brands fa-cc-stripe">Enter Payment Info</x-components::button>
 
-	<p class="text-sm col-span-full text-center">Check out our <x-components::link href="{{ route('faq.category', ['cat' => 'donations']) }}">FAQ page</x-components::link> for answers to common questions regarding donations to 12Two Missions.</p>
+	<p class="text-sm col-span-full text-center">Check out our <x-components::link href="{{ route('faqs.category', ['cat' => 'donations']) }}">FAQS page</x-components::link> for answers to common questions regarding donations to 12Two Missions.</p>
 
 </form>

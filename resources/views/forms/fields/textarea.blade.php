@@ -1,9 +1,9 @@
 @props([
-	'class', // Wrapper class decs
+	'class' => '', // Wrapper class decs
 	'id', // Field ID
 	'type', // Input type
 	'placeholder', // Field placeholder text or default ID
-	'label', // Field label text
+	'label' => '', // Field label text
 	'desc', // Field description text
 	'value', // Field init value
 	'required', // Set field as required
@@ -15,9 +15,9 @@
 
 
 
-<div class="{{ $class }}">
+<div class="{{ $class }} text-body-700">
 	<div class="mb-2">
-		<label for="{{ $id }}" class="block font-bold @error($id, $bag) text-error-100 @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
+		<label for="{{ $id }}" class="block font-bold @empty($label) !hidden @endempty @error($id, $bag) text-error-100 @enderror">{{ $label }} @isset($required)<span class="text-red-700 font-black">*</span>@endisset</label>
 
 		@isset($desc)
 		<span class="text-sm italic">{{ $desc }}</span>

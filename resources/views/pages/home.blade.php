@@ -20,6 +20,9 @@
 			</x-slot:ctas> --}}
 		</x-sections::hero>
 
+		{{-- CONNECT FORM --}}
+		<x-sections::connect />
+
 		{{-- TESTIMONIALS --}}
 		<x-sections::testimonials />
 

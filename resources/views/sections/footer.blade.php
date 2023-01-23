@@ -25,7 +25,7 @@
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
 						<x-components::footer-nav-item route="12two">About Us</x-components::footer-nav-item>
 						<x-components::footer-nav-item route="beliefs">Our Beliefs</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="connect">Connect With Us</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="faqs">FAQS</x-components::footer-nav-item>
 					</ul>
 				</nav>
 			</div>
@@ -70,7 +70,7 @@
 				<nav id="journal-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
 						<x-components::footer-nav-item route="news">News / Updates</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="blog">Blog Posts</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="blog">Our Blog</x-components::footer-nav-item>
 						<x-components::footer-nav-item route="journals.trips">Trip Journals</x-components::footer-nav-item>
 					</ul>
 				</nav>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\DonateController;
+use App\Http\Controllers\ConnectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,6 @@ Route::prefix('12two')->group(function () {
 	Route::get('/beliefs', function () {
 		return view('pages.beliefs');
 	})->name('beliefs');
-
-	Route::get('/connect', function () {
-		return view('pages.connect');
-	})->name('connect');
 });
 
 
@@ -122,6 +119,14 @@ Route::prefix('subscribe')->group(function () {
 	Route::post('/', [SubscribeController::class, 'subscribe'])->name('subscribe.store');
 });
 
+Route::prefix('connect')->group(function () {
+	// Redirect to FAQS page
+	Route::get('/', function () {
+		return view('pages.faqs');
+	})->name('connect');
+
+	Route::post('/', [ConnectController::class, 'store'])->name('connect.store');
+});
 
 // LEGAL
 Route::get('/privacy', function () {
@@ -138,14 +143,14 @@ Route::get('/terms', function () {
 
 
 // FAQS
-Route::prefix('faq')->group(function () {
+Route::prefix('faqs')->group(function () {
 	Route::get('/', function () {
-		return view('pages.faq');
-	})->name('faq');
+		return view('pages.faqs');
+	})->name('faqs');
 
 	Route::get('/{cat}', function ($cat) {
-		return view('pages.faq');
-	})->name('faq.category');
+		return view('pages.faqs');
+	})->name('faqs.category');
 });
 
 
