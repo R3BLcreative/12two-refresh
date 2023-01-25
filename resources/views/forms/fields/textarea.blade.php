@@ -10,7 +10,7 @@
 	'max', // Max chars allowed
 	'disabled', // Disable editing the textarea
 	'rows' => 6, // Textarea rows
-	'bag', // Error bag name
+	'bag' => 'default', // Error bag name
 ])
 
 

@@ -7,7 +7,7 @@
 	'value', // Field init value
 	'required', // Set field as required
 	'options', // Select field options
-	'bag', // Error bag name
+	'bag' => 'default', // Error bag name
 ])
 
 <div class="{{ $class }} text-body-700">

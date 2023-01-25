@@ -154,5 +154,13 @@ Route::prefix('faqs')->group(function () {
 });
 
 
+// DASHBOARD
+Route::prefix('dashboard')->group(function () {
+	Route::get('/', function () {
+		return view('user.dashboard');
+	})->name('dashboard');
+});
+
+
 // 404
 Route::fallback(FallbackController::class)->name('fallback');

@@ -6,30 +6,37 @@
 			<nav id="user-nav" class="tablet:col-span-4 laptop:col-span-9 flex flex-row items-center justify-end gap-8">
 
 				@auth
-					<a href="{{ route('dashboard') }}" class="flex items-center gap-2 py-2 hover:opacity-80 active:opacity-100" aria-label="Login to your 12Two Account">
+					<a href="{{ route('dashboard') }}" class="flex items-center gap-2 py-2 hover:opacity-80 active:opacity-100" aria-label="Access your 12Two Dashboard">
 						<i class="fa-duotone fa-circle-user fa-lg"></i>
-						ACCOUNT
+						DASHBOARD
 					</a>
+
+					<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="flex items-center gap-2 py-2 hover:opacity-80 active:opacity-100">
+						<i class="fa-duotone fa-right-from-bracket fa-lg"></i>
+						LOGOUT
+					</a>
+
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
 				@endauth
 				@guest
 					<a href="{{ route('login') }}" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Login to your 12Two Account">
 						<i class="fa-duotone fa-right-to-bracket fa-lg"></i>
 						LOGIN
 					</a>
+
+					<a href="#subscribe" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
+						<i class="fa-duotone fa-envelope fa-lg"></i>
+						SUBSCRIBE
+					</a>
+
+					<a href="{{ route('donate') }}" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
+						<span class="flex relative">
+							<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>
+							<i class="fa-duotone fa-gift fa-lg relative inline-flex"></i>
+						</span>
+						DONATE
+					</a>
 				@endguest
-
-				<a href="#subscribe" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
-					<i class="fa-duotone fa-envelope fa-lg"></i>
-					SUBSCRIBE
-				</a>
-
-				<a href="{{ route('donate') }}" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
-					<span class="flex relative">
-						<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>
-						<i class="fa-duotone fa-gift fa-lg relative inline-flex"></i>
-					</span>
-					DONATE
-				</a>
 
 			</nav>
 		</row>

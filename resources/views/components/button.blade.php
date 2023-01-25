@@ -32,7 +32,7 @@ $disables = [
 
 $sizes = [
 'none' => '',
-'small' => 'px-7 py-2 text-sm',
+'small' => 'px-8 py-3 text-sm',
 'default' => 'px-9 py-4 text-base',
 ];
 
@@ -76,6 +76,7 @@ $attributes = '';
 @elseif($tag == 'button')
 <button
 	id="{{ $id }}"
+	type="button"
 	aria-label="{{ $alt }}"
 	class="{{ $class }}"
 	{{ $attributes }} @if($disabled) disabled @endif>

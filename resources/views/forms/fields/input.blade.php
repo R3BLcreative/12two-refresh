@@ -11,7 +11,7 @@
 	'slots', // Input masking slot defs
 	'accepts', // Input masking type casting
 	'currency', // Currency input masking
-	'bag', // Error bag name
+	'bag' => 'default', // Error bag name
 ])
 
 <div class="{{ $class }} text-body-700">
