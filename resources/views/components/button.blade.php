@@ -48,7 +48,7 @@ $class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-now
 
 // Convert atts array to string
 if(count($atts) > 0) {
-foreach($atts as $k => $v) { $attributes .= "$k=$v"; }
+foreach($atts as $k => $v) { $attributes .= "$k=\"$v\" "; }
 }else{
 $attributes = '';
 }

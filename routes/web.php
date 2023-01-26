@@ -155,10 +155,54 @@ Route::prefix('faqs')->group(function () {
 
 
 // DASHBOARD
-Route::prefix('dashboard')->group(function () {
+Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 	Route::get('/', function () {
 		return view('user.dashboard');
 	})->name('dashboard');
+
+	// USER
+	Route::get('/profile', function () {
+		return view('user.profile');
+	})->name('user.profile');
+
+	Route::get('/security', function () {
+		return view('user.security');
+	})->name('user.security');
+
+	Route::get('/trips', function () {
+		return view('user.trips');
+	})->name('user.trips');
+
+	Route::get('/donations', function () {
+		return view('user.donations');
+	})->name('user.donations');
+
+	// LEADERS
+	Route::middleware(['permission:manage groups'])->prefix('groups')->group(function () {
+		Route::get('/', function () {
+			return view('user.groups');
+		})->name('groups');
+
+		Route::get('/trips', function () {
+			return view('user.group-trips');
+		})->name('groups.trips');
+
+		Route::get('/participants', function () {
+			return view('user.group-participants');
+		})->name('groups.participants');
+
+		Route::get('/resources', function () {
+			return view('user.group-resources');
+		})->name('groups.resources');
+	});
+});
+
+
+// BACKEND
+Route::middleware(['dashboard', 'permission:manage backend'])->prefix('backend')->group(function () {
+	Route::get('/', function () {
+		return view('admin.home');
+	})->name('backend');
 });
 
 

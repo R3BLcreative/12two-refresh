@@ -5,13 +5,19 @@
 
 			<nav id="user-nav" class="tablet:col-span-4 laptop:col-span-9 flex flex-row items-center justify-end gap-8">
 
+				@php
+					$extraNavClass = 'flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800 uppercase';
+				@endphp
+
 				@auth
-					<a href="{{ route('dashboard') }}" class="flex items-center gap-2 py-2 hover:opacity-80 active:opacity-100" aria-label="Access your 12Two Dashboard">
+					{{-- This should be a dropdown eventually --}}
+					<a href="{{ route('dashboard') }}" class="{{ $extraNavClass }}">
 						<i class="fa-duotone fa-circle-user fa-lg"></i>
-						DASHBOARD
+						{{ Auth::user()->name }}
 					</a>
 
-					<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="flex items-center gap-2 py-2 hover:opacity-80 active:opacity-100">
+					{{-- Logout will eventually be part of a dropdown --}}
+					<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="{{ $extraNavClass }}">
 						<i class="fa-duotone fa-right-from-bracket fa-lg"></i>
 						LOGOUT
 					</a>
@@ -19,17 +25,17 @@
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
 				@endauth
 				@guest
-					<a href="{{ route('login') }}" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Login to your 12Two Account">
+					<a href="{{ route('login') }}" class="{{ $extraNavClass }}">
 						<i class="fa-duotone fa-right-to-bracket fa-lg"></i>
 						LOGIN
 					</a>
 
-					<a href="#subscribe" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
+					<a href="#subscribe" class="{{ $extraNavClass }}">
 						<i class="fa-duotone fa-envelope fa-lg"></i>
 						SUBSCRIBE
 					</a>
 
-					<a href="{{ route('donate') }}" class="flex items-center gap-2 py-2 px-3 hover:bg-surface-50 hover:text-primary-500 active:bg-secondary-500 active:text-body-800" aria-label="Make a Donation">
+					<a href="{{ route('donate') }}" class="{{ $extraNavClass }}">
 						<span class="flex relative">
 							<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>
 							<i class="fa-duotone fa-gift fa-lg relative inline-flex"></i>
@@ -113,9 +119,14 @@
 					]">Journals</x-components::main-nav-item>
 				</ul>
 
-				<x-components::button id="login-responsive-button" tag="a" href="{{ route('login') }}" style="primary" class="tablet:hidden" icon="fa-duotone fa-right-to-bracket">Login</x-components::button>
+				@auth
+					{{-- USER NAV HERE --}}
+				@endauth
+				@guest
+					<x-components::button id="login-responsive-button" tag="a" href="{{ route('login') }}" style="primary" class="tablet:hidden" icon="fa-duotone fa-right-to-bracket">Login</x-components::button>
 
-				<x-components::button id="donate-responsive-button" tag="a" href="{{ route('donate') }}" style="secondary" class="tablet:hidden" icon="fa-duotone fa-gift">Donate</x-components::button>
+					<x-components::button id="donate-responsive-button" tag="a" href="{{ route('donate') }}" style="secondary" class="tablet:hidden" icon="fa-duotone fa-gift">Donate</x-components::button>
+				@endguest
 
 				<x-components::socials id="header-responsive-social-nav" class="mobile:flex tablet:hidden !justify-center gap-10" style="text-body-800 hover:text-primary-500 active:text-primary-700 h-fit" />
 			</nav>
