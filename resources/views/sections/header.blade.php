@@ -52,7 +52,7 @@
 			<div class="col-span-2 order-1 flex gap-2 items-center">
 				{{-- LOGOS --}}
 				<a href="{{ route('home') }}" class="" aria-label="Return to homepage">
-					<x-components::image id="header-logo" image="logo_header_12twoBlack.png" alt="12Two Missions" class="m-2 mobile:max-w-[135px] tablet:max-w-[140px] laptop:max-w-[105px] desktop:max-w-[150px]" loading="" />
+					<x-components::image id="header-logo" image="logo_header.png" alt="12Two Missions" class="m-2 mobile:max-w-[135px] tablet:max-w-[140px] laptop:max-w-[105px] desktop:max-w-[150px]" loading="" />
 				</a>
 			</div>
 

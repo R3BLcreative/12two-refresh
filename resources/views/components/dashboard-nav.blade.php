@@ -40,8 +40,8 @@
 		<hr />
 
 		<ul class="w-full">
-			<x-components::dashboard-nav-item route="backend">
-				Backend Access
+			<x-components::dashboard-nav-item route="admin.dashboard">
+				Admin Dashboard
 			</x-components::dashboard-nav-item>
 		</ul>
 	@endcan

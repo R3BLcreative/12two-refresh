@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\ContentType;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\DonateController;
 use App\Http\Controllers\ConnectController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -199,10 +201,13 @@ Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 
 
 // BACKEND
-Route::middleware(['dashboard', 'permission:manage backend'])->prefix('backend')->group(function () {
-	Route::get('/', function () {
-		return view('admin.home');
-	})->name('backend');
+Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->group(function () {
+	Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+
+	$contentTypes = ContentType::all();
+	foreach ($contentTypes as $contentType) {
+		Route::get('/' . $contentType->slug, [AdminController::class, 'index'])->name('admin.' . $contentType->slug);
+	}
 });
 
 

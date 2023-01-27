@@ -4,7 +4,7 @@
 
 			<div class="mobile:col-span-full laptop:col-span-3 mobile:row-span-1 laptop:row-span-3 mobile:order-6 laptop:order-1 mobile:w-3/4 tablet:w-1/2 laptop:w-full justify-self-center px-8 flex flex-col gap-5">
 				<a href="{{ route('home') }}" class="" aria-label="Return to homepage">
-					<x-components::image id="footer-logo" image="logo_footer_12twoWhite.png" alt="12Two Missions" class="" loading="" />
+					<x-components::image id="footer-logo" image="logo_footer.png" alt="12Two Missions" class="" loading="" />
 				</a>
 
 				<x-components::socials id="footer-social-nav" class="border-t border-b border-body-50 py-3" style="fill-body-50 hover:opacity-80 active:opacity-100" />

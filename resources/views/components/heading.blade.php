@@ -23,31 +23,31 @@ $class = $classes[$style].' '.$class;
 
 @switch($tag)
 @case('h1')
-<h1 id="{{ $id }}" class="{{ $class }}">{{ $slot }}</h1>
+<h1 id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</h1>
 @break
 
 @case('h2')
-<h2 id="{{ $id }}" class="{{ $class }}">{{ $slot }}</h2>
+<h2 id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</h2>
 @break
 
 @case('h3')
-<h3 id="{{ $id }}" class="{{ $class }}">{{ $slot }}</h3>
+<h3 id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</h3>
 @break
 
 @case('h4')
-<h4 id="{{ $id }}" class="{{ $class }}">{{ $slot }}</h4>
+<h4 id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</h4>
 @break
 
 @case('h5')
-<h5 id="{{ $id }}" class="{{ $class }}">{{ $slot }}</h5>
+<h5 id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</h5>
 @break
 
 @case('h6')
-<h6 id="{{ $id }}" class="{{ $class }}">{{ $slot }}</h6>
+<h6 id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</h6>
 @break
 
 @case('span')
-<span id="{{ $id }}" class="{{ $class }}">{{ $slot }}</span>
+<span id="{{ $id }}" class="{{ $class }}">{!! $slot !!}</span>
 @break
 
 @endswitch

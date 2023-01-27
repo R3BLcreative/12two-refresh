@@ -15,7 +15,4 @@
 	{{-- FOOTER --}}
 	<x-sections::footer />
 
-	{{-- COOKIE CONSENT --}}
-	<x-components::cookie-consent />
-
 </body>

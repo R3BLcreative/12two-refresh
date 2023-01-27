@@ -13,7 +13,10 @@ return new class extends Migration {
 	public function up() {
 		Schema::create('content_types', function (Blueprint $table) {
 			$table->id();
-			$table->string('label');
+			$table->integer('order');
+			$table->string('singular');
+			$table->string('plural');
+			$table->string('icon');
 			$table->string('slug')->unique();
 			$table->text('desc')->nullable();
 			$table->timestamps();
