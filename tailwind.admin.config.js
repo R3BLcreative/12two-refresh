@@ -36,6 +36,9 @@ module.exports = {
 			body: ['Inter', 'sans-serif'],
 		},
 		extend: {
+			gridTemplateColumns: {
+				'content-types': '24px 48px auto 100px 100px 100px',
+			},
 			zIndex: {
 				'-1': -1,
 				49: 49,

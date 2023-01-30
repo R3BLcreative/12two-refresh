@@ -10,7 +10,7 @@
 		<x-sections::admin-header />
 
 		{{-- MAIN CONTENT --}}
-		<main id="content" tabindex="-1" role="main" class="flex flex-col flex-auto items-start justify-start px-8 py-6 bg-white">
+		<main id="content" tabindex="-1" role="main" class="flex flex-col flex-auto bg-white relative">
 			{{ $main }}
 		</main>
 

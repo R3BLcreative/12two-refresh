@@ -202,11 +202,29 @@ Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 
 // BACKEND
 Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->group(function () {
-	Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+	Route::get('/payments', [AdminController::class, 'payments'])->name('admin.payments');
+
+	Route::get('/donations', [AdminController::class, 'donations'])->name('admin.donations');
+
+	Route::get('/subscribers', [AdminController::class, 'subscribers'])->name('admin.subscribers');
+
+	Route::get('/trips', [AdminController::class, 'trips'])->name('admin.trips');
+
+	Route::get('/groups', [AdminController::class, 'groups'])->name('admin.groups');
+
+	Route::get('/participants', [AdminController::class, 'participants'])->name('admin.participants');
+
+	Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+
+	Route::get('/contentTypes', [AdminController::class, 'contentTypes'])->name('admin.contentTypes');
+
+	Route::get('/options', [AdminController::class, 'options'])->name('admin.options');
 
 	$contentTypes = ContentType::all();
 	foreach ($contentTypes as $contentType) {
-		Route::get('/' . $contentType->slug, [AdminController::class, 'index'])->name('admin.' . $contentType->slug);
+		Route::get('/' . $contentType->slug, [AdminController::class, 'contentType'])->name('admin.' . $contentType->slug);
 	}
 });
 

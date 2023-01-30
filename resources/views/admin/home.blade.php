@@ -1,11 +1,11 @@
 <x-layouts::admin
 	:contentTypes="$contentTypes"
 	:seo="[
-		'title' => '12Two Missions | Admin - Home',
+		'title' => '12Two Missions | Admin - ' . $title,
 	]">
 
 	<x-slot:main>
-		<div class="flex flex-auto items-center gap-4">
+		<div class="flex items-center gap-4 px-8 py-6">
 			<i class="fa-duotone fa-circle-user text-9xl"></i>
 			<x-components::admin-heading tag="h1" style="h1" subtext="Vivamus sagittis lacus vel augue laoreet rutrum faucibus">
 				Welcome back, {{ Auth::user()->name }}!
