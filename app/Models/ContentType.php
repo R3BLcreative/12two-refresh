@@ -11,4 +11,8 @@ class ContentType extends Model {
 	public function content() {
 		return $this->hasMany(Content::class);
 	}
+
+	public function contentTypeCat() {
+		return $this->belongsTo(ContentTypeCat::class, 'cat_id');
+	}
 }

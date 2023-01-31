@@ -18,7 +18,13 @@ return new class extends Migration {
 			$table->string('plural');
 			$table->string('icon');
 			$table->string('slug')->unique();
+			$table->string('route');
 			$table->text('desc')->nullable();
+			$table->unsignedBigInteger('cat_id');
+			$table->foreign('cat_id')->references('id')->on('content_type_cats');
+			$table->boolean('protected')->default(false);
+			$table->boolean('required')->default(false);
+			$table->json('columns')->nullable();
 			$table->timestamps();
 		});
 	}

@@ -10,7 +10,7 @@
 $classes = [
 	'none' => '',
 	'h1' => [
-		'heading' => 'text-6xl font-bold',
+		'heading' => 'text-5xl font-bold',
 		'subtext' => 'text-lg font-normal text-body-light-600',
 	],
 	'h2' => [

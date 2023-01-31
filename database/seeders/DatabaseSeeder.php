@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run() {
 		$this->call([
+			ContentTypeCatSeeder::class,
 			ContentTypeSeeder::class,
 			ContentSeeder::class,
 			PermissionSeeder::class,

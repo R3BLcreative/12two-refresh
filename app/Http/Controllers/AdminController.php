@@ -3,170 +3,97 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\ContentTypeCat;
 use App\Models\ContentType;
+use App\Models\Content;
 
 class AdminController extends Controller {
 
-	protected $contentTypes;
+	protected $navigation;
 
 	public function __construct() {
-		$this->contentTypes = ContentType::orderBy('order', 'asc')->get()->toArray();
+		$this->navigation = ContentTypeCat::orderBy('order', 'asc')->get();
 	}
 
 	public function dashboard() {
 		return view('admin.home', [
-			'contentTypes' => $this->contentTypes,
+			'navigation' => $this->navigation,
 			'title' => 'Dashboard',
 			'desc' => '',
 		]);
 	}
 
-	public function payments() {
-		$columns = [];
+	public function list($slug) {
+		$contentType = ContentType::where('slug', $slug)->first();
+		$items = Content::where('content_type_id', $contentType->id)->orderBy('created_at', 'asc')->get();
 
 		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Payments',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
+			'navigation' => $this->navigation,
+			'contentType' => $contentType,
+			'items' => $items,
+			'columns' => json_decode($contentType->columns),
 		]);
 	}
 
-	public function donations() {
-		$columns = [];
+	public function edit($slug, $id) {
+		$item = Content::where('id', $id)->first();
 
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Donations',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
-		]);
-	}
-
-	public function subscribers() {
-		$columns = [];
-
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Subscribers',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
-		]);
-	}
-
-	public function trips() {
-		$columns = [];
-
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Trips',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
-		]);
-	}
-
-	public function groups() {
-		$columns = [];
-
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Groups',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
-		]);
-	}
-
-	public function participants() {
-		$columns = [];
-
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Participants',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
+		return view('admin.edit', [
+			'navigation' => $this->navigation,
+			'item' => $item,
 		]);
 	}
 
 	public function users() {
-		$columns = [];
+		$slug = 'users';
+		$contentType = ContentType::where('slug', $slug)->first();
+		$items = User::orderBy('id', 'asc')->get();
 
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Users',
-			'desc' => '',
-			'items' => [],
-			'columns' => $columns,
+		return view('admin.users', [
+			'navigation' => $this->navigation,
+			'contentType' => $contentType,
+			'items' => $items,
+			'columns' => json_decode($contentType->columns),
+		]);
+	}
+
+	public function menus() {
+		$slug = 'menus';
+		$contentType = ContentType::where('slug', $slug)->first();
+		$items = [];
+
+		return view('admin.menus', [
+			'navigation' => $this->navigation,
+			'contentType' => $contentType,
+			'items' => $items,
+			'columns' => [],
 		]);
 	}
 
 	public function contentTypes() {
-		$columns = [
-			[
-				'text' => 'ID',
-				'key' => 'id',
-				'class' => 'text-center uppercase',
-			],
-			[
-				'icon' => 'fa-icons',
-				'key' => 'icon',
-				'class' => 'text-center',
-			],
-			[
-				'text' => 'Label',
-				'key' => 'plural',
-				'class' => '',
-			],
-			[
-				'text' => 'Slug',
-				'key' => 'slug',
-				'class' => 'text-center',
-			],
-			[
-				'text' => 'Updated',
-				'key' => 'updated_at',
-				'class' => 'text-center',
-			],
-			[
-				'text' => 'Created',
-				'key' => 'created_at',
-				'class' => 'text-center',
-			],
-		];
+		$slug = 'content-types';
+		$contentType = ContentType::where('slug', $slug)->first();
+		$items = ContentType::where('protected', false)->orderBy('cat_id', 'asc')->orderBy('order', 'asc')->get();
 
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Content Types',
-			'desc' => '',
-			'items' => $this->contentTypes,
-			'columns' => $columns,
+		return view('admin.content-types', [
+			'navigation' => $this->navigation,
+			'contentType' => $contentType,
+			'items' => $items,
+			'columns' => json_decode($contentType->columns),
 		]);
 	}
 
 	public function options() {
+		$slug = 'options';
+		$contentType = ContentType::where('slug', $slug)->first();
+		$items = [];
+
 		return view('admin.options', [
-			'contentTypes' => $this->contentTypes,
-			'title' => 'Options',
-			'desc' => '',
-		]);
-	}
-
-	public function contentType(Request $request) {
-		$slug = $request->segment(2);
-		$type = ContentType::where('slug', $slug)->first();
-		$columns = [];
-
-		return view('admin.list', [
-			'contentTypes' => $this->contentTypes,
-			'title' => $type->plural,
-			'desc' => $type->desc,
-			'items' => [],
-			'columns' => $columns,
+			'navigation' => $this->navigation,
+			'contentType' => $contentType,
+			'items' => $items,
+			'columns' => [],
 		]);
 	}
 }

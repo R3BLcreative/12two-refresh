@@ -1,4 +1,4 @@
-@aware(['main', 'contentTypes'])
+@aware(['main', 'navigation'])
 
 <body {{ $attributes->merge(['class' => 'bg-surface-light font-body text-body-dark font-normal text-base text-gray-900 antialiased relative flex flex-auto w-full']) }}>
 

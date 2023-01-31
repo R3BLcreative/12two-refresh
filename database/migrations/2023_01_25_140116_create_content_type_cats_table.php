@@ -11,15 +11,15 @@ return new class extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('contents', function (Blueprint $table) {
+		Schema::create('content_type_cats', function (Blueprint $table) {
 			$table->id();
-			$table->string('title');
+			$table->integer('order');
+			$table->string('singular');
+			$table->string('plural');
 			$table->string('slug')->unique();
 			$table->text('desc')->nullable();
-			$table->unsignedBigInteger('content_type_id');
-			$table->foreign('content_type_id')->references('id')->on('content_types');
-			$table->json('props')->nullable();
-			$table->json('meta')->nullable();
+			$table->boolean('protected')->default(false);
+			$table->boolean('required')->default(false);
 			$table->timestamps();
 		});
 	}
@@ -30,6 +30,6 @@ return new class extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists('contents');
+		Schema::dropIfExists('content_type_cats');
 	}
 };

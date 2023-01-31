@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Content extends Model {
+class ContentTypeCat extends Model {
 	use HasFactory;
 
-	public function contentType() {
-		return $this->belongsTo(ContentType::class);
+	public function contentTypes() {
+		return $this->hasMany(ContentType::class, 'cat_id');
 	}
 }

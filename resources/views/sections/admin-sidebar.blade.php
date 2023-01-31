@@ -1,92 +1,40 @@
-@aware(['contentTypes'])
+@aware(['navigation'])
 
 <aside class="sticky top-0 bg-surface-dark text-body-white w-[280px] min-w-[280px] max-w-[280px] h-screen min-h-screen max-h-screen z-999 overflow-auto overscroll-contain" role="navigation">
-
-	<div class="flex flex-col gap-8 py-10 px-3">
+	<div class="flex gap-4 justify-between items-center p-3">
 		{{-- LOGO --}}
 		<a href="{{ route('admin.dashboard') }}" class="px-4" aria-label="Return to homepage">
-			<x-components::image id="header-logo" image="logo_admin_nav.png" alt="12Two Missions" class="max-w-[100px]" loading="" />
+			<x-components::image id="header-logo" image="logo_admin_nav.png" alt="??? CMS" class="max-w-[40px]" loading="" />
 		</a>
 
-		<x-components::admin-nav :atts="[
-			'heading' => [
-				'title' => 'Content',
-				'subtext' => 'The meat of the site',
-			],
-			'items' => $contentTypes
-		]" />
+		<div class="flex items-center justify-end w-fit">
+			<a href="{{ route('admin.dashboard') }}" class="text-3xl text-white bg-transparent rounded-full hover:bg-surface-dark-400 active:text-body-dark-50 active:bg-surface-dark-600 flex items-center justify-center w-11 h-11 transition-all ease-in-out" aria-label="My Profile">
+				<i class="fa-duotone fa-gauge-high"></i>
+			</a>
 
-		<x-components::admin-nav :atts="[
-			'heading' => [
-				'title' => 'eCommerce',
-				'subtext' => 'Payments, donations, etc.',
-			],
-			'items' => [
-				[
-					'icon' => 'fa-credit-card',
-					'plural' => 'Payments',
-					'slug' => 'payments',
-				],
-				[
-					'icon' => 'fa-gift',
-					'plural' => 'Donations',
-					'slug' => 'donations',
-				],
-				[
-					'icon' => 'fa-envelopes-bulk',
-					'plural' => 'Subscribers',
-					'slug' => 'subscribers',
-				],
-			]
-		]" />
+			<a href="#" class="text-3xl text-white bg-transparent rounded-full hover:bg-surface-dark-400 active:text-body-dark-50 active:bg-surface-dark-600 flex items-center justify-center w-11 h-11 transition-all ease-in-out" aria-label="My Profile">
+				<i class="fa-duotone fa-circle-user"></i>
+			</a>
+		</div>
+	</div>
 
-		<x-components::admin-nav :atts="[
-			'heading' => [
-				'title' => 'Trips',
-				'subtext' => 'Creation & Management',
-			],
-			'items' => [
-				[
-					'icon' => 'fa-earth-americas',
-					'plural' => 'Trips',
-					'slug' => 'trips',
-				],
-				[
-					'icon' => 'fa-users-viewfinder',
-					'plural' => 'Groups',
-					'slug' => 'groups',
-				],
-				[
-					'icon' => 'fa-id-badge',
-					'plural' => 'Participants',
-					'slug' => 'participants',
-				],
-			]
-		]" />
+	<div class="flex flex-col gap-8 pt-4 pb-8 px-3">
+		<div class="flex flex-col items-center justify-center gap-1">
+			<i class="fa-duotone fa-circle-user w-[85px] h-auto mb-3"></i>
+			<span class="text-md font-bold text-white">{{ Auth::user()->name }}</span>
+			<span class="text-sm">{{ Auth::user()->email }}</span>
+		</div>
 
-		<x-components::admin-nav :atts="[
-			'heading' => [
-				'title' => 'Settings',
-				'subtext' => 'Controls, options, etc.',
-			],
-			'items' => [
-				[
-					'icon' => 'fa-users',
-					'plural' => 'Users',
-					'slug' => 'users',
+		@foreach ($navigation as $cat)
+			<x-components::admin-nav :atts="[
+				'heading' => [
+					'title' => $cat->plural,
+					'subtext' => $cat->desc,
 				],
-				[
-					'icon' => 'fa-chart-tree-map',
-					'plural' => 'Content Types',
-					'slug' => 'contentTypes',
-				],
-				[
-					'icon' => 'fa-gears',
-					'plural' => 'Options',
-					'slug' => 'options',
-				],
-			]
-		]" />
+				'items' => $cat->contentTypes
+			]" />
+		@endforeach
+
 	</div>
 
 </aside>
