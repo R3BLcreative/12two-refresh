@@ -14,7 +14,7 @@
 		<div class="w-full relative overflow-auto bg-surface-light-500 p-8">
 			<x-forms::admin-form
 				id="admin-add-form"
-				action="{{ route('admin.add', ['slug' => $contentType->slug]) }}"
+				action="{{ route('admin.create') }}"
 				method="post"
 				:contentType="$contentType"
 				btnStyle="primary"

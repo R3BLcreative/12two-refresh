@@ -19,7 +19,7 @@
 
 	@isset($item)
 		<input type="hidden" name="id" value="{{ $item->id }}" />
-		<input type="hidden" name="slug" value="{{ $item->slug }}" />
+		<input type="hidden" name="cslug" value="{{ $item->slug }}" />
 
 		@foreach ($item->contentType->contentTypeMeta->fields as $field)
 			<x-dynamic-component
@@ -32,7 +32,7 @@
 				:desc="$field->desc" />
 		@endforeach
 	@else
-		<input type="hidden" name="slug" value="{{ $contentType->slug }}" />
+		<input type="hidden" name="cslug" value="{{ $contentType->slug }}" />
 
 		@foreach ($contentType->contentTypeMeta->fields as $field)
 			<x-dynamic-component

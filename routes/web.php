@@ -211,10 +211,10 @@ Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->
 	Route::get('/{slug}', [AdminController::class, 'list'])->name('admin.list');
 
 	Route::get('/{slug}/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-	Route::post('/{slug}/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
+	Route::post('/update', [AdminController::class, 'update'])->name('admin.update');
 
 	Route::get('/{slug}/add', [AdminController::class, 'add'])->name('admin.add');
-	Route::post('/{slug}/add', [AdminController::class, 'create'])->name('admin.create');
+	Route::post('/create', [AdminController::class, 'create'])->name('admin.create');
 });
 
 

@@ -105,5 +105,41 @@ class AdminController extends Controller {
 	}
 
 	public function create(Request $request) {
+		$contentType = ContentType::where('slug', $request->cslug)->first();
+
+		// Build validation rules from contentType fields
+		$validations = [];
+		foreach ($contentType->contentTypeMeta->fields as $field) {
+			$validations[$field->id] = $field->validate;
+		}
+
+		// Run validations
+		// $request->validate(
+		// 	$validations,
+		// 	[
+		// 		'required' => 'This field is required.',
+		// 		'email.unique' => 'That email address is associated with another user.',
+		// 		'current_pass.required_with_all' => 'Your current password is needed to create a new one.',
+		// 		'current_password' => 'The password you entered does not match your current password.',
+		// 		'new_pass.required_with_all' => 'You need to enter your new password here.',
+		// 		'confirm_pass.required_with_all' => 'You need to confirm your new password here.',
+		// 		'confirm_pass.same' => 'The new and confirm password fields do not match.',
+		// 		'integer' => 'This field must be a number.',
+		// 		'slug.unique' => 'That slug is already in use.',
+		// 	]
+		// );
+
+		// Get model dynamically
+		$modelName = str_replace(' ', '', $contentType->singular);
+		// $model = App\Models\{$modelName}::find(1);
+		// dd($model);
+
+		// Create new content item in DB
+		$new = (object) ['id' => 1];
+
+		$message = "SUCCESS! Thanks for supporting us. Check your inbox for a welcome email.";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.edit', ['slug' => $contentType->slug, 'id' => $new->id]))->with('message', $message);
 	}
 }

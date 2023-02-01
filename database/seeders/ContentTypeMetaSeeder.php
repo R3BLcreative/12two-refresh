@@ -52,6 +52,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Name',
 						'placeholder' => 'John Doe',
 						'desc' => '',
+						'validate' => 'required',
 					],
 					[
 						'type' => 'admin-fields.string',
@@ -60,6 +61,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Email / Username',
 						'placeholder' => 'john@example.com',
 						'desc' => '',
+						'validate' => 'required|unique:App\Models\User,email',
 					],
 					[
 						'type' => 'admin-fields.password',
@@ -68,6 +70,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Current Password',
 						'placeholder' => 'Current Password',
 						'desc' => '',
+						'validate' => 'required_with_all:new_pass,confirm_pass|current_password:web',
 					],
 					[
 						'type' => 'admin-fields.password',
@@ -76,6 +79,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'New Password',
 						'placeholder' => 'New Password',
 						'desc' => '',
+						'validate' => 'required_with_all:current_pass,confirm_pass',
 					],
 					[
 						'type' => 'admin-fields.password',
@@ -84,6 +88,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Confirm New Password',
 						'placeholder' => 'Confirm New Password',
 						'desc' => '',
+						'validate' => 'required_with_all:current_pass,new_pass|same:new_pass',
 					],
 				]),
 				'created_at'	=> Carbon::now(),
@@ -152,6 +157,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Menu Order',
 						'placeholder' => '1',
 						'desc' => '',
+						'validate' => 'required|integer',
 					],
 					[
 						'type' => 'admin-fields.string',
@@ -160,6 +166,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Singular Label',
 						'placeholder' => 'Singular Label',
 						'desc' => 'The singular form of the label you wish to use. (i.e. Item)',
+						'validate' => 'required',
 					],
 					[
 						'type' => 'admin-fields.string',
@@ -168,6 +175,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Plural Label',
 						'placeholder' => 'Plural Label',
 						'desc' => 'The plural form of the label you wish to use. (i.e. Items)',
+						'validate' => 'required',
 					],
 					[
 						'type' => 'admin-fields.string',
@@ -176,6 +184,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Icon',
 						'placeholder' => 'fa-user-circle',
 						'desc' => 'The Font Awesome icon identifier.',
+						'validate' => 'required',
 					],
 					[
 						'type' => 'admin-fields.string',
@@ -184,6 +193,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Slug',
 						'placeholder' => 'slug',
 						'desc' => 'Usually the plural form of the label, but it can be whatever you would like. Needs to be unique from any other content type slug.',
+						'validate' => 'required|unique:App\Models\ContentType,slug',
 					],
 					[
 						'type' => 'admin-fields.text',
@@ -192,6 +202,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Description',
 						'placeholder' => 'Description',
 						'desc' => '',
+						'validate' => '',
 					],
 					[
 						'type' => 'admin-fields.category',
@@ -200,6 +211,7 @@ class ContentTypeMetaSeeder extends Seeder {
 						'label' => 'Category',
 						'placeholder' => 'Please select one',
 						'desc' => '',
+						'validate' => 'required',
 					],
 				]),
 				'created_at'	=> Carbon::now(),

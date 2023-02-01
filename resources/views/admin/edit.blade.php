@@ -24,7 +24,7 @@
 		<div class="w-full relative overflow-auto bg-surface-light-500 p-8">
 			<x-forms::admin-form
 				id="admin-edit-form"
-				action="{{ route('admin.edit', ['slug' => $item->contentType->slug, 'id' => $item->id]) }}"
+				action="{{ route('admin.update') }}"
 				method="post"
 				:item="$item"
 				btnStyle="primary"
