@@ -7,10 +7,4 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Connection extends Model {
 	use HasFactory;
-
-	protected $fillable = [
-		'name',
-		'email',
-		'topic'
-	];
 }

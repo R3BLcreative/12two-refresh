@@ -5,9 +5,10 @@
 	]">
 
 	<x-slot:main>
-		<x-components::admin-titlebar :icon="$contentType->icon" :subtext="$contentType->desc">
-			{!! $contentType->plural !!}
-		</x-components::admin-titlebar>
+		<x-components::admin-titlebar
+			:icon="$contentType->icon"
+			:title="$contentType->plural"
+			:subtext="$contentType->desc"></x-components::admin-titlebar>
 	</x-slot:main>
 
 </x-layouts::admin>

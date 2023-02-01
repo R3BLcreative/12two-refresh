@@ -12,7 +12,11 @@ class ContentType extends Model {
 		return $this->hasMany(Content::class);
 	}
 
-	public function contentTypeCat() {
-		return $this->belongsTo(ContentTypeCat::class, 'cat_id');
+	public function category() {
+		return $this->belongsTo(Category::class);
+	}
+
+	public function contentTypeMeta() {
+		return $this->hasOne(ContentTypeMeta::class);
 	}
 }

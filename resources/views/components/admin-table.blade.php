@@ -26,7 +26,7 @@
 					@break
 
 				@case('category')
-					<div class="text-center text-sm">{{ $item->contentTypeCat->plural }}</div>
+					<div class="text-center text-sm">{{ $item->category->plural }}</div>
 					@break
 
 				@case('slug')
@@ -51,7 +51,7 @@
 					@break
 
 				@case('main')
-					<div class="font-semibold text-md group-hover:text-primary-500">{{ $item->{$column->key} }}</div>
+					<div class="font-semibold text-md group-hover:text-primary-500">{{ $item->{$column->key} ?? $item->fields->{$column->key} }}</div>
 					@break
 
 				@default

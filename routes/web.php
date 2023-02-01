@@ -204,10 +204,6 @@ Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->group(function () {
 	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-	Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-
-	Route::get('/content-types', [AdminController::class, 'contentTypes'])->name('admin.content-types');
-
 	Route::get('/menus', [AdminController::class, 'menus'])->name('admin.menus');
 
 	Route::get('/options', [AdminController::class, 'options'])->name('admin.options');
@@ -215,6 +211,10 @@ Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->
 	Route::get('/{slug}', [AdminController::class, 'list'])->name('admin.list');
 
 	Route::get('/{slug}/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+	Route::post('/{slug}/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
+
+	Route::get('/{slug}/add', [AdminController::class, 'add'])->name('admin.add');
+	Route::post('/{slug}/add', [AdminController::class, 'create'])->name('admin.create');
 });
 
 
