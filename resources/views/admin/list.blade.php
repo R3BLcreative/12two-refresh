@@ -1,36 +1,38 @@
 <x-layouts::admin
 	:navigation="$navigation"
 	:seo="[
-		'title' => '12Two Missions | Admin - ' . $contentType->plural,
+		'title' => '12Two Missions | Admin - ' . Str::plural($collectionType->label),
 	]">
 
 	<x-slot:main>
 		<x-components::admin-titlebar
-			:icon="$contentType->icon"
-			:title="$contentType->plural"
-			:subtext="$contentType->desc">
+			:icon="$collectionType->icon"
+			:title="Str::plural($collectionType->label)"
+			:subtext="$collectionType->desc">
 			<x-components::admin-button
 				tag="a"
-				href="{{ route('admin.add', ['slug' => $contentType->slug]) }}"
+				href="{{ route('admin.add', ['slug' => $collectionType->slug]) }}"
 				style="primary"
 				size="small"
 				icon="fa-plus">
 
-				New {{ $contentType->singular }}
+				New {{ $collectionType->label }}
 			</x-components::admin-button>
 		</x-components::admin-titlebar>
 
 		<div class="w-full relative overflow-auto">
 			@php
-				if($contentType->slug == 'users') {
+				if($collectionType->slug == 'users') {
 					$grid = 'grid-cols-users';
-				}elseif($contentType->slug == 'content-types') {
-					$grid = 'grid-cols-content-types';
+				}elseif($collectionType->slug == 'collection-types') {
+					$grid = 'grid-cols-collection-types';
+				}elseif($collectionType->slug == 'categories') {
+					$grid = 'grid-cols-categories';
 				}else{
-					$grid = 'grid-cols-content';
+					$grid = 'grid-cols-collection';
 				}
 			@endphp
-			<x-components::admin-table :columns="$contentType->contentTypeMeta->columns" :items="$items" :slug="$contentType->slug" :grid="$grid" />
+			<x-components::admin-table :columns="$collectionType->collectionTypeMeta->columns" :items="$items" :slug="$collectionType->slug" :grid="$grid" />
 		</div>
 	</x-slot:main>
 

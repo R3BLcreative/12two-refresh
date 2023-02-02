@@ -26,7 +26,7 @@
 					@break
 
 				@case('category')
-					<div class="text-center text-sm">{{ $item->category->plural }}</div>
+					<div class="text-center text-sm">{{ $item->category->label }}</div>
 					@break
 
 				@case('slug')

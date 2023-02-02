@@ -15,7 +15,7 @@
 ])
 
 <div class="flex flex-col gap-4">
-	<x-components::admin-heading tag="h2" style="nav" subtext="{{ $atts['heading']['subtext'] }}" class="px-4">
+	<x-components::admin-heading tag="h2" style="nav" subtext="{{ $atts['heading']['subtext'] }}" class="px-2">
 		{{ $atts['heading']['title'] }}
 	</x-components::admin-heading>
 

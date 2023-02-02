@@ -1,13 +1,13 @@
 <x-layouts::admin
 	:navigation="$navigation"
 	:seo="[
-		'title' => '12Two Missions | Admin - Add New ' . $contentType->singular,
+		'title' => '12Two Missions | Admin - Add New ' . $collectionType->label,
 	]">
 
 	<x-slot:main>
 		<x-components::admin-titlebar
-			:icon="$contentType->icon"
-			title="Add New {{ $contentType->singular }}"
+			:icon="$collectionType->icon"
+			title="Add New {{ $collectionType->label }}"
 			subtext=""
 		></x-components::admin-titlebar>
 
@@ -16,7 +16,7 @@
 				id="admin-add-form"
 				action="{{ route('admin.create') }}"
 				method="post"
-				:contentType="$contentType"
+				:collectionType="$collectionType"
 				btnStyle="primary"
 				btnIcon="fa-up-from-bracket"
 				btnText="Create"

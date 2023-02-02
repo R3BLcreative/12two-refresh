@@ -14,55 +14,53 @@ return new class extends Migration {
 		Schema::create('categories', function (Blueprint $table) {
 			$table->id();
 			$table->integer('order');
-			$table->string('singular');
-			$table->string('plural');
+			$table->string('label');
 			$table->string('slug')->unique();
-			$table->text('desc')->nullable();
-			$table->string('type')->default('content');
+			$table->string('type')->default('collection');
+			$table->boolean('force_single')->default(false);
 			$table->boolean('protected')->default(false);
 			$table->boolean('required')->default(false);
 			$table->timestamps();
 		});
 
-		Schema::create('content_types', function (Blueprint $table) {
+		Schema::create('collection_types', function (Blueprint $table) {
 			$table->id();
 			$table->integer('order');
-			$table->string('singular');
-			$table->string('plural');
+			$table->string('label');
 			$table->string('icon');
 			$table->string('slug')->unique();
-			$table->string('route');
+			$table->string('route')->default('list');
 			$table->text('desc')->nullable();
 			$table->unsignedBigInteger('category_id');
 			$table->foreign('category_id')->references('id')->on('categories');
+			$table->boolean('force_single')->default(false);
 			$table->boolean('protected')->default(false);
 			$table->boolean('required')->default(false);
 			$table->timestamps();
 		});
 
-		Schema::create('content_type_metas', function (Blueprint $table) {
+		Schema::create('collection_type_metas', function (Blueprint $table) {
 			$table->id();
-			$table->unsignedBigInteger('content_type_id');
-			$table->foreign('content_type_id')->references('id')->on('content_types');
+			$table->unsignedBigInteger('collection_type_id');
+			$table->foreign('collection_type_id')->references('id')->on('collection_types');
 			$table->json('columns')->nullable();
 			$table->json('fields');
 			$table->timestamps();
 		});
 
-		Schema::create('contents', function (Blueprint $table) {
+		Schema::create('collections', function (Blueprint $table) {
 			$table->id();
 			$table->string('slug')->unique();
-			$table->text('desc')->nullable();
-			$table->unsignedBigInteger('content_type_id');
-			$table->foreign('content_type_id')->references('id')->on('content_types');
+			$table->unsignedBigInteger('collection_type_id');
+			$table->foreign('collection_type_id')->references('id')->on('collection_types');
 			$table->json('fields')->nullable();
 			$table->timestamps();
 		});
 
-		Schema::create('content_categories', function (Blueprint $table) {
+		Schema::create('collection_categories', function (Blueprint $table) {
 			$table->id();
-			$table->unsignedBigInteger('content_id');
-			$table->foreign('content_id')->references('id')->on('contents');
+			$table->unsignedBigInteger('collection_id');
+			$table->foreign('collection_id')->references('id')->on('collections');
 			$table->unsignedBigInteger('category_id');
 			$table->foreign('category_id')->references('id')->on('categories');
 		});
@@ -75,8 +73,8 @@ return new class extends Migration {
 	 */
 	public function down() {
 		Schema::dropIfExists('categories');
-		Schema::dropIfExists('content_types');
-		Schema::dropIfExists('content_type_metas');
-		Schema::dropIfExists('contents');
+		Schema::dropIfExists('collection_types');
+		Schema::dropIfExists('collection_type_metas');
+		Schema::dropIfExists('collections');
 	}
 };

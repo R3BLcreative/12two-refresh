@@ -38,8 +38,9 @@ module.exports = {
 		extend: {
 			gridTemplateColumns: {
 				users: '24px auto 150px 100px',
-				'content-types': '24px 75px auto 150px 150px 100px 100px',
-				content: '24px auto 100px 100px',
+				'collection-types': '24px 75px auto 150px 150px 100px 100px',
+				categories: '24px auto 150px 150px 100px 100px',
+				collection: '24px auto 100px 100px',
 			},
 			zIndex: {
 				'-1': -1,
@@ -148,6 +149,22 @@ module.exports = {
 						800: '#080C17',
 						900: '#05080F',
 					},
+				},
+				error: {
+					DEFAULT: '#b91c1c',
+					dark: '#7f1d1d',
+				},
+				warning: {
+					DEFAULT: '#f59e0b',
+					dark: '#78350f',
+				},
+				notice: {
+					DEFAULT: '#2563eb',
+					dark: '#1e3a8a',
+				},
+				success: {
+					DEFAULT: '#16a34a',
+					dark: '#166534',
 				},
 			},
 		},

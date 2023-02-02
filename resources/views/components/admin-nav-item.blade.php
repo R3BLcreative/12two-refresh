@@ -17,6 +17,6 @@
 	<a href="{{ route('admin.' . $atts->route, $params) }}" class="flex flex-auto items-center gap-4 font-semibold transition-all ease-in-out @if($active) text-white @else group-hover:text-white @endif">
 		<i class="fa-duotone {{ $atts->icon }} text-xl transition-all ease-in-out"></i>
 
-		{!! $atts->plural !!}
+		{{ ($atts->force_single) ? $atts->label : Str::plural($atts->label) }}
 	</a>
 </li>

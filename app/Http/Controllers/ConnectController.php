@@ -26,8 +26,8 @@ class ConnectController extends Controller {
 
 		// Store request in DB
 		$msg = Connection::create([
-			'name'		=> ucwords(strtolower($request->name)),
-			'email'		=> strtolower($request->email),
+			'name'		=> $request->name,
+			'email'		=> $request->email,
 			'topic'		=> $request->topic,
 		]);
 
@@ -38,7 +38,7 @@ class ConnectController extends Controller {
 		Mail::to($msg->email)->send(new ConnectGuest($msg));
 
 		// Return with success message
-		$message = "SUCCESS! We have recieved your message and one of our admins will be getting back to you in 24-48 hours. Check your inbox for a copy of the message you just sent.";
+		$message = "SUCCESS! We have recieved your message and one of our admins will be getting back to you in 24-48 hours. Check your inbox for a copy of the message you just sent us.";
 
 		return redirect(route($request->input('route')) . '#connect')->with('message', $message);
 	}

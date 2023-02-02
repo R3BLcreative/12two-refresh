@@ -12,12 +12,12 @@
 
 			<x-components::admin-button
 				tag="a"
-				href="{{ route('admin.add', ['slug' => $item->contentType->slug]) }}"
+				href="{{ route('admin.add', ['slug' => $item->collectionType->slug]) }}"
 				style="primary"
 				size="small"
 				icon="fa-plus">
 
-				New {{ $item->contentType->singular }}
+				New {{ $item->collectionType->label }}
 			</x-components::admin-button>
 		</x-components::admin-titlebar>
 

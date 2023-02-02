@@ -34,7 +34,7 @@ $classes = [
 		'subtext' => 'text-base font-normal',
 	],
 	'nav' => [
-		'heading' => 'uppercase text-primary-300 font-black text-base tracking-wider',
+		'heading' => 'uppercase text-primary-300 font-black text-base tracking-wider py-2 px-2 border-b border-b-surface-white-50',
 		'subtext' => 'text-sm font-semibold tracking-wide text-body-white-500',
 	],
 ];

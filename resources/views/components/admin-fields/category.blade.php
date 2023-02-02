@@ -5,27 +5,33 @@
 	'value' => '',
 	'placeholder',
 	'desc',
+	'required',
+	'catType',
 	])
 
 @php
-	$cats = App\Models\Category::where('type', 'content-type')->get();
+	$cats = App\Models\Category::where('type', $catType)->get();
 @endphp
 
 <div class="col-span-full flex flex-col gap-2">
 	@isset($label)
-		<x-admin-fields::label :id="$id">{!! $label !!}</x-admin-fields::label>
+		<x-admin-fields::label :id="$id" :required="$required">{!! $label !!}</x-admin-fields::label>
 	@endisset
 
-	<select type="text" id="{{ $id }}" name="{{ $id }}" class="">
+	<select type="text" id="{{ $id }}" name="{{ $id }}" class="@error($id) border-error @enderror">
 		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder ?? 'Please select one' }}</option>
 		@foreach ($cats as $cat)
 			<option value="{{ $cat->id }}" @if($cat->id == $value) selected @endif>
-				{{ $cat->plural }}
+				{{ ($cat->force_single) ? $cat->label : Str::plural($cat->label) }}
 			</option>
 		@endforeach
 	</select>
 
 	@isset($desc)
-		<div class="">{!! $desc !!}</div>
+		<x-admin-fields::description>{{ $desc }}</x-admin-fields::description>
 	@endisset
+
+	@error($id)
+		<x-admin-fields::error>{{ $message }}</x-admin-fields::error>
+	@enderror
 </div>

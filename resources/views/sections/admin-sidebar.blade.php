@@ -28,10 +28,10 @@
 		@foreach ($navigation as $cat)
 			<x-components::admin-nav :atts="[
 				'heading' => [
-					'title' => $cat->plural,
-					'subtext' => $cat->desc,
+					'title' => ($cat->force_single) ? $cat->label : Str::plural($cat->label),
+					'subtext' => '',
 				],
-				'items' => $cat->contentTypes
+				'items' => $cat->collectionTypes
 			]" />
 		@endforeach
 

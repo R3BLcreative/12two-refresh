@@ -100,17 +100,20 @@ module.exports = {
 					900: 'hsl(0, 0%, 18%)',
 				},
 				error: {
-					// #CC3E3F
-					50: '',
-					100: '#cc3e3f',
+					DEFAULT: '#b91c1c',
+					dark: '#7f1d1d',
 				},
 				warning: {
-					// #FFA000
-					100: '#ffa000',
+					DEFAULT: '#f59e0b',
+					dark: '#78350f',
 				},
 				notice: {
-					// #00805A
-					100: '#00805a',
+					DEFAULT: '#2563eb',
+					dark: '#1e3a8a',
+				},
+				success: {
+					DEFAULT: '#16a34a',
+					dark: '#166534',
 				},
 			},
 			boxShadow: {

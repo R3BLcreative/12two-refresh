@@ -3,11 +3,13 @@
 	'action',
 	'method',
 	'item',
-	'contentType',
+	'collectionType',
 	'btnStyle',
 	'btnText',
 	'btnIcon'
 ])
+
+<x-forms::notifications :errors="$errors" bag="default" />
 
 <form
 	action="{{ $action }}"
@@ -21,7 +23,7 @@
 		<input type="hidden" name="id" value="{{ $item->id }}" />
 		<input type="hidden" name="cslug" value="{{ $item->slug }}" />
 
-		@foreach ($item->contentType->contentTypeMeta->fields as $field)
+		@foreach ($item->collectionType->collectionTypeMeta->fields as $field)
 			<x-dynamic-component
 				:component="$field->type"
 				:class="$field->class"
@@ -29,12 +31,14 @@
 				:label="$field->label"
 				value="{{ $item->fields->{$field->id} ?? '' }}"
 				:placeholder="$field->placeholder"
-				:desc="$field->desc" />
+				:desc="$field->desc"
+				:required="$field->required"
+				catType="{{ $field->catType ?? '' }}" />
 		@endforeach
 	@else
-		<input type="hidden" name="cslug" value="{{ $contentType->slug }}" />
+		<input type="hidden" name="cslug" value="{{ $collectionType->slug }}" />
 
-		@foreach ($contentType->contentTypeMeta->fields as $field)
+		@foreach ($collectionType->collectionTypeMeta->fields as $field)
 			<x-dynamic-component
 				:component="$field->type"
 				:class="$field->class"
@@ -42,7 +46,9 @@
 				:label="$field->label"
 				value="{{ old($field->id) ?? '' }}"
 				:placeholder="$field->placeholder"
-				:desc="$field->desc" />
+				:desc="$field->desc"
+				:required="$field->required"
+				catType="{{ $field->catType ?? '' }}" />
 		@endforeach
 	@endisset
 
