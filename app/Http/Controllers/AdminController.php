@@ -13,10 +13,14 @@ class AdminController extends Controller {
 
 	protected $navigation;
 
+
+	//
 	public function __construct() {
 		$this->navigation = Category::where('type', 'collection-type')->orderBy('order', 'asc')->get();
 	}
 
+
+	//
 	public function dashboard() {
 		return view('admin.home', [
 			'navigation' => $this->navigation,
@@ -25,6 +29,8 @@ class AdminController extends Controller {
 		]);
 	}
 
+
+	//
 	public function menus() {
 		$slug = 'menus';
 		$collectionType = CollectionType::where('slug', $slug)->first();
@@ -38,6 +44,8 @@ class AdminController extends Controller {
 		]);
 	}
 
+
+	//
 	public function options() {
 		$slug = 'options';
 		$collectionType = CollectionType::where('slug', $slug)->first();
@@ -50,9 +58,12 @@ class AdminController extends Controller {
 		]);
 	}
 
+
+	//
 	public function list($slug) {
 		$collectionType = CollectionType::where('slug', $slug)->first();
 
+		// This needs to be dynamic
 		switch ($slug) {
 			case 'users':
 				$items = User::orderBy('id', 'asc')->get();
@@ -74,7 +85,10 @@ class AdminController extends Controller {
 		]);
 	}
 
+
+	//
 	public function edit($slug, $id) {
+		// This needs to be dynamic
 		switch ($slug) {
 			case 'users':
 				$item = User::where('id', $id)->first();
@@ -96,9 +110,13 @@ class AdminController extends Controller {
 		]);
 	}
 
+
+	//
 	public function update(Request $request) {
 	}
 
+
+	//
 	public function add($slug) {
 		$collectionType = CollectionType::where('slug', $slug)->first();
 
@@ -108,6 +126,8 @@ class AdminController extends Controller {
 		]);
 	}
 
+
+	//
 	public function create(Request $request) {
 		$collectionType = CollectionType::where('slug', $request->cslug)->first();
 
@@ -168,6 +188,24 @@ class AdminController extends Controller {
 		return redirect(route('admin.edit', ['slug' => $collectionType->slug, 'id' => $new->id]))->with('message', $message);
 	}
 
+
+	//
+	public function delete($slug, $id) {
+		$collectionType = CollectionType::where('slug', $slug)->first();
+
+		$namespace = $this->getModel($collectionType->label);
+
+		// Delete record
+		$namespace::where('id', $id)->delete();
+
+		$message = $collectionType->label . " has been deleted.";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.list', ['slug' => $collectionType->slug]))->with('message', $message);
+	}
+
+
+	//
 	private function getAllModels($filename = NULL) {
 		$modelList = [];
 		$path = app_path() . '/Models';
@@ -187,5 +225,20 @@ class AdminController extends Controller {
 		}
 
 		return $modelList;
+	}
+
+
+	//
+	private function getModel($label) {
+		// Get list of available app models (Models directory only)
+		$models = $this->getAllModels();
+
+		// Get model dynamically via namespace
+		$modelName = str_replace(' ', '', $label);
+		if (in_array($modelName, $models)) {
+			return "App\Models\\$modelName";
+		} else {
+			return "App\Models\\Collection";
+		}
 	}
 }

@@ -1,0 +1,46 @@
+@props(['item', 'slug'])
+
+<div class="flex items-center justify-center gap-5">
+	{{-- MENU --}}
+	<x-components::admin-actions-item icon="fa-list-dropdown">
+		<ul class="">
+			<x-components::admin-actions-menu-item>
+				Edit
+			</x-components::admin-actions-menu-item>
+			<x-components::admin-actions-menu-item click="event.preventDefault();document.getElementById('delete-form').submit();">
+				Delete
+				<form
+					id="delete-form"
+					action="{{ route('admin.delete', [
+						'slug' => $slug,
+						'id' => $item->id
+					]) }}"
+					method="post"
+					class="hidden">@csrf</form>
+			</x-components::admin-actions-menu-item>
+		</ul>
+	</x-components::admin-actions-item>
+
+	{{-- INFO --}}
+	<x-components::admin-actions-item icon="fa-calendar-clock">
+		<div class="p-4 border-r border-surface-white-500">
+			<span class="font-bold text-dm">Created</span>
+			<span class="font-semibold text-xs">
+				{{ date('m/d/Y', strtotime($item->created_at)) }}
+			</span>
+			<span class="italic text-xs">
+				{{ date('h:i a', strtotime($item->created_at)) }}
+			</span>
+		</div>
+
+		<div class="p-4">
+			<span class="font-bold text-dm">Updated</span>
+			<span class="font-semibold text-xs">
+				{{ date('m/d/Y', strtotime($item->updated_at)) }}
+			</span>
+			<span class="italic text-xs">
+				{{ date('h:i a', strtotime($item->updated_at)) }}
+			</span>
+		</div>
+	</x-components::admin-actions-item>
+</div>

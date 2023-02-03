@@ -6,6 +6,7 @@ module.exports = {
 	content: [
 		'./resources/views/**/**/*.blade.php',
 		'./app/Http/Controllers/**/*.php',
+		'./database/seeders/*.php',
 		'./config/setting_fields.php',
 	],
 	theme: {
@@ -36,11 +37,20 @@ module.exports = {
 			body: ['Inter', 'sans-serif'],
 		},
 		extend: {
-			gridTemplateColumns: {
-				users: '24px auto 150px 100px',
-				'collection-types': '24px 75px auto 150px 150px 100px 100px',
-				categories: '24px auto 150px 150px 100px 100px',
-				collection: '24px auto 100px 100px',
+			animation: {
+				'fade-out': 'fadeOut 600ms forwards',
+			},
+			keyframes: {
+				fadeOut: {
+					'0%': {
+						opacity: '100%',
+						'max-height': '5000px',
+					},
+					'100%': {
+						opacity: '0%',
+						'max-height': '0',
+					},
+				},
 			},
 			zIndex: {
 				'-1': -1,

@@ -17,7 +17,7 @@
 		id="{{ $id }}"
 		name="{{ $id }}"
 		placeholder="{{ $placeholder ?? '' }}"
-		class="w-full @error($id) border-error @enderror">{{ $value ?? '' }}</textarea>
+		class="text-base w-full @error($id) border-error @enderror">{{ $value ?? '' }}</textarea>
 
 	@isset($desc)
 		<x-admin-fields::description>{{ $desc }}</x-admin-fields::description>

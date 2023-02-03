@@ -9,8 +9,6 @@
 	'btnIcon'
 ])
 
-<x-forms::notifications :errors="$errors" bag="default" />
-
 <form
 	action="{{ $action }}"
 	method="{{ $method }}"

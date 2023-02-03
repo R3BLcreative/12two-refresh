@@ -19,29 +19,26 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 1,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => '',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Name',
-						'key' => 'name',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Role',
-						'key' => '',
-						'type' => 'user_role',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => '',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Name',
+							'key' => 'name',
+							'type' => 'main',
+							'class' => '',
+						],
+						[
+							'text' => 'Role',
+							'key' => '',
+							'type' => 'user_role',
+							'class' => 'text-center',
+						],
 					],
 				]),
 				'fields' 			=> json_encode([
@@ -116,47 +113,38 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 3,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'icon' => 'fa-icons',
-						'key' => 'icon',
-						'type' => 'icon',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Name',
-						'key' => 'label',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Category',
-						'key' => 'category',
-						'type' => 'category',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Slug',
-						'key' => 'slug',
-						'type' => 'slug',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_75px_auto_150px_150px_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'icon' => 'fa-icons',
+							'key' => 'icon',
+							'type' => 'icon',
+							'class' => 'text-center',
+						],
+						[
+							'text' => 'Name',
+							'key' => 'label',
+							'type' => 'main',
+							'class' => '',
+						],
+						[
+							'text' => 'Category',
+							'key' => 'category',
+							'type' => 'category',
+							'class' => 'text-center',
+						],
+						[
+							'text' => 'Slug',
+							'key' => 'slug',
+							'type' => 'slug',
+							'class' => 'text-center',
+						],
 					],
 				]),
 				'fields'			=> json_encode([
@@ -235,41 +223,32 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 4,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Name',
-						'key' => 'label',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Type',
-						'key' => 'type',
-						'type' => 'default',
-						'class' => 'text-center text-sm',
-					],
-					[
-						'text' => 'Slug',
-						'key' => 'slug',
-						'type' => 'slug',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px_150px_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Name',
+							'key' => 'label',
+							'type' => 'main',
+							'class' => '',
+						],
+						[
+							'text' => 'Type',
+							'key' => 'type',
+							'type' => 'default',
+							'class' => 'text-center text-sm',
+						],
+						[
+							'text' => 'Slug',
+							'key' => 'slug',
+							'type' => 'slug',
+							'class' => 'text-center',
+						],
 					],
 				]),
 				'fields' 			=> json_encode([]),
@@ -288,29 +267,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 6,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -321,29 +291,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 7,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -354,29 +315,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 8,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -387,29 +339,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 9,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -420,29 +363,32 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 10,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_150px_150px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Author',
+							'key' => 'author',
+							'type' => 'main',
+							'class' => '!text-center',
+						],
+						[
+							'text' => 'Trip',
+							'key' => 'trip',
+							'type' => 'default',
+							'class' => 'text-center',
+						],
+						[
+							'text' => 'Quote',
+							'key' => 'quote',
+							'type' => 'text',
+							'class' => 'text-sm',
+						],
 					],
 				]),
 				'fields'			=> json_encode([
@@ -498,29 +444,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 11,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -531,29 +468,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 12,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -564,29 +492,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 13,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -597,29 +516,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 14,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -630,29 +540,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 15,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),
@@ -663,29 +564,20 @@ class CollectionTypeMetaSeeder extends Seeder {
 			[
 				'collection_type_id' => 16,
 				'columns'			=> json_encode([
-					[
-						'text' => 'ID',
-						'key' => 'id',
-						'type' => 'id',
-						'class' => 'text-center uppercase',
-					],
-					[
-						'text' => 'Title',
-						'key' => 'title',
-						'type' => 'main',
-						'class' => '',
-					],
-					[
-						'text' => 'Updated',
-						'key' => 'updated_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
-					],
-					[
-						'text' => 'Created',
-						'key' => 'created_at',
-						'type' => 'timestamp',
-						'class' => 'text-center',
+					'template' => 'grid-cols-[24px_auto_150px]',
+					'items' => [
+						[
+							'text' => 'ID',
+							'key' => 'id',
+							'type' => 'id',
+							'class' => 'text-center uppercase',
+						],
+						[
+							'text' => 'Title',
+							'key' => 'title',
+							'type' => 'main',
+							'class' => '',
+						],
 					],
 				]),
 				'fields'			=> json_encode([]),

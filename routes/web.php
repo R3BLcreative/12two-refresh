@@ -215,6 +215,8 @@ Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->
 
 	Route::get('/{slug}/add', [AdminController::class, 'add'])->name('admin.add');
 	Route::post('/create', [AdminController::class, 'create'])->name('admin.create');
+
+	Route::post('/{slug}/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
 });
 
 

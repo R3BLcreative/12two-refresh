@@ -14,10 +14,9 @@
 				tag="a"
 				href="{{ route('admin.add', ['slug' => $item->collectionType->slug]) }}"
 				style="primary"
-				size="small"
 				icon="fa-plus">
 
-				New {{ $item->collectionType->label }}
+				New
 			</x-components::admin-button>
 		</x-components::admin-titlebar>
 

@@ -13,7 +13,7 @@
 		<x-admin-fields::label :id="$id" :required="$required">{!! $label !!}</x-admin-fields::label>
 	@endisset
 
-	<input type="number" id="{{ $id }}" name="{{ $id }}" value="{{ $value ?? '' }}" placeholder="{{ $placeholder ?? '' }}" class="@error($id) border-error @enderror" />
+	<input type="number" id="{{ $id }}" name="{{ $id }}" value="{{ $value ?? '' }}" placeholder="{{ $placeholder ?? '' }}" class="text-base @error($id) border-error @enderror" />
 
 	@isset($desc)
 		<x-admin-fields::description>{{ $desc }}</x-admin-fields::description>

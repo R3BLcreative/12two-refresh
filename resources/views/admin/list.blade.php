@@ -16,23 +16,12 @@
 				size="small"
 				icon="fa-plus">
 
-				New {{ $collectionType->label }}
+				New
 			</x-components::admin-button>
 		</x-components::admin-titlebar>
 
-		<div class="w-full relative overflow-auto">
-			@php
-				if($collectionType->slug == 'users') {
-					$grid = 'grid-cols-users';
-				}elseif($collectionType->slug == 'collection-types') {
-					$grid = 'grid-cols-collection-types';
-				}elseif($collectionType->slug == 'categories') {
-					$grid = 'grid-cols-categories';
-				}else{
-					$grid = 'grid-cols-collection';
-				}
-			@endphp
-			<x-components::admin-table :columns="$collectionType->collectionTypeMeta->columns" :items="$items" :slug="$collectionType->slug" :grid="$grid" />
+		<div class="w-full relative">
+			<x-components::admin-table :columns="$collectionType->collectionTypeMeta->columns" :items="$items" :slug="$collectionType->slug" />
 		</div>
 	</x-slot:main>
 

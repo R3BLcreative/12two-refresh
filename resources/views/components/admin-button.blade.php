@@ -15,7 +15,7 @@
 
 {{-- CLASS DEFINITIONS --}}
 @php
-$defaults = 'rounded-full inline-block font-bold cursor-pointer leading-none tracking-wider text-center';
+$defaults = 'px-6 py-3 rounded-full inline-block font-bold cursor-pointer leading-none tracking-wider text-center';
 
 $actives = [
 'none' => '',
@@ -31,8 +31,8 @@ $disables = [
 
 $sizes = [
 'none' => '',
-'small' => 'px-8 py-3 text-sm',
-'default' => 'px-9 py-4 text-base',
+'small' => 'text-xs',
+'default' => 'text-sm',
 ];
 
 // Set class
@@ -43,7 +43,7 @@ $class = $defaults . ' ' . $actives[$style] . ' ' . $sizes[$size] . ' ' . $class
 }
 
 // Class atts applied to all
-$class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-nowrap uppercase flex flex-row items-center justify-center gap-4';
+$class .= ' mobile:w-full tablet:w-fit transition-all ease-in-out whitespace-nowrap uppercase flex flex-row items-center justify-center gap-2';
 
 // Convert atts array to string
 if(count($atts) > 0) {
