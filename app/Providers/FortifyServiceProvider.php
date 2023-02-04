@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\UpdateUserProfileInformation;
@@ -17,7 +19,13 @@ class FortifyServiceProvider extends ServiceProvider {
 	 * Register any application services.
 	 */
 	public function register(): void {
-		//
+		$this->app->instance(LoginResponse::class, new class implements LoginResponse {
+			public function toResponse($request) {
+				$home = ($request->user()->can('manage backend')) ? '/admin' : '/dashboard';
+
+				return redirect()->intended($home);
+			}
+		});
 	}
 
 	/**

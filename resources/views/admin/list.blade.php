@@ -20,7 +20,7 @@
 			</x-components::admin-button>
 		</x-components::admin-titlebar>
 
-		<div class="w-full relative">
+		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
 			<x-components::admin-table :columns="$collectionType->collectionTypeMeta->columns" :items="$items" :slug="$collectionType->slug" />
 		</div>
 	</x-slot:main>

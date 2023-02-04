@@ -11,6 +11,8 @@
 				Welcome back, {{ Auth::user()->name }}!
 			</x-components::admin-heading>
 		</div>
+
+		<div class="w-full relative flex flex-col flex-auto overflow-hidden"></div>
 	</x-slot:main>
 
 </x-layouts::admin>

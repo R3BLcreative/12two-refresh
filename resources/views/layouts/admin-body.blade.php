@@ -5,12 +5,12 @@
 	{{-- ADMIN NAV BAR --}}
 	<x-sections::admin-sidebar />
 
-	<div class="flex flex-col flex-auto w-full min-w-0">
+	<div class="flex flex-col w-full max-h-screen">
 		{{-- MAIN HEADER --}}
 		<x-sections::admin-header />
 
 		{{-- MAIN CONTENT --}}
-		<main id="content" tabindex="-1" role="main" class="flex flex-col flex-auto bg-white relative">
+		<main id="content" tabindex="-1" role="main" class="flex flex-col flex-auto bg-white relative overflow-hidden">
 			{{ $main }}
 		</main>
 

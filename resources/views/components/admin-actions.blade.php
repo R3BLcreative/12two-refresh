@@ -3,8 +3,8 @@
 <div class="flex items-center justify-center gap-5">
 	{{-- MENU --}}
 	<x-components::admin-actions-item icon="fa-list-dropdown">
-		<ul class="">
-			<x-components::admin-actions-menu-item>
+		<ul class="flex flex-col gap-2 w-[150px]">
+			<x-components::admin-actions-menu-item route="{{ route('admin.edit', ['slug' => $slug, 'id' => $item->id]) }}">
 				Edit
 			</x-components::admin-actions-menu-item>
 			<x-components::admin-actions-menu-item click="event.preventDefault();document.getElementById('delete-form').submit();">
@@ -17,6 +17,12 @@
 					]) }}"
 					method="post"
 					class="hidden">@csrf</form>
+			</x-components::admin-actions-menu-item>
+			<x-components::admin-actions-menu-item>
+				Option
+			</x-components::admin-actions-menu-item>
+			<x-components::admin-actions-menu-item>
+				Option
 			</x-components::admin-actions-menu-item>
 		</ul>
 	</x-components::admin-actions-item>

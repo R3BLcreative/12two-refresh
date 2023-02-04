@@ -12,7 +12,7 @@
 <form
 	action="{{ $action }}"
 	method="{{ $method }}"
-	class="grid grid-cols-8 gap-7"
+	class="grid grid-cols-8 gap-7 overflow-auto overscroll-contain flex-auto bg-surface-light-500 p-8"
 >
 	@csrf
 	@method($method)

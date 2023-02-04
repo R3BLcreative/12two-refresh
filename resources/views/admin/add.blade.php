@@ -11,7 +11,7 @@
 			subtext=""
 		></x-components::admin-titlebar>
 
-		<div class="w-full relative overflow-auto bg-surface-light-500 p-8">
+		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
 			<x-forms::admin-form
 				id="admin-add-form"
 				action="{{ route('admin.create') }}"
