@@ -21,7 +21,7 @@
 		</x-components::admin-titlebar>
 
 		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-			<x-forms::admin-form
+			<x-admin-forms::collections
 				id="admin-edit-form"
 				action="{{ route('admin.update') }}"
 				method="post"

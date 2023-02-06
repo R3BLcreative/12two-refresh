@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Option;
 use App\Models\CollectionType;
 use App\Models\Collection;
 use App\Models\Category;
@@ -46,16 +47,40 @@ class AdminController extends Controller {
 
 
 	//
-	public function options() {
-		$slug = 'options';
-		$collectionType = CollectionType::where('slug', $slug)->first();
-		$items = [];
+	public function options(Request $request) {
+		$collectionType = CollectionType::where('slug', 'options')->first();
+		$tab = (isset($request->tab)) ? $request->tab : 'general';
+		$options = Option::getDefinedOptions();
+		$tabs = [];
+
+		foreach ($options as $key => $group) {
+			$tabs[] = [
+				'expanded' => ($tab == $key) ? 'true' : 'false',
+				'href' => route('admin.options', ['tab' => $key]),
+				'label' => $group['title'],
+			];
+
+			if ($tab == $key) $fields = $group['fields'];
+		}
 
 		return view('admin.options', [
 			'navigation' => $this->navigation,
 			'collectionType' => $collectionType,
-			'items' => $items,
+			'tab' => $tab,
+			'tabs' => $tabs,
+			'fields' => $fields,
 		]);
+	}
+
+
+	//
+	public function options_store(Request $request) {
+		$options = Option::getDefinedOptions();
+
+		$message = "Options have been saved.";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.options', ['tab' => $request->tab]))->with('message', $message);
 	}
 
 

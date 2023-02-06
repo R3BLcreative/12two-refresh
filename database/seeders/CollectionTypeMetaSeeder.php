@@ -234,7 +234,7 @@ class CollectionTypeMetaSeeder extends Seeder {
 						[
 							'text' => 'Name',
 							'key' => 'label',
-							'type' => 'main',
+							'type' => 'main-plural',
 							'class' => '',
 						],
 						[

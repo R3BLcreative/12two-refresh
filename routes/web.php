@@ -207,6 +207,7 @@ Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->
 	Route::get('/menus', [AdminController::class, 'menus'])->name('admin.menus');
 
 	Route::get('/options', [AdminController::class, 'options'])->name('admin.options');
+	Route::post('/options/{tab}', [AdminController::class, 'options_store'])->name('admin.options.store');
 
 	Route::get('/{slug}', [AdminController::class, 'list'])->name('admin.list');
 

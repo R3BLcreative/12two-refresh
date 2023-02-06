@@ -58,6 +58,16 @@
 						</a>
 						@break
 
+					@case('main-plural')
+						<a href="{{ route('admin.edit', ['slug' => $slug, 'id' => $item->id]) }}" class="text-base font-extrabold group-hover/row:text-primary-500 {{ $column->class }}">
+							@if ($item->force_single)
+								{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
+							@else
+								{{ Str::plural($item->{$column->key}) ?? Str::plural($item->fields->{$column->key}) }}
+							@endif
+						</a>
+						@break
+
 					@case('text')
 						<div class="line-clamp-2 {{ $column->class }}">
 							{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
@@ -74,7 +84,7 @@
 	@endforeach
 
 	{{-- FILLER --}}
-	@for ($i = 15; $i > 0; $i--)
+	{{-- @for ($i = 15; $i > 0; $i--)
 		<div class="grid {{ $columns->template }} items-center px-8 py-4 gap-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
 			@foreach ($columns->items as $column)
 				@switch($column->type)
@@ -87,6 +97,6 @@
 				@endswitch
 			@endforeach
 		</div>
-	@endfor
+	@endfor --}}
 
 </div>

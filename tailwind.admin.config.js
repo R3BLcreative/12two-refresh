@@ -37,6 +37,9 @@ module.exports = {
 			body: ['Inter', 'sans-serif'],
 		},
 		extend: {
+			boxShadow: {
+				'inner-bottom': 'inset 0 -1px 3px 0 rgba(0, 0, 0, 0.1)',
+			},
 			animation: {
 				'fade-out': 'fadeOut 600ms forwards',
 			},
@@ -49,6 +52,7 @@ module.exports = {
 					'100%': {
 						opacity: '0%',
 						'max-height': '0',
+						display: 'none',
 					},
 				},
 			},

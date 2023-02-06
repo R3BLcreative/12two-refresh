@@ -12,7 +12,7 @@
 		></x-components::admin-titlebar>
 
 		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-			<x-forms::admin-form
+			<x-admin-forms::collections
 				id="admin-add-form"
 				action="{{ route('admin.create') }}"
 				method="post"

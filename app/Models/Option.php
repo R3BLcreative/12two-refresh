@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Setting extends Model {
+class Option extends Model {
 	use HasFactory;
 
 	/**
@@ -19,23 +19,23 @@ class Setting extends Model {
 	protected $guarded = [];
 
 	/**
-	 * Add a settings value
+	 * Add an option value
 	 *
 	 * @param $key
-	 * @param $val
+	 * @param $value
 	 * @param string $type
 	 * @return bool
 	 */
-	public static function add($key, $val, $type = 'string') {
+	public static function add($key, $value, $type = 'string') {
 		if (self::has($key)) {
-			return self::set($key, $val, $type);
+			return self::set($key, $value, $type);
 		}
 
-		return self::create(['name' => $key, 'val' => $val, 'type' => $type]) ? $val : false;
+		return self::create(['name' => $key, 'value' => $value, 'type' => $type]) ? $value : false;
 	}
 
 	/**
-	 * Get a settings value
+	 * Get an option value
 	 *
 	 * @param $key
 	 * @param null $default
@@ -43,35 +43,35 @@ class Setting extends Model {
 	 */
 	public static function get($key, $default = null) {
 		if (self::has($key)) {
-			$setting = self::getAllSettings()->where('name', $key)->first();
-			return self::castValue($setting->val, $setting->type);
+			$setting = self::getAllOptions()->where('name', $key)->first();
+			return self::castValue($setting->value, $setting->type);
 		}
 
 		return self::getDefaultValue($key, $default);
 	}
 
 	/**
-	 * Set a value for setting
+	 * Set an option value
 	 *
 	 * @param $key
-	 * @param $val
+	 * @param $value
 	 * @param string $type
 	 * @return bool
 	 */
-	public static function set($key, $val, $type = 'string') {
-		if ($setting = self::getAllSettings()->where('name', $key)->first()) {
+	public static function set($key, $value, $type = 'string') {
+		if ($setting = self::getAllOptions()->where('name', $key)->first()) {
 			return $setting->update([
 				'name' => $key,
-				'val' => $val,
+				'value' => $value,
 				'type' => $type
-			]) ? $val : false;
+			]) ? $value : false;
 		}
 
-		return self::add($key, $val, $type);
+		return self::add($key, $value, $type);
 	}
 
 	/**
-	 * Remove a setting
+	 * Remove an option
 	 *
 	 * @param $key
 	 * @return bool
@@ -85,35 +85,35 @@ class Setting extends Model {
 	}
 
 	/**
-	 * Check if setting exists
+	 * Check if an option exists
 	 *
 	 * @param $key
 	 * @return bool
 	 */
 	public static function has($key) {
-		return (bool) self::getAllSettings()->whereStrict('name', $key)->count();
+		return (bool) self::getAllOptions()->whereStrict('name', $key)->count();
 	}
 
 	/**
-	 * Get the validation rules for setting fields
+	 * Get the validation rules for option fields
 	 *
 	 * @return array
 	 */
 	public static function getValidationRules() {
-		return self::getDefinedSettingFields()->pluck('rules', 'name')
-			->reject(function ($val) {
-				return is_null($val);
+		return self::getDefinedOptionFields()->pluck('rules', 'name')
+			->reject(function ($value) {
+				return is_null($value);
 			})->toArray();
 	}
 
 	/**
-	 * Get the data type of a setting
+	 * Get the data type of an option
 	 *
 	 * @param $field
 	 * @return mixed
 	 */
 	public static function getDataType($field) {
-		$type  = self::getDefinedSettingFields()
+		$type  = self::getDefinedOptionFields()
 			->pluck('data', 'name')
 			->get($field);
 
@@ -121,13 +121,13 @@ class Setting extends Model {
 	}
 
 	/**
-	 * Get default value for a setting
+	 * Get default value for an option
 	 *
 	 * @param $field
 	 * @return mixed
 	 */
 	public static function getDefaultValueForField($field) {
-		return self::getDefinedSettingFields()
+		return self::getDefinedOptionFields()
 			->pluck('value', 'name')
 			->get($field);
 	}
@@ -144,45 +144,54 @@ class Setting extends Model {
 	}
 
 	/**
-	 * Get all the settings fields from config
+	 * Get all the option fields from config
 	 *
 	 * @return Collection
 	 */
-	private static function getDefinedSettingFields() {
-		return collect(config('setting_fields'))->pluck('elements')->flatten(1);
+	private static function getDefinedOptionFields() {
+		return collect(config('options'))->pluck('fields')->flatten(1);
+	}
+
+	/**
+	 * Get all the option fields from config
+	 *
+	 * @return Collection
+	 */
+	public static function getDefinedOptions() {
+		return collect(config('options'));
 	}
 
 	/**
 	 * caste value into respective type
 	 *
-	 * @param $val
+	 * @param $value
 	 * @param $castTo
 	 * @return bool|int
 	 */
-	private static function castValue($val, $castTo) {
+	private static function castValue($value, $castTo) {
 		switch ($castTo) {
 			case 'int':
 			case 'integer':
-				return intval($val);
+				return intval($value);
 				break;
 
 			case 'bool':
 			case 'boolean':
-				return boolval($val);
+				return boolval($value);
 				break;
 
 			default:
-				return $val;
+				return $value;
 		}
 	}
 
 	/**
-	 * Get all the settings
+	 * Get all the options
 	 *
 	 * @return mixed
 	 */
-	public static function getAllSettings() {
-		return Cache::rememberForever('settings.all', function () {
+	public static function getAllOptions() {
+		return Cache::rememberForever('options.all', function () {
 			return self::all();
 		});
 	}
@@ -191,7 +200,7 @@ class Setting extends Model {
 	 * Flush the cache
 	 */
 	public static function flushCache() {
-		Cache::forget('settings.all');
+		Cache::forget('options.all');
 	}
 
 	/**

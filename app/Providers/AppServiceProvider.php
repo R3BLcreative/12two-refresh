@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider {
 		Blade::anonymousComponentNamespace('sections', 'sections');
 		Blade::anonymousComponentNamespace('forms', 'forms');
 		Blade::anonymousComponentNamespace('forms.fields', 'fields');
+		Blade::anonymousComponentNamespace('components.admin-forms', 'admin-forms');
 		Blade::anonymousComponentNamespace('components.admin-fields', 'admin-fields');
 	}
 }

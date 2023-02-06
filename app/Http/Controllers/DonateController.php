@@ -23,12 +23,11 @@ class DonateController extends Controller {
 		);
 
 		// Setup Stripe API call here
-		$env = env('APP_ENV');
 		$fmt = new NumberFormatter('en-US', NumberFormatter::CURRENCY);
 		$donation = $fmt->parseCurrency($request->amount, $curr);
 		$fee = $fmt->parseCurrency($request->ccfee, $curr);
-		$prodDonate = ($env == 'production') ? setting('prod_live_donation') : setting('prod_test_donation');
-		$prodFee = ($env == 'production') ? setting('prod_live_fee') : setting('prod_test_fee');
+		$prodDonate = option('prod_donation');
+		$prodFee = option('prod_fee');
 
 		$line_items = [];
 		// donation
