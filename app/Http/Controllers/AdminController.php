@@ -53,6 +53,7 @@ class AdminController extends Controller {
 		$options = Option::getDefinedOptions();
 		$tabs = [];
 
+		// Create tabs and assign fields from config file
 		foreach ($options as $key => $group) {
 			$tabs[] = [
 				'expanded' => ($tab == $key) ? 'true' : 'false',
@@ -61,6 +62,11 @@ class AdminController extends Controller {
 			];
 
 			if ($tab == $key) $fields = $group['fields'];
+		}
+
+		// Loop through fields to set value with DB or Default
+		foreach ($fields as $i => $field) {
+			$fields[$i]['value'] = Option::get($field['name'], '');
 		}
 
 		return view('admin.options', [
@@ -75,12 +81,43 @@ class AdminController extends Controller {
 
 	//
 	public function options_store(Request $request) {
+		$tab = (isset($request->tab)) ? $request->tab : 'general';
 		$options = Option::getDefinedOptions();
+		$group = $options[$tab];
+
+		// Loop through options fields for the current tab group
+		$validations = [];
+		$insertions = [];
+		foreach ($group['fields'] as $field) {
+			// Build validation rules
+			$validations[$field['name']] = $field['validate'];
+
+			// Check if field has a name set
+			if ($field['name']) {
+				$insertions[$field['name']] = [
+					'value' => $request->input($field['name']),
+					'type' => $field['data_type'],
+				];
+			}
+		}
+
+		// Run validations
+		$request->validate(
+			$validations,
+			[
+				'required' => 'This field is required.',
+				'integer' => 'This field must be a number.',
+			]
+		);
+
+		foreach ($insertions as $key => $insertion) {
+			Option::add($key, $insertion['value'], $insertion['type']);
+		}
 
 		$message = "Options have been saved.";
 
 		// Redirect user to new content edit view
-		return redirect(route('admin.options', ['tab' => $request->tab]))->with('message', $message);
+		return redirect(route('admin.options', ['tab' => $tab]))->with('message', $message);
 	}
 
 

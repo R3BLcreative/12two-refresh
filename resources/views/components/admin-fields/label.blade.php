@@ -5,7 +5,7 @@
 
 <label
 	for="{{ $id }}"
-	class="@error($id) text-error font-bold @else font-semibold @enderror">
+	class="@error($id) text-error font-bold @else text-body-dark-400 font-semibold @enderror">
 
 	{{ $slot }}
 

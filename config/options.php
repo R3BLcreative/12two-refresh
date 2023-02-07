@@ -21,6 +21,8 @@ return [
 				'label'				=> 'Name', // Field label
 				'placeholder' => '', // Field placeholder text
 				'desc'				=> '', // Field description text
+				'required'		=> 0, // Is the field a required field
+				'validate'		=> '', // Laravel validate methods
 			],
 		],
 	],
@@ -29,12 +31,24 @@ return [
 		'desc'			=> 'All the Stripe.com options',
 		'fields'		=> [
 			[
+				'data_type'		=> 'section',
+				'name'				=> '',
+				'value'				=> '',
+				'label'				=> 'Stripe Products',
+				'placeholder' => '',
+				'desc'				=> 'All options relating to Stripe Products',
+				'required'		=> 0,
+				'validate'		=> '',
+			],
+			[
 				'data_type'		=> 'string',
 				'name'				=> 'prod_fee',
 				'value'				=> 'prod_NC3bOrluL2BaPF',
 				'label'				=> 'Fee Product ID (test)',
 				'placeholder' => 'prod_xxxxxxxxx',
 				'desc'				=> 'The Stripe product ID for CC Fee in Test Mode',
+				'required'		=> 1,
+				'validate'		=> 'required',
 			],
 			[
 				'data_type'		=> 'string',
@@ -43,6 +57,8 @@ return [
 				'label'				=> 'Fee Product ID (live)',
 				'placeholder' => 'prod_xxxxxxxxx',
 				'desc'				=> 'The Stripe product ID for CC Fee in Live Mode',
+				'required'		=> 1,
+				'validate'		=> 'required',
 			],
 			[
 				'data_type'		=> 'string',
@@ -51,6 +67,8 @@ return [
 				'label'				=> 'Donation Product ID (test)',
 				'placeholder' => 'prod_xxxxxxxxx',
 				'desc'				=> 'The Stripe product ID for Donations in Test Mode',
+				'required'		=> 1,
+				'validate'		=> 'required',
 			],
 			[
 				'data_type'		=> 'string',
@@ -59,6 +77,18 @@ return [
 				'label'				=> 'Donation Product ID (live)',
 				'placeholder' => 'prod_xxxxxxxxx',
 				'desc'				=> 'The Stripe product ID for Donations in Live Mode',
+				'required'		=> 1,
+				'validate'		=> 'required',
+			],
+			[
+				'data_type'		=> 'section',
+				'name'				=> '',
+				'value'				=> '',
+				'label'				=> 'Stripe Prices',
+				'placeholder' => '',
+				'desc'				=> 'All options relating to Stripe Prices',
+				'required'		=> 0,
+				'validate'		=> '',
 			],
 			[
 				'data_type'		=> 'string',
@@ -67,6 +97,8 @@ return [
 				'label'				=> 'PrayerBear Price ID (test)',
 				'placeholder' => 'price_xxxxxxxxx',
 				'desc'				=> 'The Stripe price ID for PrayersBears in Test Mode',
+				'required'		=> 1,
+				'validate'		=> 'required',
 			],
 			[
 				'data_type'		=> 'string',
@@ -75,6 +107,8 @@ return [
 				'label'				=> 'PrayerBear Price ID (live)',
 				'placeholder' => 'price_xxxxxxxxx',
 				'desc'				=> 'The Stripe price ID for PrayersBears in Live Mode',
+				'required'		=> 1,
+				'validate'		=> 'required',
 			],
 		],
 	],
@@ -89,6 +123,8 @@ return [
 				'label'				=> 'Example',
 				'placeholder' => 'Example',
 				'desc'				=> 'Example',
+				'required'		=> 1,
+				'validate'		=> 'required',
 			],
 		],
 	],

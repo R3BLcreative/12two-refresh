@@ -25,7 +25,7 @@
 			:value="$field['value']"
 			:placeholder="$field['placeholder']"
 			:desc="$field['desc']"
-			required=""
+			:required="$field['required']"
 		/>
 	@endforeach
 
