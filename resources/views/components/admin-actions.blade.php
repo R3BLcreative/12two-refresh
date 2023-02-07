@@ -18,8 +18,8 @@
 					method="post"
 					class="hidden">@csrf</form>
 			</x-components::admin-actions-menu-item>
-			<x-components::admin-actions-menu-item>
-				Option
+			<x-components::admin-actions-menu-item route="{{ route('admin.fields.list', ['slug' => $item->slug]) }}">
+				Fields
 			</x-components::admin-actions-menu-item>
 			<x-components::admin-actions-menu-item>
 				Option

@@ -1,7 +1,7 @@
 @props([
 	'columns',
 	'items',
-	'slug'
+	'slug',
 ])
 
 {{-- HEADER --}}
@@ -10,21 +10,25 @@
 		@isset($column->icon)
 			<div class="{{ $column->class }} !text-base"><i class="fa-duotone {{ $column->icon }} text-2xl"></i></div>
 		@else
-			<div class="{{ $column->class }} !text-base">{{ $column->text }}</div>
+			<div class="{{ $column->class }} !capitalize !text-base">{{ $column->text }}</div>
 		@endisset
 	@endforeach
-
-	<div class="text-center">Actions</div>
 </div>
 
 <div class="overflow-auto overscroll-contain flex-auto">
 	{{-- ITEMS --}}
-	@foreach ($items as $item)
+	@foreach ($items as $index => $item)
 		<div class="grid {{ $columns->template }} items-center px-8 py-4 gap-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
 			@foreach ($columns->items as $column)
 				@switch($column->type)
 					@case('id')
 						<div class="text-center font-semibold text-gray-500 {{ $column->class }}">{{ $item->id }}</div>
+						@break
+
+					@case('order')
+						<div class="text-center font-semibold text-gray-500 {{ $column->class }}">
+							{{ $item->order; }}
+						</div>
 						@break
 
 					@case('category')
@@ -74,29 +78,16 @@
 						</div>
 						@break
 
+					@case('actions')
+						<x-components::admin-actions :item="$item" :slug="$slug" />
+						@break
+
 					@default
 						<div class="{{ $column->class }}">{{ $item->{$column->key} ?? $item->fields->{$column->key} }}</div>
 				@endswitch
 			@endforeach
 
-			<x-components::admin-actions :item="$item" :slug="$slug" />
 		</div>
 	@endforeach
-
-	{{-- FILLER --}}
-	{{-- @for ($i = 15; $i > 0; $i--)
-		<div class="grid {{ $columns->template }} items-center px-8 py-4 gap-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
-			@foreach ($columns->items as $column)
-				@switch($column->type)
-					@case('id')
-						<div>{{ $i }}</div>
-						@break
-
-					@default
-						<div>&nbsp;</div>
-				@endswitch
-			@endforeach
-		</div>
-	@endfor --}}
 
 </div>

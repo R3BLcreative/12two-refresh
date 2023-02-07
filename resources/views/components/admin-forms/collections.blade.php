@@ -23,7 +23,7 @@
 
 		@foreach ($item->collectionType->collectionTypeMeta->fields as $field)
 			<x-dynamic-component
-				:component="$field->type"
+				component="{{ 'admin-fields.' . $field->type }}"
 				:class="$field->class"
 				:id="$field->id"
 				:label="$field->label"
@@ -38,7 +38,7 @@
 
 		@foreach ($collectionType->collectionTypeMeta->fields as $field)
 			<x-dynamic-component
-				:component="$field->type"
+				component="{{ 'admin-fields.' . $field->type }}"
 				:class="$field->class"
 				:id="$field->id"
 				:label="$field->label"

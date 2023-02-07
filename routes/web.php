@@ -218,6 +218,14 @@ Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->
 	Route::post('/create', [AdminController::class, 'create'])->name('admin.create');
 
 	Route::post('/{slug}/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+
+	Route::get('/{slug}/fields', [AdminController::class, 'fieldsList'])->name('admin.fields.list');
+
+	Route::get('/{slug}/fields/add', [AdminController::class, 'fieldsAdd'])->name('admin.fields.add');
+	Route::post('/{slug}/fields/create', [AdminController::class, 'fieldsCreate'])->name('admin.fields.create');
+
+	Route::get('/{slug}/fields/edit/{name}', [AdminController::class, 'fieldsEdit'])->name('admin.fields.edit');
+	Route::post('/{slug}/fields/update', [AdminController::class, 'fieldsUpdate'])->name('admin.fields.update');
 });
 
 

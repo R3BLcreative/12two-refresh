@@ -268,6 +268,90 @@ class AdminController extends Controller {
 
 
 	//
+	public function fieldsList($slug) {
+		$collectionType = CollectionType::where('slug', $slug)->first();
+		$items = $collectionType->collectionTypeMeta->fields;
+
+		return view('admin.fields-list', [
+			'navigation' => $this->navigation,
+			'collectionType' => $collectionType,
+			'items' => $items,
+			'columns' => (object) [
+				'template' => 'grid-cols-[40px_auto_150px]',
+				'items' => (object) [
+					(object) [
+						'text' => 'Order',
+						'key' => 'order',
+						'type' => 'order',
+						'class' => 'text-center',
+					],
+					(object) [
+						'text' => 'Label',
+						'key' => 'label',
+						'type' => 'main',
+						'class' => '',
+					],
+					(object) [
+						'text' => 'Type',
+						'key' => 'type',
+						'type' => 'default',
+						'class' => 'text-center uppercase text-sm',
+					],
+				]
+			],
+		]);
+	}
+
+
+	//
+	public function fieldsAdd($slug) {
+		$collectionType = CollectionType::where('slug', $slug)->first();
+
+		return view('admin.fields-add', [
+			'navigation' => $this->navigation,
+			'collectionType' => $collectionType,
+			'items' => [],
+			'columns' => [],
+		]);
+	}
+
+
+	//
+	public function fieldsCreate(Request $request) {
+		$collectionType = CollectionType::where('slug', $request->slug)->first();
+
+		$message = "Field created";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.fields.list', ['slug' => $collectionType->slug]))->with('message', $message);
+	}
+
+
+	//
+	public function fieldsEdit($slug, $name) {
+		$collectionType = CollectionType::where('slug', $slug)->first();
+
+		return view('admin.fields-edit', [
+			'navigation' => $this->navigation,
+			'collectionType' => $collectionType,
+			'items' => [],
+			'columns' => [],
+		]);
+	}
+
+
+	//
+	public function fieldsUpdate(Request $request) {
+		$collectionType = CollectionType::where('slug', $request->slug)->first();
+
+		$message = "Field updated";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.fields.list', ['slug' => $collectionType->slug]))->with('message', $message);
+	}
+
+
+	//
 	private function getAllModels($filename = NULL) {
 		$modelList = [];
 		$path = app_path() . '/Models';
