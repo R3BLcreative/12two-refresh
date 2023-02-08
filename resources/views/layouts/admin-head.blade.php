@@ -1,4 +1,4 @@
-@aware(['seo'])
+@aware(['title'])
 
 <head>
 	<meta charset="utf-8">
@@ -6,7 +6,7 @@
 
 	<meta name="robots" content="noindex, nofollow">
 
-	<title>{{ $seo['title'] }}</title>
+	<title>CMS NAME - {{ $title }}</title>
 
 	<link rel="preconnect" href="https://kit.fontawesome.com">
 	<link rel="preconnect" href="https://fonts.googleapis.com">

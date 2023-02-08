@@ -24,7 +24,7 @@ class Category extends Model {
 	];
 
 	public function collectionTypes() {
-		return $this->hasMany(CollectionType::class);
+		return $this->hasMany(CollectionType::class)->orderBy('order');
 	}
 
 	protected function label(): Attribute {

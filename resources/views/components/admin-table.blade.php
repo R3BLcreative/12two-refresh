@@ -1,12 +1,11 @@
 @props([
-	'columns',
+	'collectionType',
 	'items',
-	'slug',
 ])
 
 {{-- HEADER --}}
-<div class="grid {{ $columns->template }} gap-4 bg-surface-light-500 px-8 py-3 shadow-sm font-black border-t border-b border-gray-300 text-body-light-600 relative z-99">
-	@foreach ($columns->items as $column)
+<div class="grid {{ $collectionType->meta->columns->template }} gap-4 bg-surface-light-500 px-8 py-3 shadow-sm font-black border-t border-b border-gray-300 text-body-light-600 relative z-99">
+	@foreach ($collectionType->meta->columns->items as $column)
 		@isset($column->icon)
 			<div class="{{ $column->class }} !text-base"><i class="fa-duotone {{ $column->icon }} text-2xl"></i></div>
 		@else
@@ -18,8 +17,8 @@
 <div class="overflow-auto overscroll-contain flex-auto">
 	{{-- ITEMS --}}
 	@foreach ($items as $index => $item)
-		<div class="grid {{ $columns->template }} items-center px-8 py-4 gap-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
-			@foreach ($columns->items as $column)
+		<div class="grid {{ $collectionType->meta->columns->template }} items-center px-8 py-4 gap-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
+			@foreach ($collectionType->meta->columns->items as $column)
 				@switch($column->type)
 					@case('id')
 						<div class="text-center font-semibold text-gray-500 {{ $column->class }}">{{ $item->id }}</div>
@@ -57,13 +56,13 @@
 						@break
 
 					@case('main')
-						<a href="{{ route('admin.edit', ['slug' => $slug, 'id' => $item->id]) }}" class="text-base font-extrabold group-hover/row:text-primary-500 {{ $column->class }}">
+						<a href="{{ route('admin.edit', [$collectionType, $item->id]) }}" class="text-base font-extrabold group-hover/row:text-primary-500 {{ $column->class }}">
 							{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
 						</a>
 						@break
 
 					@case('main-plural')
-						<a href="{{ route('admin.edit', ['slug' => $slug, 'id' => $item->id]) }}" class="text-base font-extrabold group-hover/row:text-primary-500 {{ $column->class }}">
+						<a href="{{ route('admin.edit', [$collectionType, $item->id]) }}" class="text-base font-extrabold group-hover/row:text-primary-500 {{ $column->class }}">
 							@if ($item->force_single)
 								{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
 							@else
@@ -79,7 +78,7 @@
 						@break
 
 					@case('actions')
-						<x-components::admin-actions :item="$item" :slug="$slug" />
+						<x-components::admin-actions :item="$item" :collectionType="$collectionType" />
 						@break
 
 					@default

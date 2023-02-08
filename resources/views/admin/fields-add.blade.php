@@ -1,8 +1,4 @@
-<x-layouts::admin
-	:navigation="$navigation"
-	:seo="[
-		'title' => '12Two Missions | Admin - Add Field',
-	]">
+<x-layouts::admin :title="$title">
 
 	<x-slot:main>
 		<x-components::admin-titlebar

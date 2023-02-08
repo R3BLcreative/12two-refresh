@@ -204,28 +204,19 @@ Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->group(function () {
 	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-	Route::get('/menus', [AdminController::class, 'menus'])->name('admin.menus');
+	// INDEX - LIST
+	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->name('admin.index');
 
-	Route::get('/options', [AdminController::class, 'options'])->name('admin.options');
-	Route::post('/options/{tab}', [AdminController::class, 'options_store'])->name('admin.options.store');
+	// CREATE
+	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->name('admin.create');
+	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->name('admin.store');
 
-	Route::get('/{slug}', [AdminController::class, 'list'])->name('admin.list');
+	// EDIT
+	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->name('admin.update');
 
-	Route::get('/{slug}/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-	Route::post('/update', [AdminController::class, 'update'])->name('admin.update');
-
-	Route::get('/{slug}/add', [AdminController::class, 'add'])->name('admin.add');
-	Route::post('/create', [AdminController::class, 'create'])->name('admin.create');
-
-	Route::post('/{slug}/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
-
-	Route::get('/{slug}/fields', [AdminController::class, 'fieldsList'])->name('admin.fields.list');
-
-	Route::get('/{slug}/fields/add', [AdminController::class, 'fieldsAdd'])->name('admin.fields.add');
-	Route::post('/{slug}/fields/create', [AdminController::class, 'fieldsCreate'])->name('admin.fields.create');
-
-	Route::get('/{slug}/fields/edit/{name}', [AdminController::class, 'fieldsEdit'])->name('admin.fields.edit');
-	Route::post('/{slug}/fields/update', [AdminController::class, 'fieldsUpdate'])->name('admin.fields.update');
+	// DESTROY
+	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
 

@@ -1,5 +1,3 @@
-@aware(['navigation'])
-
 <aside class="sticky top-0 bg-surface-dark text-body-white w-[280px] min-w-[280px] max-w-[280px] h-screen min-h-screen max-h-screen z-999 overflow-auto overscroll-contain" role="navigation">
 	<div class="flex gap-4 justify-between items-center p-3">
 		{{-- LOGO --}}

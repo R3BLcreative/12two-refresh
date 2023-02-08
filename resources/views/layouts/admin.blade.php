@@ -4,7 +4,7 @@
 
 <x-layouts::admin-head />
 
-<x-layouts::admin-body class="" />
+<x-layouts::admin-body />
 
 <x-layouts::admin-foot />
 

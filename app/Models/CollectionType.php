@@ -34,8 +34,23 @@ class CollectionType extends Model {
 		return $this->belongsTo(Category::class);
 	}
 
-	public function collectionTypeMeta() {
-		return $this->hasOne(CollectionTypeMeta::class);
+	public function meta() {
+		return $this->hasOne(CollectionTypeMeta::class)
+			->withDefault(function ($meta) {
+				$adminConfig = config('admin');
+
+				if (property_exists($adminConfig, $this->slug)) {
+					// Get config for base collections
+					$config = $adminConfig->{$this->slug};
+				} else {
+					// Get default config
+					$config = $adminConfig->default;
+				}
+
+				foreach ($config as $key => $value) {
+					$meta->{$key} = $value;
+				}
+			});
 	}
 
 	protected function label(): Attribute {

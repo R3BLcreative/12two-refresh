@@ -6,11 +6,11 @@
 	'placeholder',
 	'desc',
 	'required',
-	'catType',
+	'collectionType',
 	])
 
 @php
-	$cats = App\Models\Category::where('type', $catType)->get();
+	$cats = App\Models\Category::where('type', $collectionType->category->type)->get();
 @endphp
 
 <div class="col-span-full flex flex-col gap-2">

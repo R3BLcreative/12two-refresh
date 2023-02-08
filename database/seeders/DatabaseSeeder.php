@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder {
 		$this->call([
 			CategorySeeder::class,
 			CollectionTypeSeeder::class,
-			CollectionTypeMetaSeeder::class,
 			CollectionSeeder::class,
 			PermissionSeeder::class,
 		]);

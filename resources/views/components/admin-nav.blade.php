@@ -1,18 +1,4 @@
-@props([
-	'atts' => [
-		'heading' => [
-			'title' => '',
-			'subtext' => '',
-		],
-		'items' => [
-			[
-				'icon' => '',
-				'plural' => '',
-				'slug' => '',
-			],
-		],
-	]
-])
+@props(['atts'])
 
 <div class="flex flex-col gap-4">
 	<x-components::admin-heading tag="h2" style="nav" subtext="{{ $atts['heading']['subtext'] }}" class="px-2">

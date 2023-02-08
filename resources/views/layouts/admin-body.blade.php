@@ -1,6 +1,6 @@
-@aware(['main', 'navigation'])
+@aware(['main'])
 
-<body {{ $attributes->merge(['class' => 'bg-surface-light font-body text-body-dark font-normal text-base text-gray-900 antialiased relative flex flex-auto w-full']) }}>
+<body class="bg-surface-light font-body text-body-dark font-normal text-base antialiased relative flex flex-auto w-full">
 
 	{{-- ADMIN NAV BAR --}}
 	<x-sections::admin-sidebar />

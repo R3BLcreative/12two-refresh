@@ -7,7 +7,8 @@ module.exports = {
 		'./resources/views/**/**/*.blade.php',
 		'./app/Http/Controllers/**/*.php',
 		'./database/seeders/*.php',
-		'./config/setting_fields.php',
+		'./config/options.php',
+		'./config/admin.php',
 	],
 	theme: {
 		screens: {

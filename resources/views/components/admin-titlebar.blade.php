@@ -1,7 +1,7 @@
 @props([
-	'icon' => '',
-	'title' => '',
-	'subtext' => '',
+	'icon',
+	'title',
+	'subtext',
 ])
 
 <div class="px-8 z-20 bg-white shadow-sm border-b flex flex-col">

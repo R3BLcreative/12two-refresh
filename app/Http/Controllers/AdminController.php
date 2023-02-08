@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -12,121 +13,36 @@ use App\Models\Category;
 
 class AdminController extends Controller {
 
-	protected $navigation;
-
-
-	//
+	/**
+	 * * CONSTRUCT
+	 */
 	public function __construct() {
-		$this->navigation = Category::where('type', 'collection-type')->orderBy('order', 'asc')->get();
 	}
 
-
-	//
+	/**
+	 * * DASHBOARD
+	 * 
+	 * Render the dashboard view
+	 */
 	public function dashboard() {
-		return view('admin.home', [
-			'navigation' => $this->navigation,
-			'title' => 'Dashboard',
-			'desc' => '',
-		]);
+		return view('admin.home', ['title' => 'Dashboard']);
 	}
 
 
-	//
-	public function menus() {
-		$slug = 'menus';
-		$collectionType = CollectionType::where('slug', $slug)->first();
+	/**
+	 * * INDEX
+	 * 
+	 * Render the list view
+	 * 
+	 * @var collectionType | App\Models\CollectionType
+	 */
+	public function index(CollectionType $collectionType) {
+		// Set page title
+		$title = ($collectionType->force_single) ? $collectionType->label : Str::plural($collectionType->label);
+
 		$items = [];
 
-		return view('admin.menus', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
-			'items' => $items,
-			'columns' => [],
-		]);
-	}
-
-
-	//
-	public function options(Request $request) {
-		$collectionType = CollectionType::where('slug', 'options')->first();
-		$tab = (isset($request->tab)) ? $request->tab : 'general';
-		$options = Option::getDefinedOptions();
-		$tabs = [];
-
-		// Create tabs and assign fields from config file
-		foreach ($options as $key => $group) {
-			$tabs[] = [
-				'expanded' => ($tab == $key) ? 'true' : 'false',
-				'href' => route('admin.options', ['tab' => $key]),
-				'label' => $group['title'],
-			];
-
-			if ($tab == $key) $fields = $group['fields'];
-		}
-
-		// Loop through fields to set value with DB or Default
-		foreach ($fields as $i => $field) {
-			$fields[$i]['value'] = Option::get($field['name'], '');
-		}
-
-		return view('admin.options', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
-			'tab' => $tab,
-			'tabs' => $tabs,
-			'fields' => $fields,
-		]);
-	}
-
-
-	//
-	public function options_store(Request $request) {
-		$tab = (isset($request->tab)) ? $request->tab : 'general';
-		$options = Option::getDefinedOptions();
-		$group = $options[$tab];
-
-		// Loop through options fields for the current tab group
-		$validations = [];
-		$insertions = [];
-		foreach ($group['fields'] as $field) {
-			// Build validation rules
-			$validations[$field['name']] = $field['validate'];
-
-			// Check if field has a name set
-			if ($field['name']) {
-				$insertions[$field['name']] = [
-					'value' => $request->input($field['name']),
-					'type' => $field['data_type'],
-				];
-			}
-		}
-
-		// Run validations
-		$request->validate(
-			$validations,
-			[
-				'required' => 'This field is required.',
-				'integer' => 'This field must be a number.',
-			]
-		);
-
-		foreach ($insertions as $key => $insertion) {
-			Option::add($key, $insertion['value'], $insertion['type']);
-		}
-
-		$message = "Options have been saved.";
-
-		// Redirect user to new content edit view
-		return redirect(route('admin.options', ['tab' => $tab]))->with('message', $message);
-	}
-
-
-	//
-	public function list($slug) {
-		$collectionType = CollectionType::where('slug', $slug)->first();
-
-		// This needs to be dynamic
-		switch ($slug) {
+		switch ($collectionType->slug) {
 			case 'users':
 				$items = User::orderBy('id', 'asc')->get();
 				break;
@@ -140,65 +56,44 @@ class AdminController extends Controller {
 				$items = Collection::where('collection_type_id', $collectionType->id)->orderBy('created_at', 'asc')->get();
 		}
 
-		return view('admin.list', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
+		return view('admin.index', [
+			'title' => $title,
 			'items' => $items,
 		]);
 	}
 
 
-	//
-	public function edit($slug, $id) {
-		// This needs to be dynamic
-		switch ($slug) {
-			case 'users':
-				$item = User::where('id', $id)->first();
-				$item->collectionType = CollectionType::where('slug', 'users')->first();
-				$item->fields = User::where('id', $id)->first();
-				break;
-			case 'collection-types':
-				$item = CollectionType::where('id', $id)->first();
-				$item->collectionType = CollectionType::where('slug', 'collection-types')->first();
-				$item->fields = CollectionType::where('id', $id)->first();
-				break;
-			default:
-				$item = Collection::where('id', $id)->first();
-		}
-
-		return view('admin.edit', [
-			'navigation' => $this->navigation,
-			'item' => $item,
+	/**
+	 * * CREATE
+	 * 
+	 * Render the create view
+	 * 
+	 * @var collectionType | App\Models\CollectionType
+	 */
+	public function create(CollectionType $collectionType) {
+		return view('admin.create', [
+			'title' => 'Create New ' . $collectionType->label,
 		]);
 	}
 
 
-	//
-	public function update(Request $request) {
-	}
-
-
-	//
-	public function add($slug) {
-		$collectionType = CollectionType::where('slug', $slug)->first();
-
-		return view('admin.add', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
-		]);
-	}
-
-
-	//
-	public function create(Request $request) {
-		$collectionType = CollectionType::where('slug', $request->cslug)->first();
-
+	/**
+	 * * STORE
+	 * 
+	 * POST - Store new record
+	 * 
+	 * @var request | Illuminate\Http\Request
+	 * @var collectionType | App\Models\CollectionType
+	 */
+	public function store(Request $request, CollectionType $collectionType) {
 		// Loop through collectionTypeMeta fields
 		$validations = [];
 		$insertions = [];
-		foreach ($collectionType->collectionTypeMeta->fields as $field) {
+		foreach ($collectionType->meta->fields as $field) {
+			if (!in_array('create', $field->forms)) continue;
+
 			// Build validation rules
-			$validations[$field->id] = $field->validate;
+			$validations[$field->id] = $field->validate->store;
 
 			// Check if field has a key set
 			if ($field->key) {
@@ -244,16 +139,126 @@ class AdminController extends Controller {
 		// Create record
 		$new = $namespace::create($insertions);
 
+		/** USER CREATION NEED TO HAVE ROLE ASSIGNED TO IT */
+
 		$message = $collectionType->label . " has been created.";
 
 		// Redirect user to new content edit view
-		return redirect(route('admin.edit', ['slug' => $collectionType->slug, 'id' => $new->id]))->with('message', $message);
+		return redirect(route('admin.edit', [$collectionType, $new->id]))->with('message', $message);
 	}
 
 
-	//
-	public function delete($slug, $id) {
-		$collectionType = CollectionType::where('slug', $slug)->first();
+	/**
+	 * * EDIT
+	 * 
+	 * Render the edit view
+	 * 
+	 * @var collectionType | App\Models\CollectionType
+	 * @var id | The record ID
+	 */
+	public function edit(CollectionType $collectionType, $id) {
+		// This needs to be dynamic
+		switch ($collectionType->slug) {
+			case 'users':
+				$item = User::where('id', $id)->first();
+				$item->collectionType = CollectionType::where('slug', 'users')->first();
+				$item->fields = User::where('id', $id)->first();
+				break;
+			case 'collection-types':
+				$item = CollectionType::where('id', $id)->first();
+				$item->collectionType = CollectionType::where('slug', 'collection-types')->first();
+				$item->fields = CollectionType::where('id', $id)->first();
+				break;
+			default:
+				$item = Collection::where('id', $id)->first();
+		}
+
+		return view('admin.edit', [
+			'title' => 'Edit ' . $collectionType->label,
+			'item' => $item,
+		]);
+	}
+
+
+	/**
+	 * * UPDATE
+	 * 
+	 * PUT - Update record
+	 * 
+	 * @var request | Illuminate\Http\Request
+	 * @var collectionType | App\Models\CollectionType
+	 * @var id | The ID of the record to be updated
+	 */
+	public function update(Request $request, CollectionType $collectionType, $id) {
+		// Loop through collectionTypeMeta fields
+		$validations = [];
+		$insertions = [];
+		foreach ($collectionType->meta->fields as $field) {
+			if (!in_array('edit', $field->forms)) continue;
+
+			// Build validation rules
+			$validations[$field->id] = $field->validate->update;
+
+			// Check if field has a key set
+			if ($field->key) {
+				// Get form field id and related DB column key for DB insertion
+				switch ($field->key) {
+					case 'password':
+						$insertions['password'] = Hash::make($request->input($field->id));
+						break;
+
+					default:
+						$insertions[$field->key] = $request->input($field->id);
+				}
+			}
+		}
+
+		// Run validations
+		$request->validate(
+			$validations,
+			[
+				'required' => 'This field is required.',
+				'email.unique' => 'That email address is associated with another user.',
+				'current_pass.required_with_all' => 'Your current password is needed to create a new one.',
+				'current_password' => 'The password you entered does not match your current password.',
+				'new_pass.required_with_all' => 'You need to enter your new password here.',
+				'confirm_pass.required_with_all' => 'You need to confirm your new password here.',
+				'confirm_pass.same' => 'The new and confirm password fields do not match.',
+				'integer' => 'This field must be a number.',
+				'slug.unique' => 'That slug is already in use.',
+			]
+		);
+
+		// Get list of available app models (Models directory only)
+		$models = $this->getAllModels();
+
+		// Get model dynamically via namespace
+		$modelName = str_replace(' ', '', $collectionType->label);
+		if (in_array($modelName, $models)) {
+			$namespace = "App\Models\\$modelName";
+		} else {
+			$namespace = "App\Models\\Collection";
+		}
+
+		// Create record
+		$namespace::where('id', $id)->update($insertions);
+
+		$message = $collectionType->label . " has been created.";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.edit', [$collectionType, $id]))->with('message', $message);
+	}
+
+
+	/**
+	 * * DESTROY
+	 * 
+	 * DELETE - Destroy the record
+	 * 
+	 * @var collectionType | App\Models\CollectionType
+	 * @var id | The record ID
+	 */
+	public function destroy(CollectionType $collectionType, $id) {
 
 		$namespace = $this->getModel($collectionType->label);
 
@@ -263,99 +268,28 @@ class AdminController extends Controller {
 		$message = $collectionType->label . " has been deleted.";
 
 		// Redirect user to new content edit view
-		return redirect(route('admin.list', ['slug' => $collectionType->slug]))->with('message', $message);
+		return redirect(route('admin.index', [$collectionType]))->with('message', $message);
 	}
 
 
-	//
-	public function fieldsList($slug) {
-		$collectionType = CollectionType::where('slug', $slug)->first();
-		$items = $collectionType->collectionTypeMeta->fields;
-
-		return view('admin.fields-list', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
-			'items' => $items,
-			'columns' => (object) [
-				'template' => 'grid-cols-[40px_auto_150px]',
-				'items' => (object) [
-					(object) [
-						'text' => 'Order',
-						'key' => 'order',
-						'type' => 'order',
-						'class' => 'text-center',
-					],
-					(object) [
-						'text' => 'Label',
-						'key' => 'label',
-						'type' => 'main',
-						'class' => '',
-					],
-					(object) [
-						'text' => 'Type',
-						'key' => 'type',
-						'type' => 'default',
-						'class' => 'text-center uppercase text-sm',
-					],
-				]
-			],
-		]);
-	}
 
 
-	//
-	public function fieldsAdd($slug) {
-		$collectionType = CollectionType::where('slug', $slug)->first();
-
-		return view('admin.fields-add', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
-			'items' => [],
-			'columns' => [],
-		]);
-	}
 
 
-	//
-	public function fieldsCreate(Request $request) {
-		$collectionType = CollectionType::where('slug', $request->slug)->first();
 
-		$message = "Field created";
-
-		// Redirect user to new content edit view
-		return redirect(route('admin.fields.list', ['slug' => $collectionType->slug]))->with('message', $message);
-	}
-
-
-	//
-	public function fieldsEdit($slug, $name) {
-		$collectionType = CollectionType::where('slug', $slug)->first();
-
-		return view('admin.fields-edit', [
-			'navigation' => $this->navigation,
-			'collectionType' => $collectionType,
-			'items' => [],
-			'columns' => [],
-		]);
-	}
-
-
-	//
-	public function fieldsUpdate(Request $request) {
-		$collectionType = CollectionType::where('slug', $request->slug)->first();
-
-		$message = "Field updated";
-
-		// Redirect user to new content edit view
-		return redirect(route('admin.fields.list', ['slug' => $collectionType->slug]))->with('message', $message);
-	}
-
-
-	//
-	private function getAllModels($filename = NULL) {
+	/**
+	 * * GET ALL MODELS
+	 * 
+	 * Get a list of all Models in App/Models directory
+	 * 
+	 * @var directory | a sub directory of App/Models
+	 * 
+	 * @return array | an array of Model class names
+	 */
+	private function getAllModels($directory = NULL) {
 		$modelList = [];
 		$path = app_path() . '/Models';
-		$path .= ($filename) ? '/' . $filename : '';
+		$path .= ($directory) ? '/' . $directory : '';
 		$results = scandir($path);
 
 		foreach ($results as $result) {
@@ -374,13 +308,20 @@ class AdminController extends Controller {
 	}
 
 
-	//
-	private function getModel($label) {
-		// Get list of available app models (Models directory only)
+	/**
+	 * * GET MODEL
+	 * 
+	 * Get Model namespace for instantiation
+	 * 
+	 * @var model | The name of the model class to get
+	 * 
+	 * @return string | The full model namespace
+	 */
+	private function getModel($model) {
 		$models = $this->getAllModels();
 
 		// Get model dynamically via namespace
-		$modelName = str_replace(' ', '', $label);
+		$modelName = str_replace(' ', '', $model);
 		if (in_array($modelName, $models)) {
 			return "App\Models\\$modelName";
 		} else {

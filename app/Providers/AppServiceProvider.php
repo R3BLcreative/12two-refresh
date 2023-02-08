@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use App\Composers\AdminNavComposer;
+use App\Composers\AdminCollectionComposer;
 
 class AppServiceProvider extends ServiceProvider {
 	/**
@@ -21,6 +24,12 @@ class AppServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
+		// VIEW COMPOSERS
+		View::composer('sections.admin-sidebar', AdminNavComposer::class);
+		View::composer('admin.*', AdminCollectionComposer::class);
+
+
+		// ANONYMOUS COMPONENTS
 		Blade::anonymousComponentNamespace('layouts', 'layouts');
 		Blade::anonymousComponentNamespace('components', 'components');
 		Blade::anonymousComponentNamespace('sections', 'sections');
