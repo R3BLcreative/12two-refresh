@@ -1,0 +1,37 @@
+@props([
+	'class',
+	'id',
+	'label',
+	'value' => '',
+	'placeholder',
+	'desc',
+	'required',
+	'collectionType',
+	])
+
+@php
+	$cats = App\Models\Category::where('type', $collectionType->category->type)->get();
+@endphp
+
+<div class="col-span-full flex flex-col gap-2">
+	@isset($label)
+		<x-afields::label :id="$id" :required="$required">{!! $label !!}</x-afields::label>
+	@endisset
+
+	<select type="text" id="{{ $id }}" name="{{ $id }}" class="text-base @error($id) border-error @enderror">
+		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder ?? 'Please select one' }}</option>
+		@foreach ($cats as $cat)
+			<option value="{{ $cat->id }}" @if($cat->id == $value) selected @endif>
+				{{ ($cat->force_single) ? $cat->label : Str::plural($cat->label) }}
+			</option>
+		@endforeach
+	</select>
+
+	@isset($desc)
+		<x-afields::description>{{ $desc }}</x-afields::description>
+	@endisset
+
+	@error($id)
+		<x-afields::error>{{ $message }}</x-afields::error>
+	@enderror
+</div>

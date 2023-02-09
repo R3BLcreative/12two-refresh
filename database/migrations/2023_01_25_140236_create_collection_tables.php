@@ -19,7 +19,7 @@ return new class extends Migration {
 			$table->string('type')->default('collection');
 			$table->boolean('force_single')->default(false);
 			$table->boolean('protected')->default(false);
-			$table->boolean('required')->default(false);
+			$table->string('permission')->nullable();
 			$table->timestamps();
 		});
 
@@ -29,13 +29,12 @@ return new class extends Migration {
 			$table->string('label');
 			$table->string('icon');
 			$table->string('slug')->unique();
-			$table->string('route')->default('list');
 			$table->text('desc')->nullable();
 			$table->unsignedBigInteger('category_id');
 			$table->foreign('category_id')->references('id')->on('categories');
 			$table->boolean('force_single')->default(false);
 			$table->boolean('protected')->default(false);
-			$table->boolean('required')->default(false);
+			$table->string('permission')->nullable();
 			$table->timestamps();
 		});
 
@@ -44,7 +43,7 @@ return new class extends Migration {
 			$table->unsignedBigInteger('collection_type_id');
 			$table->foreign('collection_type_id')->references('id')->on('collection_types');
 			$table->json('columns')->nullable();
-			$table->json('fields');
+			$table->json('fields')->nullable();
 			$table->timestamps();
 		});
 

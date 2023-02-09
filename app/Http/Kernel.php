@@ -43,10 +43,15 @@ class Kernel extends HttpKernel {
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
 		],
 
-		'dashboard' => [
+		'account' => [
 			'auth',
 			'verified',
-			'permission:manage dashboard'
+			'permission:manage account'
+		],
+
+		'backend' => [
+			'auth',
+			'permission:edit content'
 		],
 	];
 

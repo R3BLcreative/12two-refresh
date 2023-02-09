@@ -10,8 +10,10 @@ class AdminNavComposer {
 	}
 
 	public function compose(View $view) {
-		// Add permissions based controls here for limiting navigation options
+		// Get records
 		$navigation = Category::where('type', 'collection-type')->orderBy('order', 'asc')->get();
+
+		// Inject into view
 		$view->with('navigation', $navigation);
 	}
 }

@@ -8,10 +8,16 @@
 	}
 @endphp
 
-@if($errors->$bag->any() || session()->has('message'))
+@if($errors->$bag->any() || session()->has('message') || session()->has('error'))
 	@if ($errors->$bag->any())
 		<x-forms::errors :class="$class">
 			There are errors with your submission. Please check the highlighted fields below.
+		</x-forms::errors>
+	@endif
+
+	@if (session()->has('error'))
+		<x-forms::errors :class="$class">
+			{!! session()->get('error') !!}
 		</x-forms::errors>
 	@endif
 

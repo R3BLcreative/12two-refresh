@@ -1,159 +1,6 @@
 <?php
 
 return json_decode(json_encode([
-	// USERS
-	'users' => [
-		'columns' => [
-			'template' => 'grid-cols-[24px_auto_150px_150px]',
-			'items' => [
-				[
-					'text' => 'ID',
-					'key' => '',
-					'type' => 'id',
-					'class' => 'text-center uppercase',
-				],
-				[
-					'text' => 'Name',
-					'key' => 'name',
-					'type' => 'main',
-					'class' => '',
-				],
-				[
-					'text' => 'Role',
-					'key' => '',
-					'type' => 'user_role',
-					'class' => 'text-center',
-				],
-				[
-					'text' => 'Actions',
-					'key' => '',
-					'type' => 'actions',
-					'class' => 'text-center',
-				],
-			],
-		],
-		'fields' => [
-			[
-				'forms' => ['create', 'edit'],
-				'order' => 1,
-				'type' => 'title',
-				'class' => '',
-				'id' => 'name',
-				'key' => 'name',
-				'label' => 'Name',
-				'placeholder' => 'John Doe',
-				'desc' => '',
-				'required' => true,
-				'validate' => [
-					'store' => 'required',
-					'update' => 'required',
-				],
-			],
-			[
-				'forms' => ['create', 'edit'],
-				'order' => 2,
-				'type' => 'string',
-				'class' => '',
-				'id' => 'email',
-				'key' => 'email',
-				'label' => 'Email / Username',
-				'placeholder' => 'john@example.com',
-				'desc' => '',
-				'required' => true,
-				'validate' => [
-					'store' => 'required|unique:App\Models\User,email',
-					'update' => 'required',
-				],
-			],
-			[
-				'forms' => ['edit'],
-				'order' => 3,
-				'type' => 'password',
-				'class' => '',
-				'id' => 'current_pass',
-				'key' => '',
-				'label' => 'Current Password',
-				'placeholder' => 'Current Password',
-				'desc' => '',
-				'required' => false,
-				'validate' => [
-					'store' => '',
-					'update' => 'required_with_all:new_pass,confirm_pass|current_password:web',
-				],
-			],
-			[
-				'forms' => ['edit'],
-				'order' => 4,
-				'type' => 'password',
-				'class' => '',
-				'id' => 'new_pass',
-				'key' => 'password',
-				'label' => 'New Password',
-				'placeholder' => 'New Password',
-				'desc' => '',
-				'required' => false,
-				'validate' => [
-					'store' => '',
-					'update' => 'required_with_all:current_pass,confirm_pass',
-				],
-			],
-			[
-				'forms' => ['edit'],
-				'order' => 5,
-				'type' => 'password',
-				'class' => '',
-				'id' => 'confirm_pass',
-				'key' => '',
-				'label' => 'Confirm New Password',
-				'placeholder' => 'Confirm New Password',
-				'desc' => '',
-				'required' => false,
-				'validate' => [
-					'store' => '',
-					'update' => 'required_with_all:current_pass,new_pass|same:new_pass',
-				],
-			],
-			[
-				'forms' => ['create'],
-				'order' => 5,
-				'type' => 'password',
-				'class' => '',
-				'id' => 'password',
-				'key' => 'password',
-				'label' => 'Password',
-				'placeholder' => 'Password',
-				'desc' => '',
-				'required' => true,
-				'validate' => [
-					'store' => 'required',
-					'update' => '',
-				],
-			],
-			[
-				'forms' => ['create'],
-				'order' => 6,
-				'type' => 'password',
-				'class' => '',
-				'id' => 'confirm_pass',
-				'key' => '',
-				'label' => 'Confirm Password',
-				'placeholder' => 'Confirm Password',
-				'desc' => '',
-				'required' => true,
-				'validate' => [
-					'store' => 'required|same:password',
-					'update' => '',
-				],
-			],
-		],
-	],
-
-	// MENUS
-	'menus' => [
-		'columns' => [],
-		'fields' => [],
-	],
-
 	// COLLECTION TYPES
 	'collection-types' => [
 		'columns' => [
@@ -176,6 +23,8 @@ return json_decode(json_encode([
 					'key' => 'label',
 					'type' => 'main',
 					'class' => '',
+					'plural' => false,
+					'nolink' => false,
 				],
 				[
 					'text' => 'Category',
@@ -194,6 +43,10 @@ return json_decode(json_encode([
 					'key' => '',
 					'type' => 'actions',
 					'class' => 'text-center',
+					'actions' => [
+						'delete' => true,
+						'info' => true,
+					],
 				],
 			],
 		],
@@ -312,8 +165,10 @@ return json_decode(json_encode([
 				[
 					'text' => 'Name',
 					'key' => 'label',
-					'type' => 'main-plural',
+					'type' => 'main',
 					'class' => '',
+					'plural' => true,
+					'nolink' => false,
 				],
 				[
 					'text' => 'Type',
@@ -332,15 +187,13 @@ return json_decode(json_encode([
 					'key' => '',
 					'type' => 'actions',
 					'class' => 'text-center',
+					'actions' => [
+						'delete' => true,
+						'info' => true,
+					],
 				],
 			],
 		],
-		'fields' => [],
-	],
-
-	// OPTIONS
-	'options' => [
-		'columns' => [],
 		'fields' => [],
 	],
 
@@ -360,12 +213,18 @@ return json_decode(json_encode([
 					'key' => 'title',
 					'type' => 'main',
 					'class' => '',
+					'plural' => false,
+					'nolink' => false,
 				],
 				[
 					'text' => 'Actions',
 					'key' => '',
 					'type' => 'actions',
 					'class' => 'text-center',
+					'actions' => [
+						'delete' => true,
+						'info' => true,
+					],
 				],
 			],
 		],

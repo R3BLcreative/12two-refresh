@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Option;
@@ -42,21 +43,24 @@ class AdminController extends Controller {
 
 		$items = [];
 
+		// Get user
+		$user = Auth::user();
+
 		switch ($collectionType->slug) {
 			case 'users':
 				$items = User::orderBy('id', 'asc')->get();
 				break;
 			case 'collection-types':
-				$items = CollectionType::where('protected', false)->orderBy('category_id', 'asc')->orderBy('order', 'asc')->get();
+				$items = CollectionType::orderBy('category_id', 'asc')->orderBy('order', 'asc')->get();
 				break;
 			case 'categories':
-				$items = Category::where('protected', false)->orderBy('type', 'asc')->orderBy('order', 'asc')->get();
+				$items = Category::orderBy('type', 'asc')->orderBy('order', 'asc')->get();
 				break;
 			default:
 				$items = Collection::where('collection_type_id', $collectionType->id)->orderBy('created_at', 'asc')->get();
 		}
 
-		return view('admin.index', [
+		return view('admin.collections.index', [
 			'title' => $title,
 			'items' => $items,
 		]);
@@ -71,7 +75,7 @@ class AdminController extends Controller {
 	 * @var collectionType | App\Models\CollectionType
 	 */
 	public function create(CollectionType $collectionType) {
-		return view('admin.create', [
+		return view('admin.collections.create', [
 			'title' => 'Create New ' . $collectionType->label,
 		]);
 	}
@@ -144,7 +148,7 @@ class AdminController extends Controller {
 		$message = $collectionType->label . " has been created.";
 
 		// Redirect user to new content edit view
-		return redirect(route('admin.edit', [$collectionType, $new->id]))->with('message', $message);
+		return redirect(route('admin.collections.edit', [$collectionType, $new->id]))->with('message', $message);
 	}
 
 
@@ -173,7 +177,7 @@ class AdminController extends Controller {
 				$item = Collection::where('id', $id)->first();
 		}
 
-		return view('admin.edit', [
+		return view('admin.collections.edit', [
 			'title' => 'Edit ' . $collectionType->label,
 			'item' => $item,
 		]);
@@ -246,7 +250,7 @@ class AdminController extends Controller {
 		$message = $collectionType->label . " has been created.";
 
 		// Redirect user to new content edit view
-		return redirect(route('admin.edit', [$collectionType, $id]))->with('message', $message);
+		return redirect(route('admin.collections.edit', [$collectionType, $id]))->with('message', $message);
 	}
 
 
@@ -262,13 +266,20 @@ class AdminController extends Controller {
 
 		$namespace = $this->getModel($collectionType->label);
 
-		// Delete record
-		$namespace::where('id', $id)->delete();
+		// Check if record can be deleted
+		$record = $namespace::where('id', $id)->first();
 
-		$message = $collectionType->label . " has been deleted.";
+		if (!$record->protected && !$record->hasRole('super')) {
+			// Delete record
+			$namespace::where('id', $id)->delete();
 
-		// Redirect user to new content edit view
-		return redirect(route('admin.index', [$collectionType]))->with('message', $message);
+			$message = $collectionType->label . " has been deleted.";
+
+			// Redirect user to new content edit view
+			return redirect(route('admin.collections.index', [$collectionType]))->with('message', $message);
+		} else {
+			return back()->with('error', "That item can't be deleted.");
+		}
 	}
 
 

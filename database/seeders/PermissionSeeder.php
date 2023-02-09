@@ -18,54 +18,65 @@ class PermissionSeeder extends Seeder {
 		// Reset cached roles and permissions
 		app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-		// create permissions
+		// BACKEND PERMISSIONS
 		Permission::create(['name' => 'manage backend']);
-		Permission::create(['name' => 'manage groups']);
-		Permission::create(['name' => 'manage dashboard']);
+		Permission::create(['name' => 'manage content']);
+		Permission::create(['name' => 'edit content']);
 
-		// create roles and assign existing permissions
-		$role1 = Role::create(['name' => 'super']);
-		// gets all permissions via Gate::before rule; see AuthServiceProvider
+		// FRONTEND PERMISSIONS
+		Permission::create(['name' => 'manage account']);
 
-		$role2 = Role::create(['name' => 'admin']);
-		$role2->givePermissionTo('manage backend');
-		$role2->givePermissionTo('manage groups');
-		$role2->givePermissionTo('manage dashboard');
-
-		$role3 = Role::create(['name' => 'leader']);
-		$role3->givePermissionTo('manage groups');
-		$role3->givePermissionTo('manage dashboard');
-
-		$role4 = Role::create(['name' => 'user']);
-		$role4->givePermissionTo('manage dashboard');
-
-		// create super-admin & demo users
-		$user = \App\Models\User::factory()->create([
-			'name' => env('SEEDER_USER_NAME', 'John Doe'),
-			'email' => env('SEEDER_USER_EMAIL', 'test@email.com'),
-			'password' => Hash::make(env('SEEDER_USER_PASSWORD', 'password'))
+		// BACKEND ROLES
+		$super = Role::create(['name' => 'super']); // gets all permissions via Gate::before rule; see AuthServiceProvider
+		$admin = Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
+		$editor = Role::create(['name' => 'editor'])->givePermissionTo([
+			'manage content',
+			'edit content',
+			'manage account'
 		]);
-		$user->assignRole($role1);
+		$writer = Role::create(['name' => 'writer'])->givePermissionTo([
+			'edit content',
+			'manage account'
+		]);
 
+		// FRONTEND ROLES
+		$default = Role::create(['name' => 'user'])->givePermissionTo(['manage account']);
+
+		// Create super user
+		$user = \App\Models\User::factory()->create([
+			'name' => env('SEEDER_USER_NAME'),
+			'email' => env('SEEDER_USER_EMAIL'),
+			'password' => Hash::make(env('SEEDER_USER_PASSWORD'))
+		]);
+		$user->assignRole($super);
+
+		// Create demo users
 		$user = \App\Models\User::factory()->create([
 			'name' => 'Admin User',
 			'email' => 'admin@example.com',
 			'password' => Hash::make('password')
 		]);
-		$user->assignRole($role2);
+		$user->assignRole($admin);
 
 		$user = \App\Models\User::factory()->create([
-			'name' => 'Leader User',
-			'email' => 'leader@example.com',
+			'name' => 'Editor User',
+			'email' => 'editor@example.com',
 			'password' => Hash::make('password')
 		]);
-		$user->assignRole($role3);
+		$user->assignRole($editor);
 
 		$user = \App\Models\User::factory()->create([
-			'name' => 'Basic User',
-			'email' => 'user@example.com',
+			'name' => 'Writer User',
+			'email' => 'writer@example.com',
 			'password' => Hash::make('password')
 		]);
-		$user->assignRole($role4);
+		$user->assignRole($writer);
+
+		$user = \App\Models\User::factory()->create([
+			'name' => 'Default User',
+			'email' => 'default@example.com',
+			'password' => Hash::make('password')
+		]);
+		$user->assignRole($default);
 	}
 }

@@ -12,9 +12,9 @@
 
 	<x-fields::input class="" id="email" type="email" placeholder="john@email.com" label="Email" value="{{ old('email') }}" required="1" bag="{{ $bag }}" />
 
-	<x-fields::input class="" id="password" type="password" placeholder="********" label="Password" value="{{ old('password') }}" required="1" bag="{{ $bag }}" />
+	<x-fields::input class="" id="password" type="password" placeholder="********" label="Password" value="" required="1" bag="{{ $bag }}" />
 
-	<x-fields::input class="" id="password_confirmation" type="password" placeholder="********" label="Confirm Password" value="{{ old('password_confirmation') }}" required="1" bag="{{ $bag }}" />
+	<x-fields::input class="" id="password_confirmation" type="password" placeholder="********" label="Confirm Password" value="" required="1" bag="{{ $bag }}" />
 
 	<x-components::button id="" tag="submit" style="primary" class="!w-full" icon="fa-duotone fa-user-plus">
 		Signup

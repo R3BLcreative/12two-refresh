@@ -25,17 +25,21 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot() {
 		// VIEW COMPOSERS
-		View::composer('sections.admin-sidebar', AdminNavComposer::class);
-		View::composer('admin.*', AdminCollectionComposer::class);
+		View::composer('sections.admin.sidebar', AdminNavComposer::class);
+		View::composer('admin.collections.*', AdminCollectionComposer::class);
 
 
-		// ANONYMOUS COMPONENTS
+		// FRONTEND ANONYMOUS COMPONENTS
 		Blade::anonymousComponentNamespace('layouts', 'layouts');
 		Blade::anonymousComponentNamespace('components', 'components');
 		Blade::anonymousComponentNamespace('sections', 'sections');
 		Blade::anonymousComponentNamespace('forms', 'forms');
 		Blade::anonymousComponentNamespace('forms.fields', 'fields');
-		Blade::anonymousComponentNamespace('components.admin-forms', 'admin-forms');
-		Blade::anonymousComponentNamespace('components.admin-fields', 'admin-fields');
+
+		// BACKEND ANONYMOUS COMPONENTS
+		Blade::anonymousComponentNamespace('components.admin', 'acomponents');
+		Blade::anonymousComponentNamespace('sections.admin', 'asections');
+		Blade::anonymousComponentNamespace('components.admin.forms', 'aforms');
+		Blade::anonymousComponentNamespace('components.admin.fields', 'afields');
 	}
 }

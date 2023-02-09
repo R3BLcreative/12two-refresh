@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\ContentType;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\DonateController;
 use App\Http\Controllers\ConnectController;
@@ -157,7 +159,7 @@ Route::prefix('faqs')->group(function () {
 
 
 // DASHBOARD
-Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
+Route::middleware(['account'])->prefix('dashboard')->group(function () {
 	Route::get('/', function () {
 		return view('user.dashboard');
 	})->name('dashboard');
@@ -180,7 +182,7 @@ Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 	})->name('user.donations');
 
 	// LEADERS
-	Route::middleware(['permission:manage groups'])->prefix('groups')->group(function () {
+	Route::middleware(['account'])->prefix('groups')->group(function () {
 		Route::get('/', function () {
 			return view('user.groups');
 		})->name('groups');
@@ -201,22 +203,28 @@ Route::middleware(['dashboard'])->prefix('dashboard')->group(function () {
 
 
 // BACKEND
-Route::middleware(['dashboard', 'permission:manage backend'])->prefix('admin')->group(function () {
+Route::middleware(['backend'])->prefix('admin')->group(function () {
 	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+	Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+
+	Route::get('/options', [OptionController::class, 'index'])->name('admin.options.index');
+
+	Route::get('/menus', [MenuController::class, 'index'])->name('admin.menus.index');
+
 	// INDEX - LIST
-	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->name('admin.index');
+	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->name('admin.collections.index');
 
 	// CREATE
-	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->name('admin.create');
-	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->name('admin.store');
+	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->name('admin.collections.create');
+	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->name('admin.collections.store');
 
 	// EDIT
-	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->name('admin.update');
+	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->name('admin.collections.edit');
+	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->name('admin.collections.update');
 
 	// DESTROY
-	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->name('admin.collections.destroy');
 });
 
 
