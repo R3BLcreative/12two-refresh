@@ -34,7 +34,7 @@ return new class extends Migration {
 			$table->foreign('category_id')->references('id')->on('categories');
 			$table->boolean('force_single')->default(false);
 			$table->boolean('protected')->default(false);
-			$table->string('permission')->nullable();
+			$table->string('permission')->default('edit content');
 			$table->timestamps();
 		});
 

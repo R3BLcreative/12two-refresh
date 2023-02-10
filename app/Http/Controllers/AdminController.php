@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -139,11 +140,6 @@ class AdminController extends Controller {
 	public function edit(CollectionType $collectionType, $id) {
 		// This needs to be dynamic
 		switch ($collectionType->slug) {
-			case 'users':
-				$item = User::where('id', $id)->first();
-				$item->collectionType = CollectionType::where('slug', 'users')->first();
-				$item->fields = User::where('id', $id)->first();
-				break;
 			case 'collection-types':
 				$item = CollectionType::where('id', $id)->first();
 				$item->collectionType = CollectionType::where('slug', 'collection-types')->first();
@@ -183,8 +179,19 @@ class AdminController extends Controller {
 			if ($field->key) {
 				// Get form field id and related DB column key for DB insertion
 				switch ($field->key) {
-					case 'password':
-						$insertions['password'] = Hash::make($request->input($field->id));
+					case 'slug':
+						// Figure out which table is needed to unique validate this records slug
+						$table = (!in_array($collectionType->slug, ['collection-types', 'categories'])) ? 'collections' : Str::camel($collectionType->slug);
+
+						// dd(Str::snake(Str::camel($collectionType->slug)));
+
+						// Override all slug validations with this one
+						$validations['slug'] = [
+							'required',
+							Rule::unique(Str::snake($table))->ignore($id),
+						];
+
+						$insertions[$field->key] = $request->input($field->id);
 						break;
 
 					default:
@@ -198,17 +205,12 @@ class AdminController extends Controller {
 			$validations,
 			[
 				'required' => 'This field is required.',
-				'email.unique' => 'That email address is associated with another user.',
-				'current_pass.required_with_all' => 'Your current password is needed to create a new one.',
-				'current_password' => 'The password you entered does not match your current password.',
-				'new_pass.required_with_all' => 'You need to enter your new password here.',
-				'confirm_pass.required_with_all' => 'You need to confirm your new password here.',
-				'confirm_pass.same' => 'The new and confirm password fields do not match.',
 				'integer' => 'This field must be a number.',
 				'slug.unique' => 'That slug is already in use.',
 			]
 		);
 
+		//dd($insertions);
 		// Get list of available app models (Models directory only)
 		$models = $this->getAllModels();
 
@@ -223,7 +225,7 @@ class AdminController extends Controller {
 		// Create record
 		$namespace::where('id', $id)->update($insertions);
 
-		$message = $collectionType->label . " has been created.";
+		$message = $collectionType->label . " has been updated.";
 
 		// Redirect user to new content edit view
 		return redirect(route('admin.collections.edit', [$collectionType, $id]))->with('message', $message);
@@ -245,7 +247,7 @@ class AdminController extends Controller {
 		// Check if record can be deleted
 		$record = $namespace::where('id', $id)->first();
 
-		if (!$record->protected && !$record->hasRole('super')) {
+		if (!$record->protected) {
 			// Delete record
 			$namespace::where('id', $id)->delete();
 

@@ -18,7 +18,7 @@ $classes = [
 		'subtext' => 'text-base font-normal',
 	],
 	'h3' => [
-		'heading' => 'text-2xl font-black uppercase text-primary-300',
+		'heading' => 'text-2xl font-black uppercase text-body-dark-200',
 		'subtext' => 'text-base font-normal',
 	],
 	'h4' => [

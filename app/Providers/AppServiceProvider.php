@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use App\Composers\AdminRolesComposer;
 use App\Composers\AdminNavComposer;
 use App\Composers\AdminCollectionComposer;
-use App\Composers\AdminCategoryDropdown;
+use App\Composers\AdminCategoryComposer;
 
 class AppServiceProvider extends ServiceProvider {
 	/**

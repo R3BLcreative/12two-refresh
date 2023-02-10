@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
@@ -107,6 +108,7 @@ class UserController extends Controller {
 			'icon' => 'fa-user-pen',
 			'title' => 'Edit User',
 			'subtext' => '',
+			'user' => $user,
 		]);
 	}
 
@@ -122,14 +124,19 @@ class UserController extends Controller {
 	 */
 	public function update(Request $request, User $user) {
 		$request->validate(
-			[],
 			[
+				'name' => 'required',
+				'email' => [
+					'required',
+					'email',
+					Rule::unique('users')->ignore($user),
+				],
+				'role' => 'required',
+			],
+			[
+				'required' => 'This field is required.',
 				'email.unique' => 'That email address is associated with another user.',
-				'current_pass.required_with_all' => 'Your current password is needed to create a new one.',
-				'current_password' => 'The password you entered does not match your current password.',
-				'new_pass.required_with_all' => 'You need to enter your new password here.',
-				'confirm_pass.required_with_all' => 'You need to confirm your new password here.',
-				'confirm_pass.same' => 'The new and confirm password fields do not match.',
+				'confirmed' => 'The password fields do not match.',
 			]
 		);
 	}
