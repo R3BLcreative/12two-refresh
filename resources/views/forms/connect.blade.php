@@ -24,7 +24,7 @@
 
 	<x-fields::input id="email" type="email" placeholder="Your Email" value="{{ old('email') }}" required="1" bag="{{ $bag }}" class="mobile:w-full tablet:w-fit" />
 
-	<x-fields::input id="cemail" type="email" placeholder="Confirm Your Email" value="{{ old('cemail') }}" required="1" bag="{{ $bag }}" class="mobile:w-full tablet:w-fit" />
+	<x-fields::input id="email_confirmation" type="email" placeholder="Confirm Your Email" value="{{ old('email_confirmation') }}" required="1" bag="{{ $bag }}" class="mobile:w-full tablet:w-fit" />
 
 	<x-fields::select id="topic" value="{{ old('topic') }}" placeholder="I am messaging about..." required="1" bag="{{ $bag }}" :options="[
 		'Speaking at our event' => 'Speaking at our event',

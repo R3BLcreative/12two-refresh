@@ -15,9 +15,9 @@
 
 	<select type="text" id="{{ $id }}" name="{{ $id }}" class="text-base @error($id) border-error @enderror">
 		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder ?? 'Please select one' }}</option>
-		@foreach ($cats as $cat)
-			<option value="{{ $cat->id }}" @if($cat->id == $value) selected @endif>
-				{{ ($cat->force_single) ? $cat->label : Str::plural($cat->label) }}
+		@foreach ($roles as $role)
+			<option value="{{ $role->name }}" @if($role->name == $value) selected @endif>
+				{{ Str::title($role->name) }}
 			</option>
 		@endforeach
 	</select>

@@ -57,7 +57,6 @@ return new class extends Migration {
 		});
 
 		Schema::create('collection_categories', function (Blueprint $table) {
-			$table->id();
 			$table->unsignedBigInteger('collection_id');
 			$table->foreign('collection_id')->references('id')->on('collections');
 			$table->unsignedBigInteger('category_id');

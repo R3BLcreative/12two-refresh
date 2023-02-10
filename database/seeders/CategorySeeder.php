@@ -20,7 +20,7 @@ class CategorySeeder extends Seeder {
 				'label'				=> 'Setting',
 				'slug'				=> 'settings',
 				'force_single' => false,
-				'permission'	=> 'manage backend',
+				'permission'	=> 'manage content',
 				'protected'		=> true,
 				'type'				=> 'collection-type',
 				'created_at'	=> Carbon::now(),

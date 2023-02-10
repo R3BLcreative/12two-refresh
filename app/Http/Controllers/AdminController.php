@@ -41,15 +41,7 @@ class AdminController extends Controller {
 		// Set page title
 		$title = ($collectionType->force_single) ? $collectionType->label : Str::plural($collectionType->label);
 
-		$items = [];
-
-		// Get user
-		$user = Auth::user();
-
 		switch ($collectionType->slug) {
-			case 'users':
-				$items = User::orderBy('id', 'asc')->get();
-				break;
 			case 'collection-types':
 				$items = CollectionType::orderBy('category_id', 'asc')->orderBy('order', 'asc')->get();
 				break;
@@ -99,18 +91,8 @@ class AdminController extends Controller {
 			// Build validation rules
 			$validations[$field->id] = $field->validate->store;
 
-			// Check if field has a key set
-			if ($field->key) {
-				// Get form field id and related DB column key for DB insertion
-				switch ($field->key) {
-					case 'password':
-						$insertions['password'] = Hash::make($request->input($field->id));
-						break;
-
-					default:
-						$insertions[$field->key] = $request->input($field->id);
-				}
-			}
+			// Get form field id and related DB column key for DB insertion
+			$insertions[$field->key] = $request->input($field->id);
 		}
 
 		// Run validations
@@ -118,12 +100,6 @@ class AdminController extends Controller {
 			$validations,
 			[
 				'required' => 'This field is required.',
-				'email.unique' => 'That email address is associated with another user.',
-				'current_pass.required_with_all' => 'Your current password is needed to create a new one.',
-				'current_password' => 'The password you entered does not match your current password.',
-				'new_pass.required_with_all' => 'You need to enter your new password here.',
-				'confirm_pass.required_with_all' => 'You need to confirm your new password here.',
-				'confirm_pass.same' => 'The new and confirm password fields do not match.',
 				'integer' => 'This field must be a number.',
 				'slug.unique' => 'That slug is already in use.',
 			]

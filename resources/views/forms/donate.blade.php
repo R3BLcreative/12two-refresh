@@ -15,7 +15,7 @@
 	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="fname" type="text" placeholder="John" label="First Name" value="{{ old('fname') }}" required="1" bag="{{ $bag }}" />
 	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="lname" type="text" placeholder="Doe" label="Last Name" value="{{ old('lname') }}" required="1" bag="{{ $bag }}" />
 	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="email" type="email" placeholder="john@email.com" label="Email" value="{{ old('email') }}" required="1" bag="{{ $bag }}" />
-	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="cemail" type="email" placeholder="john@email.com" label="Confirm Email" value="{{ old('cemail') }}" required="1" bag="{{ $bag }}" />
+	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="email_confirmation" type="email" placeholder="john@email.com" label="Confirm Email" value="{{ old('email_confirmation') }}" required="1" bag="{{ $bag }}" />
 
 	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="amount" type="text" placeholder="$20.00" label="Donation Amount" value="{{ old('amount') }}" required="1" currency="1" bag="{{ $bag }}" />
 	<x-fields::input class="mobile:col-span-full laptop:col-span-1" id="ccFeeDisplay" type="text" placeholder="$0.00" label="Processing Fee" value="{{ old('ccFeeDisplay') }}" disabled="1" bag="{{ $bag }}" />

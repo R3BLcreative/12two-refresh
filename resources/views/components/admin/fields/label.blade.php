@@ -1,6 +1,6 @@
 @props([
 	'id',
-	'required'
+	'required' => '',
 ])
 
 <label

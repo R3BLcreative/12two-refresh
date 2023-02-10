@@ -58,14 +58,19 @@
 							@break
 
 						@case('main')
-							@if(!$column->nolink)<a href="{{ route('admin.collections.edit', [$collectionType, $item->id]) }}" class="group-hover/row:text-primary-500 {{ $column->class }}">@endif
-								<span class="text-base font-extrabold">
+							@if(!$column->nolink)<a href="{{ route('admin.collections.edit', [$collectionType, $item->id]) }}" class="flex items-center gap-4 {{ $column->class }}">@endif
+
+								<span class="text-base font-extrabold group-hover/row:text-primary-500">
 									@if ($item->force_single || !$column->plural)
 										{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
 									@else
 										{{ Str::plural($item->{$column->key}) ?? Str::plural($item->fields->{$column->key}) }}
 									@endif
 								</span>
+
+								@if(isset($item->protected) && $item->protected == true)
+									<i class="fa-duotone fa-lock opacity-50 text-sm"></i>
+								@endif
 							@if(!$column->nolink)</a>@endif
 							@break
 
@@ -76,7 +81,7 @@
 							@break
 
 						@case('actions')
-							<x-acomponents::actions :item="$item" :collectionType="$collectionType" :actions="$column->actions" />
+							<x-acomponents::collection-actions :item="$item" :collectionType="$collectionType" :actions="$column->actions" />
 							@break
 
 						@default

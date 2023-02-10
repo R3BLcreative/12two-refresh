@@ -8,31 +8,37 @@
 	<ul class="flex flex-col flex-auto gap-2">
 		@if($category['heading']['title'] == 'Settings')
 			{{-- USERS --}}
-			<x-acomponents::nav-item :item="json_decode(json_encode([
-				'slug' => 'users',
-				'icon' => 'fa-users',
-				'label' => 'User',
-				'route' => route('admin.users.index'),
-				'force_single' => false,
-				]))" />
+			@can('manage content')
+				<x-acomponents::nav-item :item="json_decode(json_encode([
+					'slug' => 'users',
+					'icon' => 'fa-users',
+					'label' => 'User',
+					'route' => route('admin.users.index'),
+					'force_single' => false,
+					]))" />
+			@endcan
 
 			{{-- OPTIONS --}}
-			<x-acomponents::nav-item :item="json_decode(json_encode([
-				'slug' => 'options',
-				'icon' => 'fa-gears',
-				'label' => 'Option',
-				'route' => route('admin.options.index'),
-				'force_single' => false,
-				]))" />
+			@can('manage backend')
+				<x-acomponents::nav-item :item="json_decode(json_encode([
+					'slug' => 'options',
+					'icon' => 'fa-gears',
+					'label' => 'Option',
+					'route' => route('admin.options.index'),
+					'force_single' => false,
+					]))" />
+			@endcan
 
 			{{-- MENUS --}}
-			<x-acomponents::nav-item :item="json_decode(json_encode([
-				'slug' => 'menus',
-				'icon' => 'fa-list-dropdown',
-				'label' => 'Menu',
-				'route' => route('admin.menus.index'),
-				'force_single' => false,
-				]))" />
+			@can('manage content')
+				<x-acomponents::nav-item :item="json_decode(json_encode([
+					'slug' => 'menus',
+					'icon' => 'fa-list-dropdown',
+					'label' => 'Menu',
+					'route' => route('admin.menus.index'),
+					'force_single' => false,
+					]))" />
+			@endcan
 		@endif
 		@foreach ($category['items'] as $item)
 			@can($item->permission)

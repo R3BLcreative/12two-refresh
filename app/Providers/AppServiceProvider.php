@@ -5,8 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use App\Composers\AdminRolesComposer;
 use App\Composers\AdminNavComposer;
 use App\Composers\AdminCollectionComposer;
+use App\Composers\AdminCategoryDropdown;
 
 class AppServiceProvider extends ServiceProvider {
 	/**
@@ -27,6 +29,8 @@ class AppServiceProvider extends ServiceProvider {
 		// VIEW COMPOSERS
 		View::composer('sections.admin.sidebar', AdminNavComposer::class);
 		View::composer('admin.collections.*', AdminCollectionComposer::class);
+		View::composer('components.admin.fields.category', AdminCategoryComposer::class);
+		View::composer('components.admin.fields.roles', AdminRolesComposer::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS

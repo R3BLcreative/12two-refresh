@@ -39,12 +39,12 @@ class CollectionType extends Model {
 			->withDefault(function ($meta) {
 				$adminConfig = config('admin');
 
-				if (property_exists($adminConfig, $this->slug)) {
+				if (property_exists($adminConfig->tables, $this->slug)) {
 					// Get config for base collections
-					$config = $adminConfig->{$this->slug};
+					$config = $adminConfig->tables->{$this->slug};
 				} else {
 					// Get default config
-					$config = $adminConfig->default;
+					$config = $adminConfig->tables->default;
 				}
 
 				foreach ($config as $key => $value) {

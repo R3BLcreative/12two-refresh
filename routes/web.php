@@ -206,25 +206,46 @@ Route::middleware(['account'])->prefix('dashboard')->group(function () {
 Route::middleware(['backend'])->prefix('admin')->group(function () {
 	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-	Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 
-	Route::get('/options', [OptionController::class, 'index'])->name('admin.options.index');
+	// USERS
+	Route::get('/users', [UserController::class, 'index'])->middleware('permission:manage content')->name('admin.users.index');
+	// create
+	Route::get('/users/create', [UserController::class, 'create'])->middleware('permission:manage content')->name('admin.users.create');
+	Route::post('/users', [UserController::class, 'store'])->middleware('permission:manage content')->name('admin.users.store');
+	// edit
+	Route::get('/users/{user:id}', [UserController::class, 'edit'])->middleware('permission:manage content')->name('admin.users.edit');
+	Route::put('/users/{user:id}', [UserController::class, 'update'])->middleware('permission:manage content')->name('admin.users.update');
+	// destroy
+	Route::delete('/users/{user:id}', [UserController::class, 'destroy'])->middleware('permission:manage content')->name('admin.users.destroy');
 
-	Route::get('/menus', [MenuController::class, 'index'])->name('admin.menus.index');
 
-	// INDEX - LIST
-	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->name('admin.collections.index');
+	// OPTIONS
+	Route::get('/options', [OptionController::class, 'index'])->middleware('permission:manage backend')->name('admin.options.index');
+	Route::put('/options', [OptionController::class, 'update'])->middleware('permission:manage backend')->name('admin.options.update');
 
-	// CREATE
-	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->name('admin.collections.create');
-	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->name('admin.collections.store');
 
-	// EDIT
-	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->name('admin.collections.edit');
-	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->name('admin.collections.update');
+	// MENUS
+	Route::get('/menus', [MenuController::class, 'index'])->middleware('permission:manage content')->name('admin.menus.index');
+	// create
+	Route::get('/menus/create', [MenuController::class, 'create'])->middleware('permission:manage content')->name('admin.menus.create');
+	Route::post('/menus', [MenuController::class, 'store'])->middleware('permission:manage content')->name('admin.menus.store');
+	// edit
+	Route::get('/menus/{menu:id}', [MenuController::class, 'edit'])->middleware('permission:manage content')->name('admin.menus.edit');
+	Route::put('/menus/{menu:id}', [MenuController::class, 'update'])->middleware('permission:manage content')->name('admin.menus.update');
+	// destroy
+	Route::delete('/menus/{menu:id}', [MenuController::class, 'destroy'])->middleware('permission:manage content')->name('admin.menus.destroy');
 
-	// DESTROY
-	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->name('admin.collections.destroy');
+
+	// COLLECTIONS
+	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->middleware('permission:manage content')->name('admin.collections.index');
+	// create
+	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->middleware('permission:edit content')->name('admin.collections.create');
+	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->middleware('permission:edit content')->name('admin.collections.store');
+	// edit
+	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->middleware('permission:edit content')->name('admin.collections.edit');
+	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->middleware('permission:edit content')->name('admin.collections.update');
+	// destroy
+	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->middleware('permission:manage content')->name('admin.collections.destroy');
 });
 
 

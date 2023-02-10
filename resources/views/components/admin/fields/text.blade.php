@@ -1,11 +1,11 @@
 @props([
-	'class',
+	'class' => '',
 	'id',
 	'label',
 	'value' => '',
-	'placeholder',
-	'desc',
-	'required',
+	'placeholder' => '',
+	'desc' => '',
+	'required' => '',
 	])
 
 <div class="col-span-full flex flex-col gap-2">

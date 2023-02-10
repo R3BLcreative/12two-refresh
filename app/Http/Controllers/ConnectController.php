@@ -14,13 +14,12 @@ class ConnectController extends Controller {
 			'connect',
 			[
 				'name'			=> 'required|string',
-				'email'			=> 'required|email:rfc,dns',
-				'cemail'		=> 'required|same:email',
+				'email'			=> 'required|email|confirmed',
 				'topic'			=> 'required'
 			],
 			[
-				'required'			=> 'This field is required.',
-				'cemail.same'		=> 'The email fields do not match.'
+				'required'	=> 'This field is required.',
+				'confirmed'	=> 'The email fields do not match.'
 			]
 		);
 

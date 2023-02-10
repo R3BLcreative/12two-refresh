@@ -13,12 +13,11 @@ class DonateController extends Controller {
 			[
 				'fname'			=> 'required|string',
 				'lname'			=> 'required|string',
-				'email'			=> 'required|email:rfc,dns',
-				'cemail'		=> 'required|same:email',
+				'email'			=> 'required|email|confirmed',
 			],
 			[
-				'required'			=> 'This field is required.',
-				'cemail.same'		=> 'The email fields do not match.'
+				'required'	=> 'This field is required.',
+				'confirmed'	=> 'The email fields do not match.'
 			]
 		);
 

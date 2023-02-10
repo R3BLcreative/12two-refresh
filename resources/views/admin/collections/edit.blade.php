@@ -6,7 +6,7 @@
 			:title="$title"
 			subtext="">
 
-			<x-acomponents::create-button :collectionType="$collectionType" />
+			<x-acomponents::create-button route="{{ route('admin.collections.create', $collectionType) }}" />
 		</x-acomponents::titlebar>
 
 		<div class="w-full relative flex flex-col flex-auto overflow-hidden">

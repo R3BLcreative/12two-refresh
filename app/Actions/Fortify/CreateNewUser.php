@@ -6,6 +6,7 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 
 class CreateNewUser implements CreatesNewUsers {
@@ -36,6 +37,8 @@ class CreateNewUser implements CreatesNewUsers {
 		]);
 
 		$user->assignRole('user');
+
+		event(new Registered($user));
 
 		return $user;
 	}

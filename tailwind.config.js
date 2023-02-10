@@ -20,6 +20,22 @@ module.exports = {
 			heading: ['Oswald', 'sans-serif'],
 		},
 		extend: {
+			animation: {
+				'fade-out': 'fadeOut 600ms forwards',
+			},
+			keyframes: {
+				fadeOut: {
+					'0%': {
+						opacity: '100%',
+						'max-height': '5000px',
+					},
+					'100%': {
+						opacity: '0%',
+						'max-height': '0',
+						display: 'none',
+					},
+				},
+			},
 			colors: {
 				primary: {
 					DEFAULT: '#AB1E22',

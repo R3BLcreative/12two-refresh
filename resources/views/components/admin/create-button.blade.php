@@ -1,8 +1,8 @@
-@props(['collectionType'])
+@props(['route'])
 
 <x-acomponents::button
 	tag="a"
-	href="{{ route('admin.collections.create', $collectionType) }}"
+	href="{{ $route }}"
 	style="primary"
 	size="small"
 	icon="fa-plus">

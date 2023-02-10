@@ -28,9 +28,9 @@
 
 	{{-- DELETE --}}
 	@if($actions->delete)
-		<x-acomponents::actions-item icon="fa-trash" onclick="event.preventDefault();document.getElementById('delete-form').submit();">
+		<x-acomponents::actions-item icon="fa-trash" onclick="event.preventDefault();document.getElementById('delete-form-{{ $item->id }}').submit();">
 			<form
-			id="delete-form"
+			id="delete-form-{{ $item->id }}"
 			action="{{ route('admin.collections.destroy', [$collectionType, $item->id]) }}"
 			method="post"
 			class="hidden">@csrf @method('delete')</form>

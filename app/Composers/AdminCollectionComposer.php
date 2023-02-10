@@ -8,11 +8,9 @@ use App\Models\CollectionType;
 
 class AdminCollectionComposer {
 	protected $request;
-	protected $adminConfig;
 
 	public function __construct(Request $request) {
 		$this->request = $request;
-		$this->adminConfig = config('admin');
 	}
 
 	public function compose(View $view) {
