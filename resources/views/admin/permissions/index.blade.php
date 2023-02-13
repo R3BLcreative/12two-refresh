@@ -6,7 +6,7 @@
 			:title="$title"
 			:subtext="$subtext">
 
-			<x-acomponents::create-button route="{{ route('admin.users.create') }}" />
+			<x-acomponents::create-button :route="route('admin.permissions.create')" />
 		</x-acomponents::titlebar>
 
 		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
@@ -14,20 +14,20 @@
 			@can('manage-backend')
 				<x-acomponents::tabs :tabs="[
 					[
-						'expanded' => 'true',
+						'expanded' => 'false',
 						'href' => route('admin.users.index'),
 						'label' => 'Users',
 					],
 					[
-						'expanded' => 'false',
+						'expanded' => 'true',
 						'href' => route('admin.permissions.index'),
 						'label' => 'Permissions',
 					],
 				]" />
 			@endcan
 
-			{{-- USERS LIST --}}
-			<x-acomponents::users-table :users="$users" />
+			{{-- PERMISSIONS LIST --}}
+			<x-acomponents::permissions-table :permissions="$permissions" />
 		</div>
 	</x-slot:main>
 

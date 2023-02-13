@@ -36,7 +36,7 @@
 		</ul>
 	@endcan
 
-	@can('manage backend')
+	@can('manage-backend')
 		<hr />
 
 		<ul class="w-full">

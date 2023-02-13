@@ -21,6 +21,7 @@ class Category extends Model {
 	protected $casts = [
 		'order' => 'integer',
 		'force_single' => 'boolean',
+		'protected' => 'boolean',
 	];
 
 	public function collectionTypes() {

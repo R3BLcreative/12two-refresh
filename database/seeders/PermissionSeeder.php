@@ -7,6 +7,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
+use App\Models\RoleMeta;
+use App\Models\PermissionMeta;
 
 class PermissionSeeder extends Seeder {
 	/**
@@ -19,28 +21,85 @@ class PermissionSeeder extends Seeder {
 		app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
 		// BACKEND PERMISSIONS
-		Permission::create(['name' => 'manage backend']);
-		Permission::create(['name' => 'manage content']);
-		Permission::create(['name' => 'edit content']);
+		$perm1 = Permission::create(['name' => 'manage-backend']);
+		PermissionMeta::create([
+			'title' => 'Manage Backend',
+			'desc' => 'This permission has admin level access to the backend.',
+			'protected' => true,
+			'permission_id' => $perm1->id,
+		]);
+		$perm2 = Permission::create(['name' => 'manage-content']);
+		PermissionMeta::create([
+			'title' => 'Manage Content',
+			'desc' => 'This permission has content management level access to the backend.',
+			'protected' => true,
+			'permission_id' => $perm2->id,
+		]);
+		$perm3 = Permission::create(['name' => 'edit-content']);
+		PermissionMeta::create([
+			'title' => 'Edit Content',
+			'desc' => 'This permission has content creation level access to the backend.',
+			'protected' => true,
+			'permission_id' => $perm3->id,
+		]);
 
 		// FRONTEND PERMISSIONS
-		Permission::create(['name' => 'manage account']);
+		$perm4 = Permission::create(['name' => 'manage-account']);
+		PermissionMeta::create([
+			'title' => 'Manage Account',
+			'desc' => 'This permission has account management level access to the frontend.',
+			'protected' => true,
+			'permission_id' => $perm4->id,
+		]);
 
 		// BACKEND ROLES
 		$super = Role::create(['name' => 'super']); // gets all permissions via Gate::before rule; see AuthServiceProvider
-		$admin = Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
-		$editor = Role::create(['name' => 'editor'])->givePermissionTo([
-			'manage content',
-			'edit content',
-			'manage account'
+		RoleMeta::create([
+			'title' => 'Super Admin',
+			'desc' => 'This role has full access to all backend features.',
+			'protected' => true,
+			'role_id' => $super->id,
 		]);
+
+		$admin = Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
+		RoleMeta::create([
+			'title' => 'Administrator',
+			'desc' => 'This role has the ability to manage non-super users, backend options, menus, categories, collection types, and collection content.',
+			'protected' => true,
+			'role_id' => $admin->id,
+		]);
+
+		$editor = Role::create(['name' => 'editor'])->givePermissionTo([
+			'manage-content',
+			'edit-content',
+			'manage-account'
+		]);
+		RoleMeta::create([
+			'title' => 'Editor',
+			'desc' => 'This role has the ability to manage editor/writer users, menus, categories, and collection content.',
+			'protected' => true,
+			'role_id' => $editor->id,
+		]);
+
 		$writer = Role::create(['name' => 'writer'])->givePermissionTo([
-			'edit content',
-			'manage account'
+			'edit-content',
+			'manage-account'
+		]);
+		RoleMeta::create([
+			'title' => 'Writer',
+			'desc' => 'This role has the ability to create collection content.',
+			'protected' => true,
+			'role_id' => $writer->id,
 		]);
 
 		// FRONTEND ROLES
-		$default = Role::create(['name' => 'user'])->givePermissionTo(['manage account']);
+		$default = Role::create(['name' => 'user'])->givePermissionTo(['manage-account']);
+		RoleMeta::create([
+			'title' => 'User',
+			'desc' => 'This role has access to manage their frontend dashboard account.',
+			'protected' => true,
+			'role_id' => $default->id,
+		]);
 
 		// Create super user
 		$user = \App\Models\User::factory()->create([
@@ -50,32 +109,11 @@ class PermissionSeeder extends Seeder {
 		]);
 		$user->assignRole($super);
 
-		// Create demo users
+		// Create a demo user
 		$user = \App\Models\User::factory()->create([
-			'name' => 'Admin User',
-			'email' => 'admin@example.com',
-			'password' => Hash::make('password')
-		]);
-		$user->assignRole($admin);
-
-		$user = \App\Models\User::factory()->create([
-			'name' => 'Editor User',
-			'email' => 'editor@example.com',
-			'password' => Hash::make('password')
-		]);
-		$user->assignRole($editor);
-
-		$user = \App\Models\User::factory()->create([
-			'name' => 'Writer User',
-			'email' => 'writer@example.com',
-			'password' => Hash::make('password')
-		]);
-		$user->assignRole($writer);
-
-		$user = \App\Models\User::factory()->create([
-			'name' => 'Default User',
-			'email' => 'default@example.com',
-			'password' => Hash::make('password')
+			'name' => 'Demo User',
+			'email' => 'james@thecookfam.com',
+			'password' => Hash::make('8aEmwbXA8eJLP99Rtrhc')
 		]);
 		$user->assignRole($default);
 	}

@@ -20,12 +20,13 @@ class UserController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function index() {
+	public function index(Request $request) {
+		// Get list of users based on permissions
 		if (auth()->user()->hasRole('super')) {
 			$users = User::get();
-		} elseif (auth()->user()->hasRole('admin')) {
-			$users = User::permission('manage account')->get();
-		} elseif (auth()->user()->hasRole('editor')) {
+		} elseif (auth()->user()->can('manage-backend')) {
+			$users = User::permission('manage-account')->get();
+		} elseif (auth()->user()->can('manage-content')) {
 			$users = User::role(['editor', 'writer'])->get();
 		}
 
@@ -36,6 +37,7 @@ class UserController extends Controller {
 			'users' => $users,
 		]);
 	}
+
 
 	/**
 	 * * CREATE
@@ -139,6 +141,20 @@ class UserController extends Controller {
 				'confirmed' => 'The password fields do not match.',
 			]
 		);
+
+		// Update record on passed validation
+		User::where('id', $user->id)->update([
+			'name' => $request->name,
+			'email' => $request->email,
+		]);
+
+		// Assign new role
+		$user->syncRoles([$request->role]);
+
+		$message = "User has been updated.";
+
+		// Redirect user to new content edit view
+		return redirect(route('admin.users.edit', [$user]))->with('message', $message);
 	}
 
 

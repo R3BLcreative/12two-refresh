@@ -8,7 +8,7 @@
 	<ul class="flex flex-col flex-auto gap-2">
 		@if($category['heading']['title'] == 'Settings')
 			{{-- USERS --}}
-			@can('manage content')
+			@can('manage-content')
 				<x-acomponents::nav-item :item="json_decode(json_encode([
 					'slug' => 'users',
 					'icon' => 'fa-users',
@@ -19,7 +19,7 @@
 			@endcan
 
 			{{-- OPTIONS --}}
-			@can('manage backend')
+			@can('manage-backend')
 				<x-acomponents::nav-item :item="json_decode(json_encode([
 					'slug' => 'options',
 					'icon' => 'fa-gears',
@@ -30,7 +30,7 @@
 			@endcan
 
 			{{-- MENUS --}}
-			@can('manage content')
+			@can('manage-content')
 				<x-acomponents::nav-item :item="json_decode(json_encode([
 					'slug' => 'menus',
 					'icon' => 'fa-list-dropdown',

@@ -24,6 +24,7 @@ class CollectionType extends Model {
 		'order' => 'integer',
 		'category_id' => 'integer',
 		'force_single' => 'boolean',
+		'protected' => 'boolean',
 	];
 
 	public function collection() {

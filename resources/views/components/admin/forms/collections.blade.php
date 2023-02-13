@@ -12,7 +12,7 @@
 <form
 	action="{{ $action }}"
 	method="post"
-	class="grid grid-cols-8 gap-7 overflow-auto overscroll-contain bg-surface-light-500 p-8"
+	class="grid grid-cols-8 gap-7 overflow-auto overscroll-contain p-8 border-t border-gray-300"
 	enctype="multipart/form-data"
 	novalidate
 	>

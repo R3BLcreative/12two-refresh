@@ -46,12 +46,12 @@ class Kernel extends HttpKernel {
 		'account' => [
 			'auth',
 			'verified',
-			'permission:manage account'
+			'permission:manage-account'
 		],
 
 		'backend' => [
 			'auth',
-			'permission:edit content'
+			'permission:edit-content'
 		],
 	];
 

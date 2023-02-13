@@ -5,7 +5,7 @@ return json_decode(json_encode([
 		// COLLECTION TYPES
 		'collection-types' => [
 			'columns' => [
-				'template' => 'grid-cols-[24px_75px_auto_150px_150px_150px]',
+				'template' => 'grid-cols-[40px_75px_auto_150px_150px_150px]',
 				'items' => [
 					[
 						'text' => 'ID',
@@ -155,7 +155,7 @@ return json_decode(json_encode([
 		//CATEGORIES
 		'categories' => [
 			'columns' => [
-				'template' => 'grid-cols-[24px_auto_150px_150px_150px]',
+				'template' => 'grid-cols-[40px_auto_150px_150px_150px]',
 				'items' => [
 					[
 						'text' => 'ID',
@@ -201,7 +201,7 @@ return json_decode(json_encode([
 		// DEFAULT
 		'default' => [
 			'columns' => [
-				'template' => 'grid-cols-[24px_auto_150px]',
+				'template' => 'grid-cols-[40px_auto_150px]',
 				'items' => [
 					[
 						'text' => 'ID',

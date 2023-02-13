@@ -1,7 +1,7 @@
 <form
 	action="{{ route('admin.users.store') }}"
 	method="post"
-	class="grid grid-cols-8 gap-7 overflow-auto overscroll-contain bg-surface-light-500 p-8"
+	class="grid grid-cols-8 gap-7 overflow-auto overscroll-contain p-8 border-t border-gray-300"
 	enctype="multipart/form-data"
 	novalidate
 	>
@@ -36,12 +36,13 @@
 		value=""
 		required="1" />
 
-	<x-afields::roles
+	<x-afields::select
 		id="role"
 		label="Role"
 		placeholder="Select One"
 		value="{{ old('role') ?? '' }}"
-		required="1" />
+		required="1"
+		:options="$roles" />
 
 	<x-acomponents::button tag="submit" style="primary" icon="fa-user-plus">
 		Create

@@ -2,8 +2,8 @@
 
 namespace App\Composers;
 
-use Spatie\Permission\Models\Role;
 use Illuminate\View\View;
+use App\Models\Role;
 
 class AdminRolesComposer {
 	public function __construct() {
@@ -12,17 +12,21 @@ class AdminRolesComposer {
 	public function compose(View $view) {
 		// Get records
 		if (auth()->user()->hasRole('super')) {
-			$roles = Role::orderBy('name', 'asc')->get();
-		} elseif (auth()->user()->hasRole('admin')) {
-			$roles = Role::where('name', '!=', 'super')->orderBy('name', 'asc')->get();
-		} elseif (auth()->user()->hasRole('editor')) {
+			$roles = Role::orderBy('id', 'asc')->get();
+		} elseif (auth()->user()->can('manage-backend')) {
+			$roles = Role::where('name', '!=', 'super')->orderBy('id', 'asc')->get();
+		} elseif (auth()->user()->can('manage-content')) {
 			$roles = Role::where('name', '!=', 'super')
 				->where('name', '!=', 'admin')
 				->where('name', '!=', 'user')
-				->orderBy('name', 'asc')->get();
+				->orderBy('id', 'asc')->get();
+		}
+
+		foreach ($roles as $role) {
+			$return[$role->name] = $role->meta->title;
 		}
 
 		// Inject into view
-		$view->with('roles', $roles);
+		$view->with('roles', $return);
 	}
 }

@@ -22,7 +22,7 @@ class FortifyServiceProvider extends ServiceProvider {
 		// Redirect backend users to backend
 		$this->app->instance(LoginResponse::class, new class implements LoginResponse {
 			public function toResponse($request) {
-				$home = ($request->user()->can('edit content')) ? '/admin' : '/dashboard';
+				$home = ($request->user()->can('edit-content')) ? '/admin' : '/dashboard';
 
 				return redirect()->intended($home);
 			}

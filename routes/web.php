@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FallbackController;
@@ -206,46 +207,56 @@ Route::middleware(['account'])->prefix('dashboard')->group(function () {
 Route::middleware(['backend'])->prefix('admin')->group(function () {
 	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+	// PERMISSIONS
+	Route::get('/users/permissions', [PermissionController::class, 'index'])->middleware('permission:manage-backend')->name('admin.permissions.index');
+	// create
+	Route::get('/users/permissions/create', [PermissionController::class, 'create'])->middleware('permission:manage-backend')->name('admin.permissions.create');
+	Route::post('/users/permissions', [PermissionController::class, 'store'])->middleware('permission:manage-backend')->name('admin.permissions.store');
+	// edit
+	Route::get('/users/permissions/{permission:id}', [PermissionController::class, 'edit'])->middleware('permission:manage-backend')->name('admin.permissions.edit');
+	Route::patch('/users/permissions/{permission:id}', [PermissionController::class, 'update'])->middleware('permission:manage-backend')->name('admin.permissions.update');
+	// destroy
+	Route::delete('/users/permissions/{permission:id}', [PermissionController::class, 'destroy'])->middleware('permission:manage-backend')->name('admin.permissions.destroy');
 
 	// USERS
-	Route::get('/users', [UserController::class, 'index'])->middleware('permission:manage content')->name('admin.users.index');
+	Route::get('/users', [UserController::class, 'index'])->middleware('permission:manage-content')->name('admin.users.index');
 	// create
-	Route::get('/users/create', [UserController::class, 'create'])->middleware('permission:manage content')->name('admin.users.create');
-	Route::post('/users', [UserController::class, 'store'])->middleware('permission:manage content')->name('admin.users.store');
+	Route::get('/users/create', [UserController::class, 'create'])->middleware('permission:manage-content')->name('admin.users.create');
+	Route::post('/users', [UserController::class, 'store'])->middleware('permission:manage-content')->name('admin.users.store');
 	// edit
-	Route::get('/users/{user:id}', [UserController::class, 'edit'])->middleware('permission:manage content')->name('admin.users.edit');
-	Route::put('/users/{user:id}', [UserController::class, 'update'])->middleware('permission:manage content')->name('admin.users.update');
+	Route::get('/users/{user:id}', [UserController::class, 'edit'])->middleware('permission:manage-content')->name('admin.users.edit');
+	Route::patch('/users/{user:id}', [UserController::class, 'update'])->middleware('permission:manage-content')->name('admin.users.update');
 	// destroy
-	Route::delete('/users/{user:id}', [UserController::class, 'destroy'])->middleware('permission:manage content')->name('admin.users.destroy');
+	Route::delete('/users/{user:id}', [UserController::class, 'destroy'])->middleware('permission:manage-content')->name('admin.users.destroy');
 
 
 	// OPTIONS
-	Route::get('/options', [OptionController::class, 'index'])->middleware('permission:manage backend')->name('admin.options.index');
-	Route::put('/options', [OptionController::class, 'update'])->middleware('permission:manage backend')->name('admin.options.update');
+	Route::get('/options', [OptionController::class, 'index'])->middleware('permission:manage-backend')->name('admin.options.index');
+	Route::put('/options', [OptionController::class, 'update'])->middleware('permission:manage-backend')->name('admin.options.update');
 
 
 	// MENUS
-	Route::get('/menus', [MenuController::class, 'index'])->middleware('permission:manage content')->name('admin.menus.index');
+	Route::get('/menus', [MenuController::class, 'index'])->middleware('permission:manage-content')->name('admin.menus.index');
 	// create
-	Route::get('/menus/create', [MenuController::class, 'create'])->middleware('permission:manage content')->name('admin.menus.create');
-	Route::post('/menus', [MenuController::class, 'store'])->middleware('permission:manage content')->name('admin.menus.store');
+	Route::get('/menus/create', [MenuController::class, 'create'])->middleware('permission:manage-content')->name('admin.menus.create');
+	Route::post('/menus', [MenuController::class, 'store'])->middleware('permission:manage-content')->name('admin.menus.store');
 	// edit
-	Route::get('/menus/{menu:id}', [MenuController::class, 'edit'])->middleware('permission:manage content')->name('admin.menus.edit');
-	Route::put('/menus/{menu:id}', [MenuController::class, 'update'])->middleware('permission:manage content')->name('admin.menus.update');
+	Route::get('/menus/{menu:id}', [MenuController::class, 'edit'])->middleware('permission:manage-content')->name('admin.menus.edit');
+	Route::put('/menus/{menu:id}', [MenuController::class, 'update'])->middleware('permission:manage-content')->name('admin.menus.update');
 	// destroy
-	Route::delete('/menus/{menu:id}', [MenuController::class, 'destroy'])->middleware('permission:manage content')->name('admin.menus.destroy');
+	Route::delete('/menus/{menu:id}', [MenuController::class, 'destroy'])->middleware('permission:manage-content')->name('admin.menus.destroy');
 
 
 	// COLLECTIONS
-	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->middleware('permission:manage content')->name('admin.collections.index');
+	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->middleware('permission:manage-content')->name('admin.collections.index');
 	// create
-	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->middleware('permission:edit content')->name('admin.collections.create');
-	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->middleware('permission:edit content')->name('admin.collections.store');
+	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->middleware('permission:edit-content')->name('admin.collections.create');
+	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->middleware('permission:edit-content')->name('admin.collections.store');
 	// edit
-	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->middleware('permission:edit content')->name('admin.collections.edit');
-	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->middleware('permission:edit content')->name('admin.collections.update');
+	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->middleware('permission:edit-content')->name('admin.collections.edit');
+	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->middleware('permission:edit-content')->name('admin.collections.update');
 	// destroy
-	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->middleware('permission:manage content')->name('admin.collections.destroy');
+	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->middleware('permission:manage-content')->name('admin.collections.destroy');
 });
 
 

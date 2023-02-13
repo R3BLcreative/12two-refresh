@@ -30,7 +30,11 @@ class AppServiceProvider extends ServiceProvider {
 		View::composer('sections.admin.sidebar', AdminNavComposer::class);
 		View::composer('admin.collections.*', AdminCollectionComposer::class);
 		View::composer('components.admin.fields.category', AdminCategoryComposer::class);
-		View::composer('components.admin.fields.roles', AdminRolesComposer::class);
+		View::composer([
+			'components.admin.forms.new-user',
+			'components.admin.forms.edit-user',
+			'components.admin.forms.permissions',
+		], AdminRolesComposer::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS

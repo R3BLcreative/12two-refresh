@@ -4,7 +4,7 @@
 	'subtext',
 ])
 
-<div class="px-8 z-20 bg-white shadow-sm border-b flex flex-col">
+<div class="px-8 z-20 bg-surface-light flex flex-col">
 	<div class="flex items-center justify-between gap-6 min-h-[121px]">
 		<div class="flex items-center gap-4">
 			<i class="fa-duotone {{ $icon }} text-7xl"></i>

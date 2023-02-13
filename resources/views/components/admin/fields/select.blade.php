@@ -6,6 +6,7 @@
 	'placeholder' => 'Select one...',
 	'desc' => '',
 	'required' => '',
+	'options',
 	])
 
 <div class="col-span-full flex flex-col gap-2">
@@ -14,10 +15,11 @@
 	@endisset
 
 	<select type="text" id="{{ $id }}" name="{{ $id }}" class="text-base @error($id) border-error @enderror">
-		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder ?? 'Please select one' }}</option>
-		@foreach ($roles as $role)
-			<option value="{{ $role->name }}" @if($role->name == $value) selected @endif>
-				{{ Str::title($role->name) }}
+		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder }}</option>
+
+		@foreach ($options as $oval => $olabel)
+			<option value="{{ $oval }}" @if($oval == $value) selected @endif>
+				{{ $olabel }}
 			</option>
 		@endforeach
 	</select>
