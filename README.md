@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/R3BLcreative/12two-refresh/blob/production/logo_infinite.jpg?raw=true" width="400" style="max-width:100%;" alt="Infinite Logo" /></p>
+<p align="center"><img src="https://github.com/R3BLcreative/12two-refresh/blob/production/logo_infinite.png?raw=true" width="400" style="max-width:100%;" alt="Infinite Logo" /></p>
 
 <p align="center">SHIELDS HERE EVENTUALLY</p>
 
