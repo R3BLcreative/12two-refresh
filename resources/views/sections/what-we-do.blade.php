@@ -15,43 +15,43 @@
 						'image' => 'img_individualTrips.jpg',
 						'alt' => 'A young woman hugging a young child on a dirt road.',
 						'title' => 'Individual Trips',
-						'href' => route('missions')
+						'href' => route('missions.index')
 					],
 					[
 						'image' => 'img_groupTrips.jpg',
 						'alt' => 'A large group of teenagers and adults posing in front of a church bus.',
 						'title' => 'Group Trips',
-						'href' => route('missions')
+						'href' => route('missions.index')
 					],
 					[
 						'image' => 'img_longterm.jpg',
 						'alt' => 'An image of a young man and a young woman praying with a man in the middle of a park.',
 						'title' => 'Long-Term Missions',
-						'href' => route('missionaries')
+						'href' => route('missions.missionaries')
 					],
 					[
 						'image' => 'img_disasterRelief.jpg',
 						'alt' => 'An arial image of a hurricane over Florida',
 						'title' => 'Disaster Relief',
-						'href' => route('disaster-relief')
+						'href' => route('missions.disaster-relief')
 					],
 					[
 						'image' => 'img_sports.jpg',
 						'alt' => 'An image of a group of men and boys from the 9U Cypress Slam baseball team.',
 						'title' => 'Sports',
-						'href' => route('sports')
+						'href' => route('programs.sports')
 					],
 					[
 						'image' => 'img_churchPlanting.jpg',
 						'alt' => 'An image of three people sitting around a coffee table holding hand in prayer with Bibles opened.',
 						'title' => 'Church Planting',
-						'href' => route('churches')
+						'href' => route('programs.churches')
 					],
 					[
 						'image' => 'img_leadership.jpg',
 						'alt' => 'An image of several teenagers lined up in a row next to train tracks.',
 						'title' => 'Leadership Training',
-						'href' => route('ambassadors')
+						'href' => route('programs.ambassadors')
 					],
 					[
 						'image' => 'img_teaching.jpg',

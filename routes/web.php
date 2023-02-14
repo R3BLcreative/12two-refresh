@@ -230,7 +230,7 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 
 	// ROLES-PERMISSIONS
-	Route::name('roles-permissions.')->prefix('/{slug}')->middleware('permission:manage-backend')->group(function () {
+	Route::name('roles-permissions.')->prefix('/roles-perms/{slug}')->middleware('permission:manage-backend')->group(function () {
 		Route::get('/', [RolePermissionController::class, 'index'])->name('index');
 		// create
 		Route::get('/create', [RolePermissionController::class, 'create'])->name('create');
