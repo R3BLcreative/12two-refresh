@@ -11,9 +11,9 @@
 
 				<nav id="legal-footer-nav">
 					<ul class="flex flex-row items-center justify-between text-sm gap-2 text-body-50">
-						<x-components::footer-nav-item route="privacy">Privacy</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="cookies">Cookies</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="terms">Terms</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="legal.privacy">Privacy</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="legal.cookies">Cookies</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="legal.terms">Terms</x-components::footer-nav-item>
 					</ul>
 				</nav>
 			</div>
@@ -23,9 +23,9 @@
 
 				<nav id="12two-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="12two">About Us</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="beliefs">Our Beliefs</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="faqs">FAQS</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="12two.index">About Us</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="12two.beliefs">Our Beliefs</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="faqs.index">FAQS</x-components::footer-nav-item>
 					</ul>
 				</nav>
 			</div>
@@ -35,9 +35,9 @@
 
 				<nav id="programs-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="sports">Sports Program</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="churches">Church Plants</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="ambassadors">Leadership Journey</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="programs.sports">Sports Program</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="programs.churches">Church Plants</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="programs.ambassadors">Leadership Journey</x-components::footer-nav-item>
 					</ul>
 				</nav>
 			</div>
@@ -57,9 +57,9 @@
 
 				<nav id="missions-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="communities">Our Communities</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="missionaries">12Two Missionaries</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="disaster-relief">Disaster Relief</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="missions.communities">Our Communities</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="missions.missionaries">12Two Missionaries</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="missions.disaster-relief">Disaster Relief</x-components::footer-nav-item>
 					</ul>
 				</nav>
 			</div>
@@ -69,8 +69,8 @@
 
 				<nav id="journal-footer-nav">
 					<ul class="fa-ul flex flex-col items-start justify-start text-lg gap-3 tracking-wider text-body-50">
-						<x-components::footer-nav-item route="news">News / Updates</x-components::footer-nav-item>
-						<x-components::footer-nav-item route="blog">Our Blog</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="journals.news">News / Updates</x-components::footer-nav-item>
+						<x-components::footer-nav-item route="journals.blog">Our Blog</x-components::footer-nav-item>
 						<x-components::footer-nav-item route="journals.trips">Trip Journals</x-components::footer-nav-item>
 					</ul>
 				</nav>

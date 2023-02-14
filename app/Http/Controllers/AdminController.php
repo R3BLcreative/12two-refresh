@@ -27,7 +27,7 @@ class AdminController extends Controller {
 	 * Render the dashboard view
 	 */
 	public function dashboard() {
-		return view('admin.home', ['title' => 'Dashboard']);
+		return view('admin.index', ['title' => 'Dashboard']);
 	}
 
 

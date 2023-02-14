@@ -20,7 +20,12 @@
 					],
 					[
 						'expanded' => 'false',
-						'href' => route('admin.permissions.index'),
+						'href' => route('admin.roles-permissions.index', ['slug' => 'roles']),
+						'label' => 'Roles',
+					],
+					[
+						'expanded' => 'false',
+						'href' => route('admin.roles-permissions.index', ['slug' => 'permissions']),
 						'label' => 'Permissions',
 					],
 				]" />

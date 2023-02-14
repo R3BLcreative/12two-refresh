@@ -1,4 +1,4 @@
-@props(['permissions'])
+@props(['items', 'slug'])
 
 @php $grid_temp = 'grid-cols-[40px_auto_150px_150px]'; @endphp
 
@@ -13,27 +13,27 @@
 <div class="overflow-auto overscroll-contain flex-auto">
 
 	{{-- ITEMS --}}
-	@foreach ($permissions as $permission)
+	@foreach ($items as $item)
 		<div class="grid {{ $grid_temp }} items-center px-8 py-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
 			{{-- ID --}}
 			<div class="text-center font-semibold text-gray-500 border-r border-gray-300">
-				{{ $permission->id }}
+				{{ $item->id }}
 			</div>
 
 			{{-- TITLE --}}
-			<a href="{{ route('admin.permissions.edit', [$permission]) }}" class="flex items-center gap-4 border-r border-gray-300 pl-6 @if($permission->meta->protected) pointer-events-none @endif">
+			<a href="{{ route('admin.roles-permissions.edit', ['slug' => $slug, $item]) }}" class="flex items-center gap-4 border-r border-gray-300 pl-6 @if($item->meta->protected) pointer-events-none @endif">
 				<span class="text-base font-extrabold group-hover/row:text-primary-500">
-					{{ $permission->meta->title }}
+					{{ $item->meta->title }}
 				</span>
 
-				@if($permission->meta->protected)
+				@if($item->meta->protected)
 					<i class="fa-duotone fa-lock opacity-50 text-sm"></i>
 				@endif
 			</a>
 
 			{{-- REF --}}
 			<div class="text-center font-semibold text-sm text-gray-500 border-r border-gray-300">
-				{{ $permission->name }}
+				{{ $item->name }}
 			</div>
 
 			{{-- ACTIONS --}}
@@ -43,30 +43,30 @@
 					<div class="p-4 border-r border-surface-white-500">
 						<span class="font-bold text-dm">Created</span>
 						<span class="font-semibold text-xs">
-							{{ date('m/d/Y', strtotime($permission->created_at)) }}
+							{{ date('m/d/Y', strtotime($item->created_at)) }}
 						</span>
 						<span class="italic text-xs">
-							{{ date('h:i a', strtotime($permission->created_at)) }}
+							{{ date('h:i a', strtotime($item->created_at)) }}
 						</span>
 					</div>
 
 					<div class="p-4">
 						<span class="font-bold text-dm">Updated</span>
 						<span class="font-semibold text-xs">
-							{{ date('m/d/Y', strtotime($permission->updated_at)) }}
+							{{ date('m/d/Y', strtotime($item->updated_at)) }}
 						</span>
 						<span class="italic text-xs">
-							{{ date('h:i a', strtotime($permission->updated_at)) }}
+							{{ date('h:i a', strtotime($item->updated_at)) }}
 						</span>
 					</div>
 				</x-acomponents::actions-item>
 
 				{{-- DELETE --}}
-				@if(!$permission->meta->protected)
-					<x-acomponents::actions-item icon="fa-trash" onclick="event.preventDefault();document.getElementById('delete-form-{{ $permission->id }}').submit();">
+				@if(!$item->meta->protected)
+					<x-acomponents::actions-item icon="fa-trash" onclick="event.preventDefault();document.getElementById('delete-form-{{ $item->id }}').submit();">
 						<form
-						id="delete-form-{{ $permission->id }}"
-						action="{{ route('admin.permissions.destroy', [$permission]) }}"
+						id="delete-form-{{ $item->id }}"
+						action="{{ route('admin.roles-permissions.destroy', ['slug' => $slug, $item]) }}"
 						method="post"
 						class="hidden">@csrf @method('delete')</form>
 					</x-acomponents::actions-item>

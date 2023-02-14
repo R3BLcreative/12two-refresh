@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscribeController;
-use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FallbackController;
@@ -28,10 +28,10 @@ Route::get('/', function () {
 
 
 // ABOUT
-Route::prefix('12two')->group(function () {
+Route::name('12two.')->prefix('12two')->group(function () {
 	Route::get('/', function () {
 		return view('pages.12two');
-	})->name('12two');
+	})->name('index');
 
 	Route::get('/beliefs', function () {
 		return view('pages.beliefs');
@@ -40,10 +40,10 @@ Route::prefix('12two')->group(function () {
 
 
 // PROGRAMS
-Route::prefix('programs')->group(function () {
+Route::name('programs.')->prefix('programs')->group(function () {
 	Route::get('/', function () {
 		return view('pages.programs');
-	})->name('programs');
+	})->name('index');
 
 	Route::get('/sports', function () {
 		return view('pages.sports');
@@ -60,10 +60,10 @@ Route::prefix('programs')->group(function () {
 
 
 // MISSIONS
-Route::prefix('missions')->group(function () {
+Route::name('missions.')->prefix('missions')->group(function () {
 	Route::get('/', function () {
 		return view('pages.missions');
-	})->name('missions');
+	})->name('index');
 
 	Route::get('/communities', function () {
 		return view('pages.communities');
@@ -80,10 +80,10 @@ Route::prefix('missions')->group(function () {
 
 
 // JOURNALS
-Route::prefix('journals')->group(function () {
+Route::name('journals.')->prefix('journals')->group(function () {
 	Route::get('/', function () {
 		return view('pages.journals');
-	})->name('journals');
+	})->name('index');
 
 	Route::get('/news', function () {
 		return view('pages.news');
@@ -95,7 +95,7 @@ Route::prefix('journals')->group(function () {
 
 	Route::get('/trips', function () {
 		return view('pages.trip-journals');
-	})->name('journals.trips');
+	})->name('trips');
 });
 
 
@@ -106,10 +106,10 @@ Route::get('/teaching', function () {
 
 
 // DONATIONS
-Route::prefix('donate')->group(function () {
+Route::name('donate.')->prefix('donate')->group(function () {
 	Route::get('/', function () {
 		return view('pages.donate');
-	})->name('donate');
+	})->name('index');
 
 	Route::get('/thanks', function () {
 		return view('pages.thanks');
@@ -120,143 +120,162 @@ Route::prefix('donate')->group(function () {
 
 
 // SUBSCRIBE
-Route::prefix('subscribe')->group(function () {
-	Route::post('/', [SubscribeController::class, 'subscribe'])->name('subscribe.store');
+Route::name('subscribe.')->prefix('subscribe')->group(function () {
+	Route::post('/', [SubscribeController::class, 'subscribe'])->name('store');
 });
 
-Route::prefix('connect')->group(function () {
+// CONNECT
+Route::name('connect.')->prefix('connect')->group(function () {
 	// Redirect to FAQS page
 	Route::get('/', function () {
 		return view('pages.faqs');
-	})->name('connect');
+	})->name('index');
 
-	Route::post('/', [ConnectController::class, 'store'])->name('connect.store');
+	Route::post('/', [ConnectController::class, 'store'])->name('store');
 });
 
 // LEGAL
-Route::get('/privacy', function () {
-	return view('pages.privacy');
-})->name('privacy');
+Route::name('legal.')->prefix('legal')->group(function () {
+	Route::get('/', function () {
+		return view('pages.terms');
+	})->name('index');
 
-Route::get('/cookies', function () {
-	return view('pages.cookies');
-})->name('cookies');
+	Route::get('/terms', function () {
+		return view('pages.terms');
+	})->name('terms');
 
-Route::get('/terms', function () {
-	return view('pages.terms');
-})->name('terms');
+	Route::get('/privacy', function () {
+		return view('pages.privacy');
+	})->name('privacy');
+
+	Route::get('/cookies', function () {
+		return view('pages.cookies');
+	})->name('cookies');
+});
 
 
 // FAQS
-Route::prefix('faqs')->group(function () {
+Route::name('faqs.')->prefix('faqs')->group(function () {
 	Route::get('/', function () {
 		return view('pages.faqs');
-	})->name('faqs');
+	})->name('index');
 
 	Route::get('/{cat}', function ($cat) {
 		return view('pages.faqs');
-	})->name('faqs.category');
+	})->name('category');
 });
 
 
 // DASHBOARD
-Route::middleware(['account'])->prefix('dashboard')->group(function () {
+Route::name('dashboard.')->prefix('dashboard')->middleware(['account'])->group(function () {
 	Route::get('/', function () {
-		return view('user.dashboard');
-	})->name('dashboard');
+		return view('dashboard.index');
+	})->name('index');
 
 	// USER
 	Route::get('/profile', function () {
-		return view('user.profile');
-	})->name('user.profile');
+		return view('dashboard.profile');
+	})->name('profile');
 
 	Route::get('/security', function () {
-		return view('user.security');
-	})->name('user.security');
+		return view('dashboard.security');
+	})->name('security');
 
 	Route::get('/trips', function () {
-		return view('user.trips');
-	})->name('user.trips');
+		return view('dashboard.trips');
+	})->name('trips');
 
 	Route::get('/donations', function () {
-		return view('user.donations');
-	})->name('user.donations');
+		return view('dashboard.donations');
+	})->name('donations');
 
 	// LEADERS
-	Route::middleware(['account'])->prefix('groups')->group(function () {
+	Route::middleware(['account'])->name('groups')->prefix('groups')->group(function () {
 		Route::get('/', function () {
-			return view('user.groups');
-		})->name('groups');
+			return view('dashboard.groups');
+		})->name('index');
 
 		Route::get('/trips', function () {
-			return view('user.group-trips');
-		})->name('groups.trips');
+			return view('dashboard.group-trips');
+		})->name('trips');
 
 		Route::get('/participants', function () {
-			return view('user.group-participants');
-		})->name('groups.participants');
+			return view('dashboard.group-participants');
+		})->name('participants');
 
 		Route::get('/resources', function () {
-			return view('user.group-resources');
-		})->name('groups.resources');
+			return view('dashboard.group-resources');
+		})->name('resources');
 	});
 });
 
 
 // BACKEND
-Route::middleware(['backend'])->prefix('admin')->group(function () {
-	Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::name('admin.')->prefix('admin')->middleware('backend')->group(function () {
+	Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
-	// PERMISSIONS
-	Route::get('/users/permissions', [PermissionController::class, 'index'])->middleware('permission:manage-backend')->name('admin.permissions.index');
-	// create
-	Route::get('/users/permissions/create', [PermissionController::class, 'create'])->middleware('permission:manage-backend')->name('admin.permissions.create');
-	Route::post('/users/permissions', [PermissionController::class, 'store'])->middleware('permission:manage-backend')->name('admin.permissions.store');
-	// edit
-	Route::get('/users/permissions/{permission:id}', [PermissionController::class, 'edit'])->middleware('permission:manage-backend')->name('admin.permissions.edit');
-	Route::patch('/users/permissions/{permission:id}', [PermissionController::class, 'update'])->middleware('permission:manage-backend')->name('admin.permissions.update');
-	// destroy
-	Route::delete('/users/permissions/{permission:id}', [PermissionController::class, 'destroy'])->middleware('permission:manage-backend')->name('admin.permissions.destroy');
 
 	// USERS
-	Route::get('/users', [UserController::class, 'index'])->middleware('permission:manage-content')->name('admin.users.index');
-	// create
-	Route::get('/users/create', [UserController::class, 'create'])->middleware('permission:manage-content')->name('admin.users.create');
-	Route::post('/users', [UserController::class, 'store'])->middleware('permission:manage-content')->name('admin.users.store');
-	// edit
-	Route::get('/users/{user:id}', [UserController::class, 'edit'])->middleware('permission:manage-content')->name('admin.users.edit');
-	Route::patch('/users/{user:id}', [UserController::class, 'update'])->middleware('permission:manage-content')->name('admin.users.update');
-	// destroy
-	Route::delete('/users/{user:id}', [UserController::class, 'destroy'])->middleware('permission:manage-content')->name('admin.users.destroy');
+	Route::name('users.')->prefix('/users')->middleware('permission:manage-content')->group(function () {
+		Route::get('/', [UserController::class, 'index'])->middleware('permission:manage-content')->name('index');
+		// create
+		Route::get('/create', [UserController::class, 'create'])->name('create');
+		Route::post('/users', [UserController::class, 'store'])->name('store');
+		// edit
+		Route::get('/{user:id}', [UserController::class, 'edit'])->name('edit');
+		Route::patch('/{user:id}', [UserController::class, 'update'])->name('update');
+		// destroy
+		Route::delete('/{user:id}', [UserController::class, 'destroy'])->name('destroy');
+	});
+
+
+	// ROLES-PERMISSIONS
+	Route::name('roles-permissions.')->prefix('/{slug}')->middleware('permission:manage-backend')->group(function () {
+		Route::get('/', [RolePermissionController::class, 'index'])->name('index');
+		// create
+		Route::get('/create', [RolePermissionController::class, 'create'])->name('create');
+		Route::post('/', [RolePermissionController::class, 'store'])->name('store');
+		// edit
+		Route::get('/{item:id}', [RolePermissionController::class, 'edit'])->name('edit');
+		Route::patch('/{item:id}', [RolePermissionController::class, 'update'])->name('update');
+		// destroy
+		Route::delete('/{item:id}', [RolePermissionController::class, 'destroy'])->name('destroy');
+	})->where('slug', 'roles|permissions');
 
 
 	// OPTIONS
-	Route::get('/options', [OptionController::class, 'index'])->middleware('permission:manage-backend')->name('admin.options.index');
-	Route::put('/options', [OptionController::class, 'update'])->middleware('permission:manage-backend')->name('admin.options.update');
+	Route::name('options.')->prefix('/options')->middleware('permission:manage-backend')->group(function () {
+		Route::get('/', [OptionController::class, 'index'])->name('index');
+		Route::put('/', [OptionController::class, 'update'])->name('update');
+	});
 
 
 	// MENUS
-	Route::get('/menus', [MenuController::class, 'index'])->middleware('permission:manage-content')->name('admin.menus.index');
-	// create
-	Route::get('/menus/create', [MenuController::class, 'create'])->middleware('permission:manage-content')->name('admin.menus.create');
-	Route::post('/menus', [MenuController::class, 'store'])->middleware('permission:manage-content')->name('admin.menus.store');
-	// edit
-	Route::get('/menus/{menu:id}', [MenuController::class, 'edit'])->middleware('permission:manage-content')->name('admin.menus.edit');
-	Route::put('/menus/{menu:id}', [MenuController::class, 'update'])->middleware('permission:manage-content')->name('admin.menus.update');
-	// destroy
-	Route::delete('/menus/{menu:id}', [MenuController::class, 'destroy'])->middleware('permission:manage-content')->name('admin.menus.destroy');
+	Route::name('menus.')->prefix('/menus')->middleware('permission:manage-content')->group(function () {
+		Route::get('/', [MenuController::class, 'index'])->name('index');
+		// create
+		Route::get('/create', [MenuController::class, 'create'])->name('create');
+		Route::post('/', [MenuController::class, 'store'])->name('store');
+		// edit
+		Route::get('/{menu:id}', [MenuController::class, 'edit'])->name('edit');
+		Route::put('/{menu:id}', [MenuController::class, 'update'])->name('update');
+		// destroy
+		Route::delete('/{menu:id}', [MenuController::class, 'destroy'])->name('destroy');
+	});
 
 
 	// COLLECTIONS
-	Route::get('/{collectionType:slug}', [AdminController::class, 'index'])->middleware('permission:manage-content')->name('admin.collections.index');
-	// create
-	Route::get('/{collectionType:slug}/create', [AdminController::class, 'create'])->middleware('permission:edit-content')->name('admin.collections.create');
-	Route::post('/{collectionType:slug}', [AdminController::class, 'store'])->middleware('permission:edit-content')->name('admin.collections.store');
-	// edit
-	Route::get('/{collectionType:slug}/{id}', [AdminController::class, 'edit'])->middleware('permission:edit-content')->name('admin.collections.edit');
-	Route::put('/{collectionType:slug}/{id}', [AdminController::class, 'update'])->middleware('permission:edit-content')->name('admin.collections.update');
-	// destroy
-	Route::delete('/{collectionType:slug}/{id}', [AdminController::class, 'destroy'])->middleware('permission:manage-content')->name('admin.collections.destroy');
+	Route::name('collections.')->prefix('/{collectionType:slug}')->middleware('permission:edit-content')->group(function () {
+		Route::get('/', [AdminController::class, 'index'])->name('index');
+		// create
+		Route::get('/create', [AdminController::class, 'create'])->name('create');
+		Route::post('/', [AdminController::class, 'store'])->name('store');
+		// edit
+		Route::get('/{id}', [AdminController::class, 'edit'])->name('edit');
+		Route::put('/{id}', [AdminController::class, 'update'])->name('update');
+		// destroy
+		Route::delete('/{id}', [AdminController::class, 'destroy'])->name('destroy');
+	});
 });
 
 

@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
-use App\Composers\AdminRolesComposer;
+use App\Composers\AdminRolesPermissions;
 use App\Composers\AdminNavComposer;
 use App\Composers\AdminCollectionComposer;
 use App\Composers\AdminCategoryComposer;
@@ -33,8 +33,8 @@ class AppServiceProvider extends ServiceProvider {
 		View::composer([
 			'components.admin.forms.new-user',
 			'components.admin.forms.edit-user',
-			'components.admin.forms.permissions',
-		], AdminRolesComposer::class);
+			'components.admin.forms.roles-permissions',
+		], AdminRolesPermissions::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS

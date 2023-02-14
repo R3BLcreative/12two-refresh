@@ -11,7 +11,7 @@
 
 				@auth
 					{{-- This should be a dropdown eventually --}}
-					<a href="{{ route('dashboard') }}" class="{{ $extraNavClass }}">
+					<a href="{{ route('dashboard.index') }}" class="{{ $extraNavClass }}">
 						<i class="fa-duotone fa-circle-user fa-lg"></i>
 						{{ Auth::user()->name }}
 					</a>
@@ -35,7 +35,7 @@
 						SUBSCRIBE
 					</a>
 
-					<a href="{{ route('donate') }}" class="{{ $extraNavClass }}">
+					<a href="{{ route('donate.index') }}" class="{{ $extraNavClass }}">
 						<span class="flex relative">
 							<i class="fa-duotone fa-gift fa-lg animate-ping absolute inline-flex opacity-75"></i>
 							<i class="fa-duotone fa-gift fa-lg relative inline-flex"></i>
@@ -61,55 +61,55 @@
 				<div class="border-b border-surface-100 mb-6 laptop:hidden"></div>
 
 				<ul class="mobile:grid mobile:gap-8 mobile:grid-cols-2 laptop:flex laptop:gap-14 laptop:flex-row laptop:justify-end">
-					<x-components::main-nav-item route="12two" :items="[
+					<x-components::main-nav-item route="12two.index" :items="[
 						[
-							'route' => '12two',
+							'route' => '12two.index',
 							'text' => 'About Us',
 						],
 						[
-							'route' => 'beliefs',
+							'route' => '12two.beliefs',
 							'text' => 'Our Beliefs',
 						],
 						[
-							'route' => 'faqs',
+							'route' => 'faqs.index',
 							'text' => 'FAQS',
 						]
 					]">12Two</x-components::main-nav-item>
-					<x-components::main-nav-item route="programs" :items="[
+					<x-components::main-nav-item route="programs.index" :items="[
 						[
-							'route' => 'sports',
+							'route' => 'programs.sports',
 							'text' => 'Sports Program',
 						],
 						[
-							'route' => 'churches',
+							'route' => 'programs.churches',
 							'text' => 'Church Plants',
 						],
 						[
-							'route' => 'ambassadors',
+							'route' => 'programs.ambassadors',
 							'text' => 'Leadership Journey',
 						]
 					]">Programs</x-components::main-nav-item>
-					<x-components::main-nav-item route="missions" :items="[
+					<x-components::main-nav-item route="missions.index" :items="[
 						[
-							'route' => 'communities',
+							'route' => 'missions.communities',
 							'text' => 'Our Communities',
 						],
 						[
-							'route' => 'missionaries',
+							'route' => 'missions.missionaries',
 							'text' => '12Two Missionaries',
 						],
 						[
-							'route' => 'disaster-relief',
+							'route' => 'missions.disaster-relief',
 							'text' => 'Disaster Relief',
 						]
 					]">Missions</x-components::main-nav-item>
-					<x-components::main-nav-item route="journals" :items="[
+					<x-components::main-nav-item route="journals.index" :items="[
 						[
-							'route' => 'news',
+							'route' => 'journals.news',
 							'text' => 'News / Updates',
 						],
 						[
-							'route' => 'blog',
+							'route' => 'journals.blog',
 							'text' => 'Our Blog',
 						],
 						[
@@ -125,7 +125,7 @@
 				@guest
 					<x-components::button id="login-responsive-button" tag="a" href="{{ route('login') }}" style="primary" class="tablet:hidden" icon="fa-duotone fa-right-to-bracket">Login</x-components::button>
 
-					<x-components::button id="donate-responsive-button" tag="a" href="{{ route('donate') }}" style="secondary" class="tablet:hidden" icon="fa-duotone fa-gift">Donate</x-components::button>
+					<x-components::button id="donate-responsive-button" tag="a" href="{{ route('donate.index') }}" style="secondary" class="tablet:hidden" icon="fa-duotone fa-gift">Donate</x-components::button>
 				@endguest
 
 				<x-components::socials id="header-responsive-social-nav" class="mobile:flex tablet:hidden !justify-center gap-10" style="text-body-800 hover:text-primary-500 active:text-primary-700 h-fit" />
