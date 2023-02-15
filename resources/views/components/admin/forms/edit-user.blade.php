@@ -34,6 +34,12 @@
 		required="1"
 		:options="$roles" />
 
+	<x-afields::timezones
+		id="timezone"
+		label="Local Timezone"
+		placeholder="Please select one..."
+		value="{{ $user->timezone }}" />
+
 	<x-acomponents::button tag="submit" style="primary" icon="fa-up-from-bracket">
 		Update
 	</x-acomponents::button>

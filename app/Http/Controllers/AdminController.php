@@ -97,14 +97,7 @@ class AdminController extends Controller {
 		}
 
 		// Run validations
-		$request->validate(
-			$validations,
-			[
-				'required' => 'This field is required.',
-				'integer' => 'This field must be a number.',
-				'slug.unique' => 'That slug is already in use.',
-			]
-		);
+		$request->validate($validations);
 
 		// Get list of available app models (Models directory only)
 		$models = $this->getAllModels();
@@ -201,14 +194,7 @@ class AdminController extends Controller {
 		}
 
 		// Run validations
-		$request->validate(
-			$validations,
-			[
-				'required' => 'This field is required.',
-				'integer' => 'This field must be a number.',
-				'slug.unique' => 'That slug is already in use.',
-			]
-		);
+		$request->validate($validations);
 
 		//dd($insertions);
 		// Get list of available app models (Models directory only)

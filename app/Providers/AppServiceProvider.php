@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use App\Composers\AdminTimezonesList;
 use App\Composers\AdminRolesPermissions;
 use App\Composers\AdminNavComposer;
 use App\Composers\AdminCollectionComposer;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider {
 			'components.admin.forms.edit-user',
 			'components.admin.forms.roles-permissions',
 		], AdminRolesPermissions::class);
+		View::composer('components.admin.fields.timezones', AdminTimezonesList::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS

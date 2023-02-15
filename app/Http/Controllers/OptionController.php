@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTimeZone;
 use App\Models\Option;
 
 class OptionController extends Controller {
@@ -13,11 +14,25 @@ class OptionController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function index() {
+	public function index($slug = 'general') {
+		$options = Option::getDefinedOptions();
+
+		// Build tabs
+		foreach ($options as $key => $option) {
+			$tabs[] = [
+				'expanded' => ($key == $slug) ? 'true' : 'false',
+				'href' => route('admin.options.index', ['slug' => $key]),
+				'label' => $option['title'],
+			];
+		}
+
 		return view('admin.options.index', [
-			'icon' => 'fa-gears',
-			'title' => 'Options',
-			'subtext' => 'Application options and settings',
+			'icon' => $options[$slug]['icon'],
+			'title' => $options[$slug]['title'],
+			'subtext' => $options[$slug]['desc'],
+			'slug' => $slug,
+			'tabs' => $tabs,
+			'fields' => $options[$slug]['fields'],
 		]);
 	}
 
@@ -28,13 +43,25 @@ class OptionController extends Controller {
 	 * Update record in DB
 	 *
 	 * @param  Request $request
-	 * @param  Option  $option
 	 * @return void
 	 */
-	public function update(Request $request, Option $option) {
+	public function update(Request $request, $slug = 'general') {
+		$rules = Option::getValidationRules($slug);
 		$request->validate(
-			[],
-			[]
+			$rules
 		);
+
+		// Update record on passed validation
+		$options = Option::getDefinedOptions($slug);
+		foreach ($options['fields'] as $field) {
+			if ($request->input($field['name'])) {
+				Option::set($field['name'], $request->input($field['name']), $field['type']);
+			}
+		}
+
+		$message = "Options have been updated.";
+
+		// Redirect user to new content edit view
+		return back()->with('message', $message);
 	}
 }

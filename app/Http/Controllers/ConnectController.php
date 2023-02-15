@@ -16,10 +16,6 @@ class ConnectController extends Controller {
 				'name'			=> 'required|string',
 				'email'			=> 'required|email|confirmed',
 				'topic'			=> 'required'
-			],
-			[
-				'required'	=> 'This field is required.',
-				'confirmed'	=> 'The email fields do not match.'
 			]
 		);
 

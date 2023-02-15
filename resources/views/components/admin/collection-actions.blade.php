@@ -7,20 +7,20 @@
 			<div class="p-4 border-r border-surface-white-500">
 				<span class="font-bold text-dm">Created</span>
 				<span class="font-semibold text-xs">
-					{{ date('m/d/Y', strtotime($item->created_at)) }}
+					<x-date-time-zone :datetime="$item->created_at" format="m/d/Y" />
 				</span>
 				<span class="italic text-xs">
-					{{ date('h:i a', strtotime($item->created_at)) }}
+					<x-date-time-zone :datetime="$item->created_at" format="h:i a" />
 				</span>
 			</div>
 
 			<div class="p-4">
 				<span class="font-bold text-dm">Updated</span>
 				<span class="font-semibold text-xs">
-					{{ date('m/d/Y', strtotime($item->updated_at)) }}
+					<x-date-time-zone :datetime="$item->updated_at" format="m/d/Y" />
 				</span>
 				<span class="italic text-xs">
-					{{ date('h:i a', strtotime($item->updated_at)) }}
+					<x-date-time-zone :datetime="$item->updated_at" format="h:i a" />
 				</span>
 			</div>
 		</x-acomponents::actions-item>

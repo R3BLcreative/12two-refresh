@@ -245,8 +245,8 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 	// OPTIONS
 	Route::name('options.')->prefix('/options')->middleware('permission:manage-backend')->group(function () {
-		Route::get('/', [OptionController::class, 'index'])->name('index');
-		Route::put('/', [OptionController::class, 'update'])->name('update');
+		Route::get('/{slug?}', [OptionController::class, 'index'])->name('index');
+		Route::put('/{slug}', [OptionController::class, 'update'])->name('update');
 	});
 
 

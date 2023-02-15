@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -97,10 +96,11 @@ class Option extends Model {
 	/**
 	 * Get the validation rules for option fields
 	 *
+	 * @param $group get a specific group of options
 	 * @return array
 	 */
-	public static function getValidationRules() {
-		return self::getDefinedOptionFields()->pluck('rules', 'name')
+	public static function getValidationRules($group = NULL) {
+		return self::getDefinedOptionFields($group)->pluck('rules', 'name')
 			->reject(function ($value) {
 				return is_null($value);
 			})->toArray();
@@ -146,19 +146,31 @@ class Option extends Model {
 	/**
 	 * Get all the option fields from config
 	 *
+	 * @param $group get a specific group of options
 	 * @return Collection
 	 */
-	private static function getDefinedOptionFields() {
-		return collect(config('options'))->pluck('fields')->flatten(1);
+	private static function getDefinedOptionFields($group = NULL) {
+		if (is_null($group)) {
+			$return = collect(config('admin.options'))->pluck('fields')->flatten(1);
+		} else {
+			$return = collect(config('admin.options.' . $group . '.fields'));
+		}
+		return $return;
 	}
 
 	/**
 	 * Get all the option fields from config
 	 *
+	 * @param $group get a specific group of options
 	 * @return Collection
 	 */
-	public static function getDefinedOptions() {
-		return collect(config('options'));
+	public static function getDefinedOptions($group = NULL) {
+		if (is_null($group)) {
+			$return = collect(config('admin.options'));
+		} else {
+			$return = collect(config('admin.options.' . $group));
+		}
+		return $return;
 	}
 
 	/**
@@ -191,16 +203,7 @@ class Option extends Model {
 	 * @return mixed
 	 */
 	public static function getAllOptions() {
-		return Cache::rememberForever('options.all', function () {
-			return self::all();
-		});
-	}
-
-	/**
-	 * Flush the cache
-	 */
-	public static function flushCache() {
-		Cache::forget('options.all');
+		return self::all();
 	}
 
 	/**
@@ -210,13 +213,5 @@ class Option extends Model {
 	 */
 	protected static function boot() {
 		parent::boot();
-
-		static::updated(function () {
-			self::flushCache();
-		});
-
-		static::created(function () {
-			self::flushCache();
-		});
 	}
 }

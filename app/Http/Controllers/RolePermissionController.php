@@ -84,12 +84,6 @@ class RolePermissionController extends Controller {
 				'title' => 'required|unique:' . $table,
 				'roles' => ($slug == 'permissions') ? 'required' : '',
 				'permissions' => ($slug == 'roles') ? 'required' : '',
-			],
-			[
-				'roles.required' => 'Please select at least one role to assign this permission to.',
-				'permissions.required' => 'Please select at least one permission to assign to this role.',
-				'required' => 'This field is required.',
-				'unique' => 'That title is already being used.'
 			]
 		);
 
@@ -184,12 +178,6 @@ class RolePermissionController extends Controller {
 				],
 				'roles' => 'sometimes|required',
 				'permissions' => 'sometimes|required',
-			],
-			[
-				'roles.required' => 'Please select at least one role to assign this permission to.',
-				'permissions.required' => 'Please select at least one permission to assign to this role.',
-				'required' => 'This field is required.',
-				'unique' => 'That permission title is already being used.'
 			]
 		);
 

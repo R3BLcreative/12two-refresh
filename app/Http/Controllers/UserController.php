@@ -71,11 +71,6 @@ class UserController extends Controller {
 				'email' => 'required|email|unique:App\Models\User,email',
 				'password' => $this->passwordRules(),
 				'role' => 'required',
-			],
-			[
-				'required' => 'This field is required.',
-				'email.unique' => 'That email address is associated with another user.',
-				'confirmed' => 'The password fields do not match.',
 			]
 		);
 
@@ -84,7 +79,7 @@ class UserController extends Controller {
 			'name' => $request->name,
 			'email' => $request->email,
 			'password' => Hash::make($request->password),
-			'email_verified_at' => Carbon::now(),
+			'timezone' => $request->timezone,
 		]);
 
 		$user->assignRole($request->role);
@@ -134,11 +129,6 @@ class UserController extends Controller {
 					Rule::unique('users')->ignore($user),
 				],
 				'role' => 'required',
-			],
-			[
-				'required' => 'This field is required.',
-				'email.unique' => 'That email address is associated with another user.',
-				'confirmed' => 'The password fields do not match.',
 			]
 		);
 
@@ -146,6 +136,7 @@ class UserController extends Controller {
 		User::where('id', $user->id)->update([
 			'name' => $request->name,
 			'email' => $request->email,
+			'timezone' => $request->timezone,
 		]);
 
 		// Assign new role

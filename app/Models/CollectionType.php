@@ -38,14 +38,14 @@ class CollectionType extends Model {
 	public function meta() {
 		return $this->hasOne(CollectionTypeMeta::class)
 			->withDefault(function ($meta) {
-				$adminConfig = config('admin');
+				$adminConfig = json_decode(json_encode(config('admin.tables')));
 
-				if (property_exists($adminConfig->tables, $this->slug)) {
+				if (property_exists($adminConfig, $this->slug)) {
 					// Get config for base collections
-					$config = $adminConfig->tables->{$this->slug};
+					$config = $adminConfig->{$this->slug};
 				} else {
 					// Get default config
-					$config = $adminConfig->tables->default;
+					$config = $adminConfig->default;
 				}
 
 				foreach ($config as $key => $value) {

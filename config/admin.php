@@ -1,6 +1,22 @@
 <?php
+// Build list of php timezones
+$timezones = $tzs = timezone_identifiers_list(DateTimeZone::PER_COUNTRY, 'US');
+array_walk($tzs, function (&$item, $key) {
+	$strings = explode('/', $item);
+	$item = str_replace('_', ' ', end($strings));
+});
+$tzlist = array_combine($timezones, $tzs);
 
-return json_decode(json_encode([
+return [
+	/*
+    |--------------------------------------------------------------------------
+    | Tables
+    |--------------------------------------------------------------------------
+    |
+    | This array sets up the table/field structures for the base table/list
+    | views for collections, collection types, and categories.
+    |
+    */
 	'tables' => [
 		// COLLECTION TYPES
 		'collection-types' => [
@@ -232,7 +248,156 @@ return json_decode(json_encode([
 			'fields' => [],
 		],
 	],
-]));
+
+	/*
+    |--------------------------------------------------------------------------
+    | Application Options
+    |--------------------------------------------------------------------------
+    |
+    | This array sets up the options route view and form. Default values are
+    | entered here and loaded in to the app\Models\Option model as a collection.
+		| Once an initial database insertion is completed, option values will be loaded
+		| from the database instead of using this config file. Field display structures 
+		| will still be loaded through this config file though. Retrieval of a singular 
+		| option value is done via the option() helper function located in app\helpers.php.
+		|
+		| 'slug:unique:array - idenitifier for tabs & routes' => [
+		|		'icon:string' => 'Fontawesome Icon ID',
+		|		'title:string' => 'Option tab label and page title',
+		|		'desc:string' => 'Option page title subtext description',
+		|		'fields:array' => [
+		|			array:[
+		|				'type:string' => 'field type for loading dynamic field component, also casting',
+		|				'name:string' => 'form field id/name, and DB ID - UNIQUE',
+		|				'value' => 'default value for form field and option',
+		|				'label:string' => 'Form field label',
+		|				'placeholder:string' => 'Form field placeholder',
+		|				'desc:string' => 'Form field description text',
+		|				'requried:boolean' => 'Is the form field required for submission',
+		|				'rules:string|array' => 'Laravel validation rules',
+		|			]
+		|		]
+		|	]
+    |
+    */
+	'options' => [
+		'general' => [
+			'icon'			=> 'fa-gears',
+			'title'			=> 'General',
+			'desc'			=> 'All general application settings and options.',
+			'fields'		=> [
+				[
+					'type'				=> 'select',
+					'name'				=> 'timezone',
+					'value'				=> 'America/Chicago',
+					'label'				=> 'Local Timezone',
+					'placeholder'	=> 'Please select one...',
+					'options'			=> $tzlist,
+				],
+			],
+		],
+		'stripe' => [
+			'icon'			=> 'fa-brands fa-stripe-s',
+			'title'			=> 'Stripe',
+			'desc'			=> 'All Stripe.com settings and options.',
+			'fields'		=> [
+				[
+					'type'				=> 'section',
+					'name'				=> '',
+					'value'				=> '',
+					'label'				=> 'Stripe Products',
+					'placeholder' => '',
+					'desc'				=> 'All options relating to Stripe Products',
+				],
+				[
+					'type'				=> 'string',
+					'name'				=> 'prod_fee',
+					'value'				=> 'prod_NC3bOrluL2BaPF',
+					'label'				=> 'Fee Product ID (test)',
+					'placeholder' => 'prod_xxxxxxxxx',
+					'desc'				=> 'The Stripe product ID for CC Fee in Test Mode',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+				[
+					'type'				=> 'string',
+					'name'				=> 'prod_live_fee',
+					'value'				=> 'prod_NC3c4qRBJo6Zf4',
+					'label'				=> 'Fee Product ID (live)',
+					'placeholder' => 'prod_xxxxxxxxx',
+					'desc'				=> 'The Stripe product ID for CC Fee in Live Mode',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+				[
+					'type'				=> 'string',
+					'name'				=> 'prod_donation',
+					'value'				=> 'prod_NBkPvuz0JDBOkb',
+					'label'				=> 'Donation Product ID (test)',
+					'placeholder' => 'prod_xxxxxxxxx',
+					'desc'				=> 'The Stripe product ID for Donations in Test Mode',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+				[
+					'type'				=> 'string',
+					'name'				=> 'prod_live_donation',
+					'value'				=> 'prod_NBkm0zFR4sB5SR',
+					'label'				=> 'Donation Product ID (live)',
+					'placeholder' => 'prod_xxxxxxxxx',
+					'desc'				=> 'The Stripe product ID for Donations in Live Mode',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+				[
+					'type'				=> 'section',
+					'name'				=> '',
+					'value'				=> '',
+					'label'				=> 'Stripe Prices',
+					'placeholder' => '',
+					'desc'				=> 'All options relating to Stripe Prices',
+				],
+				[
+					'type'				=> 'string',
+					'name'				=> 'price_bears',
+					'value'				=> 'price_1MRMtMJ7flyAAmsm8gX89mOj',
+					'label'				=> 'PrayerBear Price ID (test)',
+					'placeholder' => 'price_xxxxxxxxx',
+					'desc'				=> 'The Stripe price ID for PrayersBears in Test Mode',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+				[
+					'type'				=> 'string',
+					'name'				=> 'price_live_bears',
+					'value'				=> 'price_1MRNHVJ7flyAAmsmPxSxAr90',
+					'label'				=> 'PrayerBear Price ID (live)',
+					'placeholder' => 'price_xxxxxxxxx',
+					'desc'				=> 'The Stripe price ID for PrayersBears in Live Mode',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+			],
+		],
+		'mailchimp' => [
+			'icon'			=> 'fa-brands fa-mailchimp',
+			'title'			=> 'MailChimp',
+			'desc'			=> 'All MailChimp.com settings and options.',
+			'fields'		=> [
+				[
+					'type'				=> 'string',
+					'name'				=> 'example',
+					'value'				=> 'Example',
+					'label'				=> 'Example',
+					'placeholder' => 'Example',
+					'desc'				=> 'Example',
+					'required'		=> 1,
+					'rules'				=> 'required',
+				],
+			],
+		],
+	],
+];
 
 // TESTIMONIALS - COLUMNS
 // 'template' => 'grid-cols-[24px_150px_150px_auto_150px]',
