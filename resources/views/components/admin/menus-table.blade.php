@@ -1,4 +1,4 @@
-@props(['items', 'slug'])
+@props(['items'])
 
 @php $grid_temp = 'grid-cols-[40px_auto_150px_150px]'; @endphp
 
@@ -11,7 +11,6 @@
 </div>
 
 <div class="overflow-auto overscroll-contain flex-auto">
-
 	@if($items->count() > 0)
 		{{-- ITEMS --}}
 		@foreach ($items as $item)
@@ -22,19 +21,15 @@
 				</div>
 
 				{{-- TITLE --}}
-				<a href="{{ route('admin.roles-permissions.edit', ['slug' => $slug, $item]) }}" class="flex items-center gap-4 border-r border-gray-300 pl-6 @if($item->meta->protected) pointer-events-none @endif">
+				<a href="{{ route('admin.menus.edit', [$item]) }}" class="flex items-center gap-4 border-r border-gray-300 pl-6">
 					<span class="text-base font-extrabold group-hover/row:text-primary-500">
-						{{ $item->meta->title }}
+						{{ $item->title }}
 					</span>
-
-					@if($item->meta->protected)
-						<i class="fa-duotone fa-lock opacity-50 text-sm"></i>
-					@endif
 				</a>
 
 				{{-- REF --}}
 				<div class="text-center font-semibold text-sm text-gray-500 border-r border-gray-300">
-					{{ $item->name }}
+					{{ $item->slug }}
 				</div>
 
 				{{-- ACTIONS --}}
@@ -63,21 +58,18 @@
 					</x-acomponents::actions-item>
 
 					{{-- DELETE --}}
-					@if(!$item->meta->protected)
-						<x-acomponents::actions-item icon="fa-trash" onclick="event.preventDefault();document.getElementById('delete-form-{{ $item->id }}').submit();">
-							<form
-							id="delete-form-{{ $item->id }}"
-							action="{{ route('admin.roles-permissions.destroy', ['slug' => $slug, $item]) }}"
-							method="post"
-							class="hidden">@csrf @method('delete')</form>
-						</x-acomponents::actions-item>
-					@endif
+					<x-acomponents::actions-item icon="fa-trash" onclick="event.preventDefault();document.getElementById('delete-form-{{ $item->id }}').submit();">
+						<form
+						id="delete-form-{{ $item->id }}"
+						action="{{ route('admin.menus.destroy', [$item]) }}"
+						method="post"
+						class="hidden">@csrf @method('delete')</form>
+					</x-acomponents::actions-item>
 
 				</div>
 
 			</div>
 		@endforeach
-
 	@else
 			<x-acomponents::goose-egg />
 	@endif

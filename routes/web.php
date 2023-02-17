@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\OptionController;
+use App\Http\Controllers\MenuLocationController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\DonateController;
@@ -216,7 +217,7 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 
 	// USERS
-	Route::name('users.')->prefix('/users')->middleware('permission:manage-content')->group(function () {
+	Route::name('users.')->prefix('users')->middleware('permission:manage-content')->group(function () {
 		Route::get('/', [UserController::class, 'index'])->middleware('permission:manage-content')->name('index');
 		// create
 		Route::get('/create', [UserController::class, 'create'])->name('create');
@@ -230,7 +231,7 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 
 	// ROLES-PERMISSIONS
-	Route::name('roles-permissions.')->prefix('/roles-perms/{slug}')->middleware('permission:manage-backend')->group(function () {
+	Route::name('roles-permissions.')->prefix('roles-perms/{slug}')->middleware('permission:manage-backend')->group(function () {
 		Route::get('/', [RolePermissionController::class, 'index'])->name('index');
 		// create
 		Route::get('/create', [RolePermissionController::class, 'create'])->name('create');
@@ -244,17 +245,16 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 
 	// OPTIONS
-	Route::name('options.')->prefix('/options')->middleware('permission:manage-backend')->group(function () {
+	Route::name('options.')->prefix('options')->middleware('permission:manage-backend')->group(function () {
 		Route::get('/{slug?}', [OptionController::class, 'index'])->name('index');
 		Route::put('/{slug}', [OptionController::class, 'update'])->name('update');
 	});
 
 
 	// MENUS
-	Route::name('menus.')->prefix('/menus')->middleware('permission:manage-content')->group(function () {
+	Route::name('menus.')->prefix('menus')->middleware('permission:manage-content')->group(function () {
 		Route::get('/', [MenuController::class, 'index'])->name('index');
 		// create
-		Route::get('/create', [MenuController::class, 'create'])->name('create');
 		Route::post('/', [MenuController::class, 'store'])->name('store');
 		// edit
 		Route::get('/{menu:id}', [MenuController::class, 'edit'])->name('edit');
@@ -265,7 +265,7 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 
 	// COLLECTIONS
-	Route::name('collections.')->prefix('/{collectionType:slug}')->middleware('permission:edit-content')->group(function () {
+	Route::name('collections.')->prefix('{collectionType:slug}')->middleware('permission:edit-content')->group(function () {
 		Route::get('/', [AdminController::class, 'index'])->name('index');
 		// create
 		Route::get('/create', [AdminController::class, 'create'])->name('create');

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CollectionType;
 use App\Models\Category;
 
-class AdminCategoryComposer {
+class AdminCategoryDropdown {
 	protected $collectionType;
 
 	public function __construct(Request $request) {

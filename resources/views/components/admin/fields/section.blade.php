@@ -1,12 +1,12 @@
 @props([
-	'class' => '',
+	'class' => 'col-span-full',
 	'label' => '',
-	'desc' => '',
+	'desc',
 	])
 
-<div class="col-span-full flex flex-col gap-2">
+<div class="flex flex-col gap-2 {{ $class }}">
 	@isset($label)
-		<x-acomponents::heading tag="h3" style="h3" :subtext="$desc">
+		<x-acomponents::heading tag="h3" style="h3" :subtext="$desc ?? ''">
 			{{ $label }}
 		</x-acomponents::heading>
 	@endisset

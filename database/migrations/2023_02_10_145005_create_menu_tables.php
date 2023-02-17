@@ -15,14 +15,16 @@ return new class extends Migration {
 			$table->id();
 			$table->string('title');
 			$table->string('slug')->unique();
-			$table->json('menu')->nullable();
 			$table->timestamps();
 		});
 
-		Schema::create('menu_locations', function (Blueprint $table) {
+		Schema::create('menu_items', function (Blueprint $table) {
 			$table->id();
-			$table->string('title');
+			$table->string('label');
 			$table->string('slug')->unique();
+			$table->boolean('target')->default(false);
+			$table->unsignedBigInteger('parent_id')->nullable();
+			$table->foreign('parent_id')->references('id')->on('menu_items');
 			$table->unsignedBigInteger('menu_id');
 			$table->foreign('menu_id')->references('id')->on('menus');
 			$table->timestamps();
@@ -36,6 +38,6 @@ return new class extends Migration {
 	 */
 	public function down() {
 		Schema::dropIfExists('menus');
-		Schema::dropIfExists('menu_locations');
+		Schema::dropIfExists('menu_items');
 	}
 };

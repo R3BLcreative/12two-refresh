@@ -8,5 +8,4 @@ Infinite is... Eventually a description of the CMS and features. Vivamus sagitti
 
 ## TO-DOS
 
-- Need to combine options config into admin config and update Model, Helpers, and anything else tied to the implementation.
-- Need to add an option field for setting the local timezone that will update all dates/times to display dates/times in local timezone instead of server timezone.
+- Menu locations need a dynamic inline component for display on the frontend

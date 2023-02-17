@@ -1,15 +1,15 @@
 @props([
-	'class' => '',
+	'class' => 'col-span-full',
 	'id',
 	'label',
 	'value' => '',
 	'placeholder' => 'Select one...',
-	'desc' => '',
+	'desc',
 	'required' => '',
 	'options',
 	])
 
-<div class="col-span-full flex flex-col gap-2">
+<div class="flex flex-col gap-2 {{ $class }}">
 	@isset($label)
 		<x-afields::label :id="$id" :required="$required">{!! $label !!}</x-afields::label>
 	@endisset

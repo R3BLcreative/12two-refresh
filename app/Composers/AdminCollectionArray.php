@@ -6,7 +6,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\CollectionType;
 
-class AdminCollectionComposer {
+class AdminCollectionArray {
 	protected $request;
 
 	public function __construct(Request $request) {

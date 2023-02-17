@@ -5,7 +5,7 @@ namespace App\Composers;
 use Illuminate\View\View;
 use App\Models\Category;
 
-class AdminNavComposer {
+class AdminNav {
 	public function __construct() {
 	}
 

@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
 use App\Composers\AdminTimezonesList;
 use App\Composers\AdminRolesPermissions;
-use App\Composers\AdminNavComposer;
-use App\Composers\AdminCollectionComposer;
-use App\Composers\AdminCategoryComposer;
+use App\Composers\AdminNav;
+use App\Composers\AdminCollectionMenuOptions;
+use App\Composers\AdminCollectionArray;
+use App\Composers\AdminCategoryDropdown;
 
 class AppServiceProvider extends ServiceProvider {
 	/**
@@ -28,15 +29,16 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot() {
 		// VIEW COMPOSERS
-		View::composer('sections.admin.sidebar', AdminNavComposer::class);
-		View::composer('admin.collections.*', AdminCollectionComposer::class);
-		View::composer('components.admin.fields.category', AdminCategoryComposer::class);
+		View::composer('sections.admin.sidebar', AdminNav::class);
+		View::composer('admin.collections.*', AdminCollectionArray::class);
+		View::composer('components.admin.fields.category', AdminCategoryDropdown::class);
 		View::composer([
 			'components.admin.forms.new-user',
 			'components.admin.forms.edit-user',
 			'components.admin.forms.roles-permissions',
 		], AdminRolesPermissions::class);
 		View::composer('components.admin.fields.timezones', AdminTimezonesList::class);
+		View::composer('components.admin.forms.edit-menu', AdminCollectionMenuOptions::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS

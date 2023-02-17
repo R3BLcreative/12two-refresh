@@ -1,12 +1,4 @@
 <?php
-// Build list of php timezones
-$timezones = $tzs = timezone_identifiers_list(DateTimeZone::PER_COUNTRY, 'US');
-array_walk($tzs, function (&$item, $key) {
-	$strings = explode('/', $item);
-	$item = str_replace('_', ' ', end($strings));
-});
-$tzlist = array_combine($timezones, $tzs);
-
 return [
 	/*
     |--------------------------------------------------------------------------
@@ -285,16 +277,7 @@ return [
 			'icon'			=> 'fa-gears',
 			'title'			=> 'General',
 			'desc'			=> 'All general application settings and options.',
-			'fields'		=> [
-				[
-					'type'				=> 'select',
-					'name'				=> 'timezone',
-					'value'				=> 'America/Chicago',
-					'label'				=> 'Local Timezone',
-					'placeholder'	=> 'Please select one...',
-					'options'			=> $tzlist,
-				],
-			],
+			'fields'		=> [],
 		],
 		'stripe' => [
 			'icon'			=> 'fa-brands fa-stripe-s',
@@ -374,23 +357,6 @@ return [
 					'label'				=> 'PrayerBear Price ID (live)',
 					'placeholder' => 'price_xxxxxxxxx',
 					'desc'				=> 'The Stripe price ID for PrayersBears in Live Mode',
-					'required'		=> 1,
-					'rules'				=> 'required',
-				],
-			],
-		],
-		'mailchimp' => [
-			'icon'			=> 'fa-brands fa-mailchimp',
-			'title'			=> 'MailChimp',
-			'desc'			=> 'All MailChimp.com settings and options.',
-			'fields'		=> [
-				[
-					'type'				=> 'string',
-					'name'				=> 'example',
-					'value'				=> 'Example',
-					'label'				=> 'Example',
-					'placeholder' => 'Example',
-					'desc'				=> 'Example',
 					'required'		=> 1,
 					'rules'				=> 'required',
 				],

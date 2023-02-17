@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 
@@ -18,21 +20,7 @@ class MenuController extends Controller {
 			'icon' => 'fa-list-dropdown',
 			'title' => 'Menus',
 			'subtext' => 'Frontend navigation structures',
-		]);
-	}
-
-	/**
-	 * * CREATE
-	 * 
-	 * Return creation form view
-	 *
-	 * @return view
-	 */
-	public function create() {
-		return view('admin.menus.create', [
-			'icon' => 'fa-square-plus',
-			'title' => 'Create New Menu',
-			'subtext' => '',
+			'items' => Menu::all(),
 		]);
 	}
 
@@ -46,10 +34,24 @@ class MenuController extends Controller {
 	 * @return void
 	 */
 	public function store(Request $request) {
+		// Validate request
 		$request->validate(
-			[],
-			[]
+			['title' => 'required|unique:menus']
 		);
+
+		// Create slug from title
+		$slug = Str::slug($request->title);
+
+		// Create record
+		$menu = Menu::create([
+			'title' => $request->title,
+			'slug' => $slug,
+		]);
+
+		$message = "Menu has been created.";
+
+		// Redirect user to list view
+		return back()->with('message', $message);
 	}
 
 
@@ -66,6 +68,7 @@ class MenuController extends Controller {
 			'icon' => 'fa-pen-to-square',
 			'title' => 'Edit Menu',
 			'subtext' => '',
+			'item' => Menu::where('id', $menu->id)->first(),
 		]);
 	}
 
@@ -80,10 +83,29 @@ class MenuController extends Controller {
 	 * @return void
 	 */
 	public function update(Request $request, Menu $menu) {
+		// Validate request
 		$request->validate(
-			[],
-			[]
+			[
+				'title' => [
+					'required',
+					Rule::unique('menus')->ignore($menu),
+				]
+			]
 		);
+
+		// Create slug from title
+		$slug = Str::slug($request->title);
+
+		// Update record
+		$updated = Menu::where('id', $menu->id)->update([
+			'title' => $request->title,
+			'slug' => $slug,
+		]);
+
+		$message = "Menu has been updated.";
+
+		// Redirect user to list view
+		return back()->with('message', $message);
 	}
 
 
@@ -96,5 +118,12 @@ class MenuController extends Controller {
 	 * @return void
 	 */
 	public function destroy(Menu $menu) {
+		// Delete menu
+		Menu::where('id', $menu->id)->delete();
+
+		$message = "Menu has been deleted.";
+
+		// Redirect user to list view
+		return redirect(route('admin.menus.index'))->with('message', $message);
 	}
 }
