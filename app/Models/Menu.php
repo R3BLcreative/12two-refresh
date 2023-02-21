@@ -16,8 +16,8 @@ class Menu extends Model {
 		'menu',
 	];
 
-	public function locations() {
-		return $this->hasMany(MenuLocation::class);
+	public function items() {
+		return $this->hasMany(MenuItem::class)->orderBy('order', 'asc');
 	}
 
 	protected function title(): Attribute {
@@ -29,13 +29,6 @@ class Menu extends Model {
 	protected function slug(): Attribute {
 		return Attribute::make(
 			set: fn ($value) => Str::slug($value),
-		);
-	}
-
-	protected function menu(): Attribute {
-		return Attribute::make(
-			get: fn ($value) => json_decode($value),
-			set: fn ($value) => json_encode($value),
 		);
 	}
 }

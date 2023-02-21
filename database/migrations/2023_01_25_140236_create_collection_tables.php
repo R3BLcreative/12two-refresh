@@ -49,6 +49,7 @@ return new class extends Migration {
 
 		Schema::create('collections', function (Blueprint $table) {
 			$table->id();
+			$table->string('title');
 			$table->string('slug')->unique();
 			$table->unsignedBigInteger('collection_type_id');
 			$table->foreign('collection_type_id')->references('id')->on('collection_types');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\MenuItem;
 use App\Models\Menu;
 
 class MenuController extends Controller {
@@ -68,7 +69,7 @@ class MenuController extends Controller {
 			'icon' => 'fa-pen-to-square',
 			'title' => 'Edit Menu',
 			'subtext' => '',
-			'item' => Menu::where('id', $menu->id)->first(),
+			'menu' => Menu::where('id', $menu->id)->first(),
 		]);
 	}
 
@@ -83,13 +84,22 @@ class MenuController extends Controller {
 	 * @return void
 	 */
 	public function update(Request $request, Menu $menu) {
+		// dd($request);
 		// Validate request
 		$request->validate(
 			[
 				'title' => [
 					'required',
 					Rule::unique('menus')->ignore($menu),
-				]
+				],
+				'menu_items' => [
+					'required',
+					'array'
+				],
+				'menu_items.*.label' => 'required',
+				'menu_items.*.target' => 'required',
+				'menu_items.*.link' => 'required',
+				'menu_items.*.url' => 'required|url',
 			]
 		);
 
@@ -101,6 +111,21 @@ class MenuController extends Controller {
 			'title' => $request->title,
 			'slug' => $slug,
 		]);
+
+		// Delete all menu items in DB with menu id
+		$removed = MenuItem::where('menu_id', $menu->id)->delete();
+
+		// Create Menu Items
+		foreach ($request->menu_items as $key => $menu_item) {
+			MenuItem::create([
+				'order' => $key,
+				'label' => $menu_item['label'],
+				'link' => $menu_item['url'],
+				'type' => ($menu_item['link'] == 'custom') ? 'custom' : 'collection',
+				'target' => $menu_item['target'],
+				'menu_id' => $menu->id,
+			]);
+		}
 
 		$message = "Menu has been updated.";
 

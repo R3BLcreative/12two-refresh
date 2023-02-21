@@ -177,6 +177,23 @@ return [
 			'unique' => 'That email address is associated with another user.',
 			'confirmed' => 'The email fields do not match.',
 		],
+		'menu_items' => [
+			'required' => 'At least one menu item is required.',
+			'array' => 'Something\'s wrong with your menu.'
+		],
+		'menu_items.*.label' => [
+			'required' => 'The label field is required.',
+		],
+		'menu_items.*.target' => [
+			'required' => 'Please select an option for the target field.',
+		],
+		'menu_items.*.link' => [
+			'required' => 'Please select an option for the links to field.',
+		],
+		'menu_items.*.url' => [
+			'required' => 'Please enter a valid URL in the URL field.',
+			'url' => 'Please enter a valid URL in the URL field.',
+		],
 	],
 
 	/*

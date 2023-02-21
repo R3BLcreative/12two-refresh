@@ -10,12 +10,12 @@
 		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
 			{{-- EDIT FORM --}}
 			<x-aforms::edit-menu
-				:action="route('admin.menus.update', [$item])"
+				:action="route('admin.menus.update', [$menu])"
 				method="put"
 				btnStyle="primary"
 				btnIcon="fa-up-from-bracket"
 				btnText="Update"
-				:item="$item" />
+				:menu="$menu" />
 		</div>
 	</x-slot:main>
 

@@ -20,9 +20,11 @@ return new class extends Migration {
 
 		Schema::create('menu_items', function (Blueprint $table) {
 			$table->id();
+			$table->integer('order');
 			$table->string('label');
-			$table->string('slug')->unique();
+			$table->string('link');
 			$table->boolean('target')->default(false);
+			$table->string('type');
 			$table->unsignedBigInteger('parent_id')->nullable();
 			$table->foreign('parent_id')->references('id')->on('menu_items');
 			$table->unsignedBigInteger('menu_id');

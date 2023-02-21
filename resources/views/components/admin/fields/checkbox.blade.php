@@ -7,6 +7,7 @@
 	'required' => '',
 	'options',
 	'cols' => 'columns-2',
+	'disabled',
 	])
 
 <div class="flex flex-col gap-2 {{ $class }}">
@@ -20,12 +21,13 @@
 
 	<ul class="{{ $cols }}">
 		@foreach($options as $cid => $clabel)
-			<li class="flex items-center gap-3 px-4 py-2">
+			<li class="flex items-center gap-3 px-4 py-2 @if($disabled) opacity-50 @endif">
 				<input
 					type="checkbox"
 					id="{{ $id }}_{{ $cid }}"
 					name="{{ $id }}[{{ $cid }}]"
 					value="1"
+					@isset($disabled) disabled @endisset
 					class=""
 					@isset($values[$cid]) checked @endisset />
 				<label for="{{ $id }}_{{ $cid }}" class="font-semibold">{!! $clabel !!}</label>

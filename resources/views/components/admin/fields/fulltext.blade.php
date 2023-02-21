@@ -1,11 +1,13 @@
 @props([
 	'class' => 'col-span-full',
 	'id',
+	'name',
 	'label',
 	'value' => '',
 	'placeholder' => '',
 	'desc',
 	'required' => '',
+	'disabled',
 	])
 
 <div class="flex flex-col gap-2 {{ $class }}">
@@ -32,9 +34,10 @@
 
 	<textarea
 		id="{{ $id }}"
-		name="{{ $id }}"
+		name="{{ $name ?? $id }}"
 		placeholder="{{ $placeholder ?? '' }}"
-		class="text-base w-full tinyMCE @error($id) border-error @enderror">{{ $value ?? '' }}</textarea>
+		@isset($disabled) disabled @endisset
+		class="text-base w-full tinyMCE disabled:opacity-50 @error($id) border-error @enderror">{{ $value ?? '' }}</textarea>
 
 	@isset($desc)
 		<x-afields::description>{{ $desc }}</x-afields::description>

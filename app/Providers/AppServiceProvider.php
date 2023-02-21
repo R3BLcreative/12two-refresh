@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider {
 			'components.admin.forms.roles-permissions',
 		], AdminRolesPermissions::class);
 		View::composer('components.admin.fields.timezones', AdminTimezonesList::class);
-		View::composer('components.admin.forms.edit-menu', AdminCollectionMenuOptions::class);
+		View::composer('components.admin.fields.menu-builder-list', AdminCollectionMenuOptions::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS
