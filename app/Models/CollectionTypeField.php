@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class CollectionTypeMeta extends Model {
+class CollectionTypeField extends Model {
 	use HasFactory;
 
 	protected $fillable = [
+		'label',
+		'slug',
+		'type',
+		'class',
+		'options',
 		'collection_type_id',
-		'columns',
-		'fields',
 	];
 
 	protected $casts = [
@@ -24,14 +27,17 @@ class CollectionTypeMeta extends Model {
 		return $this->belongsTo(CollectionType::class);
 	}
 
-	protected function columns(): Attribute {
+	public function values() {
+		return $this->hasMany(CollectionFieldValue::class);
+	}
+
+	protected function slug(): Attribute {
 		return Attribute::make(
-			get: fn ($value) => json_decode($value),
-			set: fn ($value) => json_encode($value),
+			set: fn ($value) => Str::slug($value),
 		);
 	}
 
-	protected function fields(): Attribute {
+	protected function options(): Attribute {
 		return Attribute::make(
 			get: fn ($value) => json_decode($value),
 			set: fn ($value) => json_encode($value),

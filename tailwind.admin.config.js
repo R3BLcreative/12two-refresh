@@ -10,6 +10,7 @@ module.exports = {
 		'./config/options.php',
 		'./config/admin.php',
 	],
+	safelist: ['uppercase', 'italic', 'text-center'],
 	theme: {
 		screens: {
 			mobile: '0px',

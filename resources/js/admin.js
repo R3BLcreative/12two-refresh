@@ -21,3 +21,4 @@ console.log(`
 
 import './bootstrap';
 import './admin-menu-builder';
+import './admin-form-builder';

@@ -19,7 +19,7 @@
 	@csrf
 	@method($method)
 
-	@foreach ($collectionType->meta->fields as $field)
+	@foreach ($collectionType->fields->items as $field)
 		@if(($method == 'post' && in_array('create', $field->forms)) || ($method == 'put' && in_array('edit', $field->forms)))
 			<x-dynamic-component
 				component="{{ 'admin.fields.' . $field->type }}"
@@ -34,7 +34,9 @@
 		@endif
 	@endforeach
 
-	<x-acomponents::button tag="submit" :style="$btnStyle" :icon="$btnIcon">
-		{!! $btnText !!}
-	</x-acomponents::button>
+	<div class="col-span-full flex justify-end">
+		<x-acomponents::button tag="submit" :style="$btnStyle" :icon="$btnIcon">
+			{!! $btnText !!}
+		</x-acomponents::button>
+	</div>
 </form>

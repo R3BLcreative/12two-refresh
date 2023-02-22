@@ -34,16 +34,32 @@ return new class extends Migration {
 			$table->foreign('category_id')->references('id')->on('categories');
 			$table->boolean('force_single')->default(false);
 			$table->boolean('protected')->default(false);
+			$table->boolean('allow_form_builder')->default(false);
 			$table->string('permission')->default('edit-content');
 			$table->timestamps();
 		});
 
-		Schema::create('collection_type_metas', function (Blueprint $table) {
+		Schema::create('collection_type_columns', function (Blueprint $table) {
 			$table->id();
+			$table->string('label');
+			$table->string('slug')->unique();
+			$table->string('type');
+			$table->string('class');
+			$table->json('options')->nullable();
 			$table->unsignedBigInteger('collection_type_id');
 			$table->foreign('collection_type_id')->references('id')->on('collection_types');
-			$table->json('columns')->nullable();
-			$table->json('fields')->nullable();
+			$table->timestamps();
+		});
+
+		Schema::create('collection_type_fields', function (Blueprint $table) {
+			$table->id();
+			$table->string('label');
+			$table->string('slug')->unique();
+			$table->string('type');
+			$table->string('class');
+			$table->json('options')->nullable();
+			$table->unsignedBigInteger('collection_type_id');
+			$table->foreign('collection_type_id')->references('id')->on('collection_types');
 			$table->timestamps();
 		});
 
@@ -53,7 +69,16 @@ return new class extends Migration {
 			$table->string('slug')->unique();
 			$table->unsignedBigInteger('collection_type_id');
 			$table->foreign('collection_type_id')->references('id')->on('collection_types');
-			$table->json('fields')->nullable();
+			$table->timestamps();
+		});
+
+		Schema::create('collection_field_values', function (Blueprint $table) {
+			$table->id();
+			$table->unsignedBigInteger('collection_id');
+			$table->foreign('collection_id')->references('id')->on('collections');
+			$table->unsignedBigInteger('collection_type_field_id');
+			$table->foreign('collection_type_field_id')->references('id')->on('collection_type_fields');
+			$table->json('value')->nullable();
 			$table->timestamps();
 		});
 

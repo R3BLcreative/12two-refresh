@@ -8,6 +8,7 @@
 	'desc',
 	'required' => '',
 	'disabled',
+	'tabindex' => '0',
 	])
 
 <div class="flex flex-col gap-2 {{ $class }}">
@@ -35,9 +36,11 @@
 	<textarea
 		id="{{ $id }}"
 		name="{{ $name ?? $id }}"
+		tabindex="{{ $tabindex }}"
 		placeholder="{{ $placeholder ?? '' }}"
 		@isset($disabled) disabled @endisset
-		class="text-base w-full tinyMCE disabled:opacity-50 @error($id) border-error @enderror">{{ $value ?? '' }}</textarea>
+		class="text-base w-full tinyMCE disabled:opacity-50 @error($id) border-error @enderror"
+	>{{ $value ?? '' }}</textarea>
 
 	@isset($desc)
 		<x-afields::description>{{ $desc }}</x-afields::description>

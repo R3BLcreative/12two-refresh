@@ -65,7 +65,9 @@
 			:options="$roles" />
 	@endif
 
-	<x-acomponents::button tag="submit" :style="$btnStyle" :icon="$btnIcon">
-		{!! $btnText !!}
-	</x-acomponents::button>
+	<div class="col-span-full flex justify-end">
+		<x-acomponents::button tag="submit" :style="$btnStyle" :icon="$btnIcon">
+			{!! $btnText !!}
+		</x-acomponents::button>
+	</div>
 </form>

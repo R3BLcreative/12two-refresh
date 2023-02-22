@@ -8,6 +8,7 @@ module.exports = {
 		'./app/Http/Controllers/**/*.php',
 		'./config/setting_fields.php',
 	],
+	safelist: ['uppercase', 'italic', 'text-center'],
 	theme: {
 		screens: {
 			mobile: '0px',

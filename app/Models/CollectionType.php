@@ -18,12 +18,14 @@ class CollectionType extends Model {
 		'desc',
 		'category_id',
 		'force_single',
+		'allow_form_builder',
 	];
 
 	protected $casts = [
 		'order' => 'integer',
 		'category_id' => 'integer',
 		'force_single' => 'boolean',
+		'allow_form_builder' => 'boolean',
 		'protected' => 'boolean',
 	];
 
@@ -35,29 +37,40 @@ class CollectionType extends Model {
 		return $this->belongsTo(Category::class);
 	}
 
-	public function meta() {
-		return $this->hasOne(CollectionTypeMeta::class)
-			->withDefault(function ($meta) {
+	public function columns() {
+		return $this->hasOne(CollectionTypeColumn::class)
+			->withDefault(function ($column) {
 				$adminConfig = json_decode(json_encode(config('admin.tables')));
 
 				if (property_exists($adminConfig, $this->slug)) {
 					// Get config for base collections
-					$config = $adminConfig->{$this->slug};
+					$config = $adminConfig->{$this->slug}->columns;
 				} else {
 					// Get default config
-					$config = $adminConfig->default;
+					$config = $adminConfig->default->columns;
 				}
 
 				foreach ($config as $key => $value) {
-					$meta->{$key} = $value;
+					$column->{$key} = $value;
 				}
 			});
 	}
 
-	protected function label(): Attribute {
-		return Attribute::make(
-			set: fn ($value) => Str::title($value),
-		);
+	public function fields() {
+		return $this->hasOne(CollectionTypeField::class)
+			->withDefault(function ($field) {
+				$adminConfig = json_decode(json_encode(config('admin.tables')));
+
+				if (property_exists($adminConfig, $this->slug)) {
+					// Get config for base collections
+					$config = $adminConfig->{$this->slug}->fields;
+				} else {
+					// Get default config
+					$config = $adminConfig->default->fields;
+				}
+
+				$field->items = $config;
+			});
 	}
 
 	protected function icon(): Attribute {

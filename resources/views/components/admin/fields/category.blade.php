@@ -8,6 +8,7 @@
 	'desc',
 	'required' => '',
 	'disabled',
+	'tabindex' => '0',
 	])
 
 <div class="flex flex-col gap-2 {{ $class }}">
@@ -15,7 +16,14 @@
 		<x-afields::label :id="$id" :required="$required">{!! $label !!}</x-afields::label>
 	@endisset
 
-	<select type="text" id="{{ $id }}" name="{{ $name ?? $id }}" @isset($disabled) disabled @endisset class="text-base disabled:opacity-50 @error($id) border-error @enderror">
+	<select
+		type="text"
+		id="{{ $id }}"
+		name="{{ $name ?? $id }}"
+		tabindex="{{ $tabindex }}"
+		@isset($disabled) disabled @endisset
+		class="text-base disabled:opacity-50 @error($id) border-error @enderror"
+	>
 		<option value="" disabled @empty($value) selected @endempty>{{ $placeholder ?? 'Please select one' }}</option>
 		@foreach ($cats as $cat)
 			<option value="{{ $cat->id }}" @if($cat->id == $value) selected @endif>

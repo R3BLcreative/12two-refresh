@@ -1,14 +1,12 @@
 <?php
 return [
-	/*
-    |--------------------------------------------------------------------------
-    | Tables
-    |--------------------------------------------------------------------------
-    |
-    | This array sets up the table/field structures for the base table/list
-    | views for collections, collection types, and categories.
-    |
-    */
+	/**
+	 * * Tables
+	 *
+	 * This array sets up the table/field structures for the base table/list
+	 * views for collections, collection types, and categories.
+	 *
+	 */
 	'tables' => [
 		// COLLECTION TYPES
 		'collection-types' => [
@@ -16,45 +14,53 @@ return [
 				'template' => 'grid-cols-[40px_75px_auto_150px_150px_150px]',
 				'items' => [
 					[
-						'text' => 'ID',
-						'key' => 'id',
+						'label' => 'ID',
+						'slug' => 'id',
 						'type' => 'id',
 						'class' => 'text-center uppercase',
 					],
 					[
-						'icon' => 'fa-icons',
-						'key' => 'icon',
+						'label' => 'Icon',
+						'slug' => 'icon',
 						'type' => 'icon',
 						'class' => 'text-center',
+						'options' => [
+							'icon' => 'fa-icons',
+						],
 					],
 					[
-						'text' => 'Name',
-						'key' => 'label',
+						'label' => 'Name',
+						'slug' => 'label',
 						'type' => 'main',
 						'class' => '',
-						'plural' => false,
-						'nolink' => false,
+						'options' => [
+							'plural' => false,
+							'nolink' => false,
+						],
 					],
 					[
-						'text' => 'Category',
-						'key' => 'category',
+						'label' => 'Category',
+						'slug' => 'category',
 						'type' => 'category',
 						'class' => 'text-center',
 					],
 					[
-						'text' => 'Slug',
-						'key' => 'slug',
+						'label' => 'Slug',
+						'slug' => 'slug',
 						'type' => 'slug',
 						'class' => 'text-center',
 					],
 					[
-						'text' => 'Actions',
-						'key' => '',
+						'label' => 'Actions',
+						'slug' => '',
 						'type' => 'actions',
 						'class' => 'text-center',
-						'actions' => [
-							'delete' => true,
-							'info' => true,
+						'options' => [
+							'actions' => [
+								'form_builder' => true,
+								'delete' => true,
+								'info' => true,
+							],
 						],
 					],
 				],
@@ -64,7 +70,7 @@ return [
 					'forms' => ['create', 'edit'],
 					'order' => 1,
 					'type' => 'integer',
-					'class' => '',
+					'class' => 'col-span-full',
 					'id' => 'order',
 					'key' => 'order',
 					'label' => 'Menu Order',
@@ -80,7 +86,7 @@ return [
 					'forms' => ['create', 'edit'],
 					'order' => 2,
 					'type' => 'string',
-					'class' => '',
+					'class' => 'col-span-full',
 					'id' => 'label',
 					'key' => 'label',
 					'label' => 'Singular Label',
@@ -96,7 +102,7 @@ return [
 					'forms' => ['create', 'edit'],
 					'order' => 3,
 					'type' => 'string',
-					'class' => '',
+					'class' => 'col-span-full',
 					'id' => 'icon',
 					'key' => 'icon',
 					'label' => 'Icon',
@@ -112,7 +118,7 @@ return [
 					'forms' => ['create', 'edit'],
 					'order' => 4,
 					'type' => 'string',
-					'class' => '',
+					'class' => 'col-span-full',
 					'id' => 'slug',
 					'key' => 'slug',
 					'label' => 'Slug',
@@ -128,7 +134,7 @@ return [
 					'forms' => ['create', 'edit'],
 					'order' => 5,
 					'type' => 'text',
-					'class' => '',
+					'class' => 'col-span-full',
 					'id' => 'desc',
 					'key' => 'desc',
 					'label' => 'Description',
@@ -144,7 +150,7 @@ return [
 					'forms' => ['create', 'edit'],
 					'order' => 6,
 					'type' => 'category',
-					'class' => '',
+					'class' => 'col-span-full',
 					'id' => 'category_id',
 					'key' => 'category_id',
 					'label' => 'Category',
@@ -166,39 +172,43 @@ return [
 				'template' => 'grid-cols-[40px_auto_150px_150px_150px]',
 				'items' => [
 					[
-						'text' => 'ID',
-						'key' => 'id',
+						'label' => 'ID',
+						'slug' => 'id',
 						'type' => 'id',
 						'class' => 'text-center uppercase',
 					],
 					[
-						'text' => 'Name',
-						'key' => 'label',
+						'label' => 'Name',
+						'slug' => 'label',
 						'type' => 'main',
 						'class' => '',
-						'plural' => true,
-						'nolink' => false,
+						'options' => [
+							'plural' => true,
+							'nolink' => false,
+						],
 					],
 					[
-						'text' => 'Type',
-						'key' => 'type',
+						'label' => 'Type',
+						'slug' => 'type',
 						'type' => 'default',
 						'class' => 'text-center text-sm',
 					],
 					[
-						'text' => 'Slug',
-						'key' => 'slug',
+						'label' => 'Slug',
+						'slug' => 'slug',
 						'type' => 'slug',
 						'class' => 'text-center',
 					],
 					[
-						'text' => 'Actions',
-						'key' => '',
+						'label' => 'Actions',
+						'slug' => '',
 						'type' => 'actions',
 						'class' => 'text-center',
-						'actions' => [
-							'delete' => true,
-							'info' => true,
+						'options' => [
+							'actions' => [
+								'delete' => true,
+								'info' => true,
+							],
 						],
 					],
 				],
@@ -212,27 +222,31 @@ return [
 				'template' => 'grid-cols-[40px_auto_150px]',
 				'items' => [
 					[
-						'text' => 'ID',
-						'key' => 'id',
+						'label' => 'ID',
+						'slug' => 'id',
 						'type' => 'id',
 						'class' => 'text-center uppercase',
 					],
 					[
-						'text' => 'Title',
-						'key' => 'title',
+						'label' => 'Title',
+						'slug' => 'title',
 						'type' => 'main',
 						'class' => '',
-						'plural' => false,
-						'nolink' => false,
+						'options' => [
+							'plural' => false,
+							'nolink' => false,
+						],
 					],
 					[
-						'text' => 'Actions',
-						'key' => '',
+						'label' => 'Actions',
+						'slug' => '',
 						'type' => 'actions',
 						'class' => 'text-center',
-						'actions' => [
-							'delete' => true,
-							'info' => true,
+						'options' => [
+							'actions' => [
+								'delete' => true,
+								'info' => true,
+							],
 						],
 					],
 				],
@@ -241,37 +255,35 @@ return [
 		],
 	],
 
-	/*
-    |--------------------------------------------------------------------------
-    | Application Options
-    |--------------------------------------------------------------------------
-    |
-    | This array sets up the options route view and form. Default values are
-    | entered here and loaded in to the app\Models\Option model as a collection.
-		| Once an initial database insertion is completed, option values will be loaded
-		| from the database instead of using this config file. Field display structures 
-		| will still be loaded through this config file though. Retrieval of a singular 
-		| option value is done via the option() helper function located in app\helpers.php.
-		|
-		| 'slug:unique:array - idenitifier for tabs & routes' => [
-		|		'icon:string' => 'Fontawesome Icon ID',
-		|		'title:string' => 'Option tab label and page title',
-		|		'desc:string' => 'Option page title subtext description',
-		|		'fields:array' => [
-		|			array:[
-		|				'type:string' => 'field type for loading dynamic field component, also casting',
-		|				'name:string' => 'form field id/name, and DB ID - UNIQUE',
-		|				'value' => 'default value for form field and option',
-		|				'label:string' => 'Form field label',
-		|				'placeholder:string' => 'Form field placeholder',
-		|				'desc:string' => 'Form field description text',
-		|				'requried:boolean' => 'Is the form field required for submission',
-		|				'rules:string|array' => 'Laravel validation rules',
-		|			]
-		|		]
-		|	]
-    |
-    */
+	/**
+	 * * Application Options
+	 *
+	 * This array sets up the options route view and form. Default values are
+	 * entered here and loaded in to the app\Models\Option model as a collection.
+	 * Once an initial database insertion is completed, option values will be loaded
+	 * from the database instead of using this config file. Field display structures 
+	 * will still be loaded through this config file though. Retrieval of a singular 
+	 * option value is done via the option() helper function located in app\helpers.php.
+	 *
+	 * 'slug:unique:array - idenitifier for tabs & routes' => [
+	 *		'icon:string' => 'Fontawesome Icon ID',
+	 *		'title:string' => 'Option tab label and page title',
+	 *		'desc:string' => 'Option page title subtext description',
+	 *		'fields:array' => [
+	 *			array:[
+	 *				'type:string' => 'field type for loading dynamic field component, also casting',
+	 *				'name:string' => 'form field id/name, and DB ID - UNIQUE',
+	 *				'value' => 'default value for form field and option',
+	 *				'label:string' => 'Form field label',
+	 *				'placeholder:string' => 'Form field placeholder',
+	 *				'desc:string' => 'Form field description text',
+	 *				'requried:boolean' => 'Is the form field required for submission',
+	 *				'rules:string|array' => 'Laravel validation rules',
+	 *			]
+	 *		]
+	 *	]
+	 *
+	 */
 	'options' => [
 		'general' => [
 			'icon'			=> 'fa-gears',
@@ -287,6 +299,7 @@ return [
 				[
 					'type'				=> 'section',
 					'name'				=> '',
+					'class'				=> 'col-span-full',
 					'value'				=> '',
 					'label'				=> 'Stripe Products',
 					'placeholder' => '',
@@ -295,6 +308,7 @@ return [
 				[
 					'type'				=> 'string',
 					'name'				=> 'prod_fee',
+					'class'				=> 'col-span-full',
 					'value'				=> 'prod_NC3bOrluL2BaPF',
 					'label'				=> 'Fee Product ID (test)',
 					'placeholder' => 'prod_xxxxxxxxx',
@@ -305,6 +319,7 @@ return [
 				[
 					'type'				=> 'string',
 					'name'				=> 'prod_live_fee',
+					'class'				=> 'col-span-full',
 					'value'				=> 'prod_NC3c4qRBJo6Zf4',
 					'label'				=> 'Fee Product ID (live)',
 					'placeholder' => 'prod_xxxxxxxxx',
@@ -315,6 +330,7 @@ return [
 				[
 					'type'				=> 'string',
 					'name'				=> 'prod_donation',
+					'class'				=> 'col-span-full',
 					'value'				=> 'prod_NBkPvuz0JDBOkb',
 					'label'				=> 'Donation Product ID (test)',
 					'placeholder' => 'prod_xxxxxxxxx',
@@ -325,6 +341,7 @@ return [
 				[
 					'type'				=> 'string',
 					'name'				=> 'prod_live_donation',
+					'class'				=> 'col-span-full',
 					'value'				=> 'prod_NBkm0zFR4sB5SR',
 					'label'				=> 'Donation Product ID (live)',
 					'placeholder' => 'prod_xxxxxxxxx',
@@ -335,6 +352,7 @@ return [
 				[
 					'type'				=> 'section',
 					'name'				=> '',
+					'class'				=> 'col-span-full',
 					'value'				=> '',
 					'label'				=> 'Stripe Prices',
 					'placeholder' => '',
@@ -343,6 +361,7 @@ return [
 				[
 					'type'				=> 'string',
 					'name'				=> 'price_bears',
+					'class'				=> 'col-span-full',
 					'value'				=> 'price_1MRMtMJ7flyAAmsm8gX89mOj',
 					'label'				=> 'PrayerBear Price ID (test)',
 					'placeholder' => 'price_xxxxxxxxx',
@@ -353,6 +372,7 @@ return [
 				[
 					'type'				=> 'string',
 					'name'				=> 'price_live_bears',
+					'class'				=> 'col-span-full',
 					'value'				=> 'price_1MRNHVJ7flyAAmsmPxSxAr90',
 					'label'				=> 'PrayerBear Price ID (live)',
 					'placeholder' => 'price_xxxxxxxxx',
@@ -361,6 +381,57 @@ return [
 					'rules'				=> 'required',
 				],
 			],
+		],
+	],
+	/**
+	 * * ADMIN FIELDS
+	 * 
+	 * All available field types
+	 */
+	'field_types' => [
+		[
+			'label' => 'Category Select',
+			'slug' => 'category',
+		],
+		[
+			'label' => 'Checkbox(es)',
+			'slug' => 'checkbox',
+		],
+		[
+			'label' => 'Integer',
+			'slug' => 'integer',
+		],
+		[
+			'label' => 'Password',
+			'slug' => 'password',
+		],
+		[
+			'label' => 'Section Title',
+			'slug' => 'section',
+		],
+		[
+			'label' => 'Select/Dropdown',
+			'slug' => 'select',
+		],
+		[
+			'label' => 'Single Line Text',
+			'slug' => 'string',
+		],
+		[
+			'label' => 'Multi-Line Text',
+			'slug' => 'text',
+		],
+		[
+			'label' => 'WYSIWYG Text Editor',
+			'slug' => 'fulltext',
+		],
+		[
+			'label' => 'Timezone Select',
+			'slug' => 'timezones',
+		],
+		[
+			'label' => 'Title Field',
+			'slug' => 'title',
 		],
 	],
 ];

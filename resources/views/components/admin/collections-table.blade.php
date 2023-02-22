@@ -4,12 +4,12 @@
 ])
 
 {{-- HEADER --}}
-<div class="grid {{ $collectionType->meta->columns->template }} bg-gray-200 px-8 py-3 shadow-sm font-black text-body-dark border-y border-gray-300 relative z-99">
-	@foreach ($collectionType->meta->columns->items as $column)
-		@isset($column->icon)
-			<div class="{{ $column->class }} !text-base border-r border-gray-300"><i class="fa-duotone {{ $column->icon }} text-2xl"></i></div>
+<div class="grid {{ $collectionType->columns->template }} bg-gray-200 px-8 py-3 shadow-sm font-black text-body-dark border-y border-gray-300 relative z-99">
+	@foreach ($collectionType->columns->items as $column)
+		@isset($column->options->icon)
+			<div class="{{ $column->class }} !text-base border-r border-gray-300"><i class="fa-duotone {{ $column->options->icon }} text-2xl"></i></div>
 		@else
-			<div class="{{ $column->class }} !capitalize !text-base @if($column->type != 'actions') border-r border-gray-300 @endif @if($column->type == 'main') pl-6 @endif">{{ $column->text }}</div>
+			<div class="{{ $column->class }} !capitalize !text-base @if($column->type != 'actions') border-r border-gray-300 @endif @if($column->type == 'main') pl-6 @endif">{{ $column->label }}</div>
 		@endisset
 	@endforeach
 </div>
@@ -20,8 +20,8 @@
 		{{-- ITEMS --}}
 		@foreach ($items as $index => $item)
 			@if((isset($item->permission) && auth()->user()->can($item->permission)) || (!$item->hasRole('super') && !auth()->user()->hasRole('super')) || !isset($item->permission))
-				<div class="grid {{ $collectionType->meta->columns->template }} items-center px-8 py-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
-					@foreach ($collectionType->meta->columns->items as $column)
+				<div class="grid {{ $collectionType->columns->template }} items-center px-8 py-4 border-b border-gray-200 odd:bg-gray-50 tranistion-all ease-in-out hover:bg-surface-light-500 group/row">
+					@foreach ($collectionType->columns->items as $column)
 						@switch($column->type)
 							@case('id')
 								<div class="text-center font-semibold text-gray-500 border-r border-gray-300 {{ $column->class }}">{{ $item->id }}</div>
@@ -49,44 +49,44 @@
 
 							@case('timestamp')
 								<div class="text-center text-sm flex flex-col items-center justify-center text-gray-500 border-r border-gray-300 {{ $column->class }}">
-									<span class="font-semibold">{{ date('m/d/Y', strtotime($item->{$column->key})) }}</span>
-									<span class="italic">{{ date('h:i a', strtotime($item->{$column->key})) }}</span>
+									<span class="font-semibold">{{ date('m/d/Y', strtotime($item->{$column->slug})) }}</span>
+									<span class="italic">{{ date('h:i a', strtotime($item->{$column->slug})) }}</span>
 								</div>
 								@break
 
 							@case('icon')
-								<div class="text-center text-3xl text-body-light-600 border-r border-gray-300 {{ $column->class }}"><i class="fa-duotone {{ $item->{$column->key} ?? $item->fields->{$column->key} }}"></i></div>
+								<div class="text-center text-3xl text-body-light-600 border-r border-gray-300 {{ $column->class }}"><i class="fa-duotone {{ $item->{$column->slug} ?? $item->fields->{$column->slug} }}"></i></div>
 								@break
 
 							@case('main')
-								@if(!$column->nolink)<a href="{{ route('admin.collections.edit', [$collectionType, $item->id]) }}" class="flex items-center gap-4 border-r border-gray-300 pl-6 {{ $column->class }}">@endif
+								@if(!$column->options->nolink)<a href="{{ route('admin.collections.edit', [$collectionType, $item->id]) }}" class="flex items-center gap-4 border-r border-gray-300 pl-6 {{ $column->class }}">@endif
 
 									<span class="text-base font-extrabold group-hover/row:text-primary-500">
-										@if ($item->force_single || !$column->plural)
-											{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
+										@if ($item->force_single || !$column->options->plural)
+											{{ $item->{$column->slug} ?? $item->fields->{$column->slug} }}
 										@else
-											{{ Str::plural($item->{$column->key}) ?? Str::plural($item->fields->{$column->key}) }}
+											{{ Str::plural($item->{$column->slug}) ?? Str::plural($item->fields->{$column->slug}) }}
 										@endif
 									</span>
 
 									@if(isset($item->protected) && $item->protected == true)
 										<i class="fa-duotone fa-lock opacity-50 text-sm"></i>
 									@endif
-								@if(!$column->nolink)</a>@endif
+								@if(!$column->options->nolink)</a>@endif
 								@break
 
 							@case('text')
 								<div class="line-clamp-2 border-r border-gray-300 {{ $column->class }}">
-									{{ $item->{$column->key} ?? $item->fields->{$column->key} }}
+									{{ $item->{$column->slug} ?? $item->fields->{$column->slug} }}
 								</div>
 								@break
 
 							@case('actions')
-								<x-acomponents::collection-actions :item="$item" :collectionType="$collectionType" :actions="$column->actions" />
+								<x-acomponents::collection-actions :item="$item" :collectionType="$collectionType" :actions="$column->options->actions" />
 								@break
 
 							@default
-								<div class="border-r border-gray-300 {{ $column->class }}">{{ $item->{$column->key} ?? $item->fields->{$column->key} }}</div>
+								<div class="border-r border-gray-300 {{ $column->class }}">{{ $item->{$column->slug} ?? $item->fields->{$column->slug} }}</div>
 						@endswitch
 					@endforeach
 

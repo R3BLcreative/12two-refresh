@@ -40,7 +40,9 @@
 		placeholder="Please select one..."
 		value="{{ $user->timezone }}" />
 
-	<x-acomponents::button tag="submit" style="primary" icon="fa-up-from-bracket">
-		Update
-	</x-acomponents::button>
+	<div class="col-span-full flex justify-end">
+		<x-acomponents::button tag="submit" style="primary" icon="fa-up-from-bracket">
+			Update
+		</x-acomponents::button>
+	</div>
 </form>

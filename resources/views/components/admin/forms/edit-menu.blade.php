@@ -37,7 +37,7 @@
 		</ul>
 	@enderror
 
-	{{-- MENU BUILDER HERE --}}
+	{{-- MENU BUILDER --}}
 	<div class="col-span-full">
 		<div class="grid grid-cols-[25px_150px_125px_200px_auto_100px] gap-6 items-center py-2 px-4 bg-surface-dark text-body-light-50 uppercase font-bold">
 			<span></span>
@@ -57,7 +57,7 @@
 		<ul id="menu-builder" class="w-full">
 			@if(count($menu->items) > 0)
 				@foreach($menu->items as $key => $item)
-					<x-afields::menu-builder-list :id="$key" :item="$item" />
+					<x-afields::menu-builder-list :id="$key" :item="$item" :count="count($menu->items)" />
 				@endforeach
 			@else
 				<x-afields::menu-builder-list id="1" />

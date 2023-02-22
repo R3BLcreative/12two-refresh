@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use App\Composers\AdminTimezonesList;
 use App\Composers\AdminRolesPermissions;
 use App\Composers\AdminNav;
+use App\Composers\AdminFieldTypes;
 use App\Composers\AdminCollectionMenuOptions;
 use App\Composers\AdminCollectionArray;
 use App\Composers\AdminCategoryDropdown;
@@ -39,6 +40,7 @@ class AppServiceProvider extends ServiceProvider {
 		], AdminRolesPermissions::class);
 		View::composer('components.admin.fields.timezones', AdminTimezonesList::class);
 		View::composer('components.admin.fields.menu-builder-list', AdminCollectionMenuOptions::class);
+		View::composer('components.admin.fields.form-builder-list', AdminFieldTypes::class);
 
 
 		// FRONTEND ANONYMOUS COMPONENTS

@@ -8,6 +8,7 @@
 	'options',
 	'cols' => 'columns-2',
 	'disabled',
+	'tabindex' => '0',
 	])
 
 <div class="flex flex-col gap-2 {{ $class }}">
@@ -26,6 +27,7 @@
 					type="checkbox"
 					id="{{ $id }}_{{ $cid }}"
 					name="{{ $id }}[{{ $cid }}]"
+					tabindex="{{ $tabindex }}"
 					value="1"
 					@isset($disabled) disabled @endisset
 					class=""

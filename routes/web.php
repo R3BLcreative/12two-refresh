@@ -10,6 +10,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\DonateController;
 use App\Http\Controllers\ConnectController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -213,7 +214,9 @@ Route::name('dashboard.')->prefix('dashboard')->middleware(['account'])->group(f
 
 // BACKEND
 Route::name('admin.')->prefix('admin')->middleware('backend')->group(function () {
-	Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+	Route::get('/', function () {
+		return view('admin.index', ['title' => 'Dashboard']);
+	})->name('dashboard');
 
 
 	// USERS
@@ -266,15 +269,18 @@ Route::name('admin.')->prefix('admin')->middleware('backend')->group(function ()
 
 	// COLLECTIONS
 	Route::name('collections.')->prefix('{collectionType:slug}')->middleware('permission:edit-content')->group(function () {
-		Route::get('/', [AdminController::class, 'index'])->name('index');
+		Route::get('/', [CollectionController::class, 'index'])->name('index');
 		// create
-		Route::get('/create', [AdminController::class, 'create'])->name('create');
-		Route::post('/', [AdminController::class, 'store'])->name('store');
+		Route::get('/create', [CollectionController::class, 'create'])->name('create');
+		Route::post('/', [CollectionController::class, 'store'])->name('store');
 		// edit
-		Route::get('/{id}', [AdminController::class, 'edit'])->name('edit');
-		Route::put('/{id}', [AdminController::class, 'update'])->name('update');
+		Route::get('/{id}', [CollectionController::class, 'edit'])->name('edit');
+		Route::put('/{id}', [CollectionController::class, 'update'])->name('update');
+		// form builder
+		Route::get('/form/{id}', [CollectionController::class, 'edit_form'])->name('form');
+		Route::put('/form/{id}', [CollectionController::class, 'update_form'])->name('form.update');
 		// destroy
-		Route::delete('/{id}', [AdminController::class, 'destroy'])->name('destroy');
+		Route::delete('/{id}', [CollectionController::class, 'destroy'])->name('destroy');
 	});
 });
 

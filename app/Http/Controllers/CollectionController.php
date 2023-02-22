@@ -4,30 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Option;
 use App\Models\CollectionType;
 use App\Models\Collection;
 use App\Models\Category;
 
-class AdminController extends Controller {
+class CollectionController extends Controller {
 
 	/**
 	 * * CONSTRUCT
 	 */
 	public function __construct() {
-	}
-
-	/**
-	 * * DASHBOARD
-	 * 
-	 * Render the dashboard view
-	 */
-	public function dashboard() {
-		return view('admin.index', ['title' => 'Dashboard']);
 	}
 
 
@@ -83,10 +70,10 @@ class AdminController extends Controller {
 	 * @var collectionType | App\Models\CollectionType
 	 */
 	public function store(Request $request, CollectionType $collectionType) {
-		// Loop through collectionTypeMeta fields
+		// Loop through collectionType fields
 		$validations = [];
 		$insertions = [];
-		foreach ($collectionType->meta->fields as $field) {
+		foreach ($collectionType->fields as $field) {
 			if (!in_array('create', $field->forms)) continue;
 
 			// Build validation rules
@@ -137,13 +124,33 @@ class AdminController extends Controller {
 				$item = CollectionType::where('id', $id)->first();
 				$item->collectionType = CollectionType::where('slug', 'collection-types')->first();
 				$item->fields = CollectionType::where('id', $id)->first();
+
+				// PAGE TITLE
+				$title = 'Edit: ';
+				$title .= ($item->force_single) ? $item->label : Str::plural($item->label);
+				$subtext = 'Edit settings and options for this collection type.';
+				break;
+			case 'categories':
+				$item = Category::where('id', $id)->first();
+				$item->collectionType = CollectionType::where('slug', 'categories')->first();
+				$item->fields = CollectionType::where('id', $id)->first();
+
+				// PAGE TITLE
+				$title = 'Edit: ';
+				$title .= ($item->force_single) ? $item->label : Str::plural($item->label);
+				$subtext = 'Edit settings and options for this category.';
 				break;
 			default:
 				$item = Collection::where('id', $id)->first();
+
+				// PAGE TITLE
+				$title = 'Edit: ' . $item->title;
+				$subtext = 'Edit settings and options for this collection.';
 		}
 
 		return view('admin.collections.edit', [
-			'title' => 'Edit ' . $collectionType->label,
+			'title' => $title,
+			'subtext' => $subtext,
 			'item' => $item,
 		]);
 	}
@@ -159,10 +166,10 @@ class AdminController extends Controller {
 	 * @var id | The ID of the record to be updated
 	 */
 	public function update(Request $request, CollectionType $collectionType, $id) {
-		// Loop through collectionTypeMeta fields
+		// Loop through collectionType fields
 		$validations = [];
 		$insertions = [];
-		foreach ($collectionType->meta->fields as $field) {
+		foreach ($collectionType->fields as $field) {
 			if (!in_array('edit', $field->forms)) continue;
 
 			// Build validation rules
@@ -244,6 +251,35 @@ class AdminController extends Controller {
 		} else {
 			return back()->with('error', "That item can't be deleted.");
 		}
+	}
+
+
+	/**
+	 * * FORM BUILDER
+	 * 
+	 * Render the form builder view
+	 * 
+	 * @var collectionType | App\Models\CollectionType
+	 * @var id | The record ID
+	 */
+	public function edit_form(CollectionType $collectionType, $id) {
+		$item = CollectionType::where('id', $id)->first();
+
+		// Limit form builder option to allowed items. The count() portion is for handling
+		// actual collection records.
+		if ($item->count() < 1 || !$item->allow_form_builder) {
+			return back()->with('error', "You can't edit the form for that collection type.");
+		}
+
+		// $item = CollectionType::where('id', $id)->first();
+		// $item->collectionType = CollectionType::where('slug', 'collection-types')->first();
+		// $item->fields = CollectionType::where('id', $id)->first();
+		$title = ($item->force_single) ? $item->label : Str::plural($item->label);
+
+		return view('admin.collections.form', [
+			'title' => $title . ': Form Builder',
+			'item' => $item,
+		]);
 	}
 
 
