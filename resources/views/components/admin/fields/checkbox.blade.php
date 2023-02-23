@@ -17,12 +17,12 @@
 	@endisset
 
 	@isset($desc)
-		<x-afields::description>{{ $desc }}</x-afields::description>
+		<x-afields::description>{!! $desc !!}</x-afields::description>
 	@endisset
 
 	<ul class="{{ $cols }}">
 		@foreach($options as $cid => $clabel)
-			<li class="flex items-center gap-3 px-4 py-2 @if($disabled) opacity-50 @endif">
+			<li class="flex items-center gap-3 px-4 py-2 @isset($disabled) opacity-50 @endisset">
 				<input
 					type="checkbox"
 					id="{{ $id }}_{{ $cid }}"
@@ -38,6 +38,6 @@
 	</ul>
 
 	@error($id)
-		<x-afields::error>{{ $message }}</x-afields::error>
+		<x-afields::error>{!! $message !!}</x-afields::error>
 	@enderror
 </div>

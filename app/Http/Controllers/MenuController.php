@@ -67,7 +67,7 @@ class MenuController extends Controller {
 	public function edit(Menu $menu) {
 		return view('admin.menus.edit', [
 			'icon' => 'fa-pen-to-square',
-			'title' => 'Edit Menu',
+			'title' => 'Edit: ' . $menu->title,
 			'subtext' => '',
 			'menu' => Menu::where('id', $menu->id)->first(),
 		]);

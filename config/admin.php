@@ -389,49 +389,29 @@ return [
 	 * All available field types
 	 */
 	'field_types' => [
-		[
-			'label' => 'Category Select',
-			'slug' => 'category',
+		'Single Line Inputs' => [
+			'string' => 'Basic String',
+			'title' => 'Main Title',
+			'integer' => 'Integer',
+			'password' => 'Password',
 		],
-		[
-			'label' => 'Checkbox(es)',
-			'slug' => 'checkbox',
+		'Selects & Dropdowns' => [
+			'select' => 'Basic Select',
+			'category' => 'Categories',
 		],
-		[
-			'label' => 'Integer',
-			'slug' => 'integer',
+		'Block Text & Editors' => [
+			'text' => 'Basic Text',
+			'fulltext' => 'Full Text Editor',
+			'code' => 'Code Editor',
 		],
-		[
-			'label' => 'Password',
-			'slug' => 'password',
+		'Checkboxes & Radios' => [
+			'checkbox' => 'Checkbox(es)',
 		],
-		[
-			'label' => 'Section Title',
-			'slug' => 'section',
+		'Date & Time' => [
+			'timezones' => 'Timezone Select',
 		],
-		[
-			'label' => 'Select/Dropdown',
-			'slug' => 'select',
-		],
-		[
-			'label' => 'Single Line Text',
-			'slug' => 'string',
-		],
-		[
-			'label' => 'Multi-Line Text',
-			'slug' => 'text',
-		],
-		[
-			'label' => 'WYSIWYG Text Editor',
-			'slug' => 'fulltext',
-		],
-		[
-			'label' => 'Timezone Select',
-			'slug' => 'timezones',
-		],
-		[
-			'label' => 'Title Field',
-			'slug' => 'title',
+		'Sections & Dividers' => [
+			'section' => 'Section Title',
 		],
 	],
 ];

@@ -11,5 +11,5 @@
 		</x-acomponents::heading>
 	@endisset
 
-	<hr>
+	<hr class="mt-3 mb-3" />
 </div>

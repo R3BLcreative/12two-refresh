@@ -28,10 +28,10 @@
 	/>
 
 	@isset($desc)
-		<x-afields::description>{{ $desc }}</x-afields::description>
+		<x-afields::description>{!! $desc !!}</x-afields::description>
 	@endisset
 
 	@error($id)
-		<x-afields::error>{{ $message }}</x-afields::error>
+		<x-afields::error>{!! $message !!}</x-afields::error>
 	@enderror
 </div>

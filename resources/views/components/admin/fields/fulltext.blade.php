@@ -23,6 +23,7 @@
 			menubar: false,
 			plugins: 'quickbars image link lists code emoticons',
 			toolbar: 'undo redo | blocks | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist | link | code',
+			statusbar: false,
 			link_default_target: '_blank',
 			link_default_protocol: 'http',
 			a11y_advanced_options: true,
@@ -43,10 +44,10 @@
 	>{{ $value ?? '' }}</textarea>
 
 	@isset($desc)
-		<x-afields::description>{{ $desc }}</x-afields::description>
+		<x-afields::description>{!! $desc !!}</x-afields::description>
 	@endisset
 
 	@error($id)
-		<x-afields::error>{{ $message }}</x-afields::error>
+		<x-afields::error>{!! $message !!}</x-afields::error>
 	@enderror
 </div>

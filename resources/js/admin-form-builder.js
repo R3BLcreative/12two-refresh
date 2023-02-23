@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				const clone = parent.cloneNode(true);
 
 				// Clear values
-				let inputs = clone.querySelectorAll('input');
+				let inputs = clone.querySelectorAll('input:not([type=checkbox])');
 				inputs.forEach((el) => {
 					el.value = '';
 				});
@@ -34,10 +34,24 @@ document.addEventListener('DOMContentLoaded', function () {
 				selects.forEach((el) => {
 					el.value = '';
 				});
+				let txts = clone.querySelectorAll('textarea');
+				txts.forEach((el) => {
+					el.value = '';
+				});
+				let checks = clone.querySelectorAll('input[type=checkbox]');
+				checks.forEach((el) => {
+					el.checked = false;
+				});
 				let item_label = clone.querySelector('.item-label');
 				item_label.innerHTML = '';
 				let item_type = clone.querySelector('.item-type');
 				item_type.innerHTML = '';
+				let rules_section = clone.querySelector('#rules_section');
+				rules_section.classList.add('hidden');
+				let newInput = clone.querySelector('#rules_new');
+				newInput.classList.add('hidden');
+				let editInput = clone.querySelector('#rules_edit');
+				editInput.classList.add('hidden');
 
 				// Set event listeners
 				const destroyBtn = clone.querySelector('button.remove-field-item');
@@ -53,12 +67,16 @@ document.addEventListener('DOMContentLoaded', function () {
 				update_item_label(labelFld);
 				const typeFld = clone.querySelector('.field-type select');
 				update_item_type(typeFld);
+				const createCb = clone.querySelector('#forms_create');
+				toggle_rules_inputs(createCb);
+				const editCb = clone.querySelector('#forms_edit');
+				toggle_rules_inputs(editCb);
 
 				// Insert
 				builder.insertBefore(clone, parent.nextSibling);
 
 				// Toggle first minus visibility
-				const items = builder.querySelectorAll('li');
+				const items = builder.querySelectorAll('li.field-item');
 				if (items.length > 1) {
 					items.forEach((el) => {
 						let btn = el.querySelector('button.remove-field-item');
@@ -82,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				parent.remove();
 
 				// Toggle first minus visibility
-				const items = builder.querySelectorAll('li');
+				const items = builder.querySelectorAll('li.field-item');
 				if (items.length < 2) {
 					let btn = items[0].querySelector('button.remove-field-item');
 					btn.classList.add('group-first:hidden');
@@ -96,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		// REINDEX ITEMS ON CHANGE
 		const reindex_items = () => {
 			const builder = document.querySelector('#form-builder');
-			const items = builder.querySelectorAll('li');
+			const items = builder.querySelectorAll('li.field-item');
 
 			items.forEach((el, i) => {
 				let label = el.querySelector('#label');
@@ -193,6 +211,40 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 		};
 
+		// TOGGLE RULES INPUTS
+		const toggle_rules_inputs = (el) => {
+			el.addEventListener('change', (e) => {
+				const el = e.currentTarget;
+				const parent =
+					el.parentElement.parentElement.parentElement.parentElement;
+				const createCb = parent.querySelector('#forms_create');
+				const editCb = parent.querySelector('#forms_edit');
+				const rules_section = parent.querySelector('#rules_section');
+				const newInput = parent.querySelector('#rules_new');
+				const editInput = parent.querySelector('#rules_edit');
+
+				if (createCb.checked || editCb.checked) {
+					rules_section.classList.remove('hidden');
+				} else {
+					rules_section.classList.add('hidden');
+				}
+
+				if (el.id == 'forms_create') {
+					if (el.checked) {
+						newInput.classList.remove('hidden');
+					} else {
+						newInput.classList.add('hidden');
+					}
+				} else if (el.id == 'forms_edit') {
+					if (el.checked) {
+						editInput.classList.remove('hidden');
+					} else {
+						editInput.classList.add('hidden');
+					}
+				}
+			});
+		};
+
 		// -------------------------------------------------------
 
 		const destroyBtns = fbuilder.querySelectorAll('button.remove-field-item');
@@ -202,6 +254,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		);
 		const labelFlds = fbuilder.querySelectorAll('.field-label input');
 		const typeFlds = fbuilder.querySelectorAll('.field-type select');
+		const createCbs = fbuilder.querySelectorAll('#forms_create');
+		const editCbs = fbuilder.querySelectorAll('#forms_edit');
 
 		destroyBtns.forEach((el) => {
 			destroy(el);
@@ -221,6 +275,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		typeFlds.forEach((el) => {
 			update_item_type(el);
+		});
+
+		createCbs.forEach((el) => {
+			toggle_rules_inputs(el);
+		});
+
+		editCbs.forEach((el) => {
+			toggle_rules_inputs(el);
 		});
 	}
 });

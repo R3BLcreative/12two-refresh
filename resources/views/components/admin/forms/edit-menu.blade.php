@@ -27,7 +27,7 @@
 
 	<x-afields::section
 		label="Menu Builder"
-		desc="Create your menu below" />
+		desc="Manage this menu's navigation elements below" />
 
 	@if($errors->any())
 		<ul class="list-disc col-span-full w-full ml-8">

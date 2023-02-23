@@ -10,7 +10,7 @@
 	@csrf
 	@method('patch')
 
-	<x-afields::section label="Profile Details" desc="" class="" />
+	<x-afields::section label="Profile Details" />
 
 	<x-afields::string
 		id="name"

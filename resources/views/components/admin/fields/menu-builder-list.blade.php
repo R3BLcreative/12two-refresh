@@ -38,11 +38,11 @@
 		<input
 			id="url"
 			name="menu_items[{{ $id }}][url]"
-			@if($item->type != 'custom') type="hidden" @else type="text" @endif
+			@if(isset($item->type) && $item->type != 'custom') type="hidden" @else type="text" @endif
 			value="{{ $item->link ?? '' }}"
 			placeholder="URL"
 			class="w-full" />
-		<span>@if($item->type != 'custom') {{ $item->link }} @endif</span>
+		<span>@if(isset($item->type) && $item->type != 'custom') {{ $item->link }} @endif</span>
 	</div>
 
 	<div class="flex items-center justify-end gap-4">

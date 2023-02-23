@@ -56,7 +56,7 @@ class CollectionController extends Controller {
 	 */
 	public function create(CollectionType $collectionType) {
 		return view('admin.collections.create', [
-			'title' => 'Create New ' . $collectionType->label,
+			'title' => 'New: ' . $collectionType->label,
 		]);
 	}
 

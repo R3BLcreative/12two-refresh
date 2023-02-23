@@ -4,3 +4,7 @@
 @tailwind utilities;
 
 /* DO NOT CREATE CUSTOM CLASS DEFINITIONS - CREATE COMPONENTS INSTEAD */
+
+.basic-link {
+	@apply text-primary underline font-medium hover:no-underline hover:text-primary-200;
+}
