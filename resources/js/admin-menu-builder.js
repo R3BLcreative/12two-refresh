@@ -52,23 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				const parent = el.parentElement;
 				const current = parent.parentElement;
 				const builder = document.querySelector('#menu-builder');
-				const clone = current.cloneNode(true);
-
-				// Clear values and update names
-				let inputs = clone.querySelectorAll('input');
-				inputs.forEach((el) => {
-					el.value = '';
-				});
-				let selects = clone.querySelectorAll('select');
-				selects.forEach((el) => {
-					el.value = '';
-				});
-				let urlField = clone.querySelector('.url-field');
-				let input = urlField.querySelector('input');
-				input.value = '';
-				input.setAttribute('type', 'hidden');
-				let span = urlField.querySelector('span');
-				span.innerHTML = '';
+				const template = document.querySelector('#menu-builder-item-template');
+				const clone = template.content.cloneNode(true);
 
 				// Set event listeners
 				const destroyBtn = clone.querySelector('button.remove-menu-item');

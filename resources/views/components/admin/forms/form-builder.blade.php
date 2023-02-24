@@ -44,3 +44,7 @@
 		</x-acomponents::button>
 	</div>
 </form>
+
+<template id="form-builder-item-template">
+	<x-afields::form-builder-list id="1" />
+</template>

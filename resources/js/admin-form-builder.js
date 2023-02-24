@@ -23,54 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
 				const el = e.currentTarget;
 				const parent = el.parentElement.parentElement.parentElement;
 				const builder = document.querySelector('#form-builder');
-				const clone = parent.cloneNode(true);
-
-				// Clear values
-				let inputs = clone.querySelectorAll('input:not([type=checkbox])');
-				inputs.forEach((el) => {
-					el.value = '';
-				});
-				let selects = clone.querySelectorAll('select');
-				selects.forEach((el) => {
-					el.value = '';
-				});
-				let txts = clone.querySelectorAll('textarea');
-				txts.forEach((el) => {
-					el.value = '';
-				});
-				let checks = clone.querySelectorAll('input[type=checkbox]');
-				checks.forEach((el) => {
-					el.checked = false;
-				});
-				let item_label = clone.querySelector('.item-label');
-				item_label.innerHTML = '';
-				let item_type = clone.querySelector('.item-type');
-				item_type.innerHTML = '';
-				let rules_section = clone.querySelector('#rules_section');
-				rules_section.classList.add('hidden');
-				let newInput = clone.querySelector('#rules_new');
-				newInput.classList.add('hidden');
-				let editInput = clone.querySelector('#rules_edit');
-				editInput.classList.add('hidden');
+				const template = document.querySelector('#form-builder-item-template');
+				const clone = template.content.cloneNode(true);
 
 				// Set event listeners
-				const destroyBtn = clone.querySelector('button.remove-field-item');
-				destroy(destroyBtn);
-				const createBtn = clone.querySelector('button.add-field-item');
-				create(createBtn);
-				const toggleBtn = clone.querySelector('button.toggle-field-settings');
-				toggleBtn.setAttribute('aria-expanded', 'false');
-				toggle_settings(toggleBtn);
-				const fldSettings = clone.querySelector('.field-settings');
-				fldSettings.setAttribute('aria-expanded', 'false');
-				const labelFld = clone.querySelector('.field-label input');
-				update_item_label(labelFld);
-				const typeFld = clone.querySelector('.field-type select');
-				update_item_type(typeFld);
-				const createCb = clone.querySelector('#forms_create');
-				toggle_rules_inputs(createCb);
-				const editCb = clone.querySelector('#forms_edit');
-				toggle_rules_inputs(editCb);
+				set_event_listeners(clone);
 
 				// Insert
 				builder.insertBefore(clone, parent.nextSibling);
@@ -220,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				const createCb = parent.querySelector('#forms_create');
 				const editCb = parent.querySelector('#forms_edit');
 				const rules_section = parent.querySelector('#rules_section');
-				const newInput = parent.querySelector('#rules_new');
-				const editInput = parent.querySelector('#rules_edit');
+				const newInput = parent.querySelector('#new_rules-wrapper');
+				const editInput = parent.querySelector('#edit_rules-wrapper');
 
 				if (createCb.checked || editCb.checked) {
 					rules_section.classList.remove('hidden');
@@ -243,6 +200,34 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				}
 			});
+		};
+
+		// SET EVENT LISTENERS ON CREATE
+		const set_event_listeners = (clone) => {
+			const destroyBtn = clone.querySelector('button.remove-field-item');
+			destroy(destroyBtn);
+			//
+			const createBtn = clone.querySelector('button.add-field-item');
+			create(createBtn);
+			//
+			const toggleBtn = clone.querySelector('button.toggle-field-settings');
+			toggleBtn.setAttribute('aria-expanded', 'false');
+			toggle_settings(toggleBtn);
+			//
+			const fldSettings = clone.querySelector('.field-settings');
+			fldSettings.setAttribute('aria-expanded', 'false');
+			//
+			const labelFld = clone.querySelector('.field-label input');
+			update_item_label(labelFld);
+			//
+			const typeFld = clone.querySelector('.field-type select');
+			update_item_type(typeFld);
+			//
+			const createCb = clone.querySelector('#forms_create');
+			toggle_rules_inputs(createCb);
+			//
+			const editCb = clone.querySelector('#forms_edit');
+			toggle_rules_inputs(editCb);
 		};
 
 		// -------------------------------------------------------

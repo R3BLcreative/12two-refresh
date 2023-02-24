@@ -22,7 +22,8 @@
 	@foreach ($collectionType->fields->items as $field)
 		@if(($method == 'post' && in_array('create', $field->forms)) || ($method == 'put' && in_array('edit', $field->forms)))
 			<x-dynamic-component
-				component="{{ 'admin.fields.' . $field->type }}"
+				component="{{ 'admin.fields.' . $field->field }}"
+				:type="$field->type"
 				:class="$field->class"
 				:id="$field->id"
 				:label="$field->label"
@@ -30,7 +31,7 @@
 				:placeholder="$field->placeholder"
 				:desc="$field->desc"
 				:required="$field->required"
-				:collectionType="$collectionType" />
+				:options="$field->options" />
 		@endif
 	@endforeach
 

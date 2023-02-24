@@ -18,7 +18,7 @@
 	@csrf
 	@method($method)
 
-	<x-afields::string
+	<x-admin.fields.input
 		id="title"
 		label="Menu Title"
 		placeholder="Some Title"
@@ -71,3 +71,7 @@
 		</x-acomponents::button>
 	</div>
 </form>
+
+<template id="menu-builder-item-template">
+	<x-afields::menu-builder-list id="1" />
+</template>

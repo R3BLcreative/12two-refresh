@@ -8,43 +8,46 @@
 	@csrf
 	@method('post')
 
-	<x-afields::string
+	<x-admin.fields.input
 		id="name"
 		label="Name"
 		placeholder="John Doe"
 		value="{{ old('name') ?? '' }}"
 		required="1" />
 
-	<x-afields::string
+	<x-admin.fields.input
 		id="email"
 		label="Email/Username"
 		placeholder="john@example.com"
 		value="{{ old('email') ?? '' }}"
 		required="1" />
 
-	<x-afields::password
+	<x-admin.fields.input
+		type="password"
 		id="password"
 		label="Password"
 		placeholder="•••••••••••••••"
 		value=""
 		required="1" />
 
-	<x-afields::password
+	<x-admin.fields.input
+		type="password"
 		id="password_confirmation"
 		label="Confirm Password"
 		placeholder="•••••••••••••••"
 		value=""
 		required="1" />
 
-	<x-afields::select
+	<x-admin.fields.select
+		type="roles"
 		id="role"
 		label="Role"
 		placeholder="Select One"
 		value="{{ old('role') ?? '' }}"
-		required="1"
-		:options="$roles" />
+		required="1" />
 
-	<x-afields::timezones
+	<x-admin.fields.select
+		type="timezones"
 		id="timezone"
 		label="Local Timezone"
 		placeholder="Please select one..."

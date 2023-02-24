@@ -17,9 +17,9 @@
 	@csrf
 	@method($method)
 
-	<x-afields::label id="title" class="col-span-1 !font-extrabold">NEW MENU:</x-afields::label>
+	<x-afields::label id="title" class="col-span-1 !font-extrabold" :required="false">NEW MENU:</x-afields::label>
 
-	<x-afields::string
+	<x-admin.fields.input
 		id="title"
 		placeholder="Menu Title"
 		value="{{ old('title') }}"

@@ -11,10 +11,10 @@
 	'tabindex' => '0',
 	])
 
-<div class="flex flex-col gap-2 {{ $class }}">
-	@isset($label)
-		<x-afields::label :id="$id" :required="$required">{!! $label !!}</x-afields::label>
-	@endisset
+<div id="{{ $id }}-wrapper" class="flex flex-col gap-2 {{ $class }}">
+	@if(!empty($label))
+		<x-afields::label :$id :$required>{!! $label !!}</x-afields::label>
+	@endif
 
 	<script src="https://cdn.tiny.cloud/1/x294jyglq9n4op2ksaz5iuhvm8mdw9y8nu32uq3z3gwcmylz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	<script>
@@ -32,13 +32,13 @@
 		name="{{ $name ?? $id }}"
 		tabindex="{{ $tabindex }}"
 		placeholder="{{ $placeholder ?? '' }}"
-		@isset($disabled) disabled @endisset
+		@if($disabled === true) disabled @endif
 		class="text-base w-full tinyMCE disabled:opacity-50 @error($id) border-error @enderror"
 	>{{ $value ?? '' }}</textarea>
 
-	@isset($desc)
+	@if(!empty($desc))
 		<x-afields::description>{!! $desc !!}</x-afields::description>
-	@endisset
+	@endif
 
 	@error($id)
 		<x-afields::error>{!! $message !!}</x-afields::error>

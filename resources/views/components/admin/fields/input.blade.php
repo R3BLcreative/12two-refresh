@@ -3,13 +3,16 @@
 		<x-afields::label :$id :$required>{!! $label !!}</x-afields::label>
 	@endif
 
-	<textarea
+	<input
+		type="{{ $type }}"
 		id="{{ $id }}"
 		name="{{ $name ?? $id }}"
 		tabindex="{{ $tabindex }}"
-		placeholder="{{ $placeholder}}"
+		value="{{ $value }}"
+		placeholder="{{ $placeholder }}"
 		@if($disabled === true) disabled @endif
-		class="text-base w-full disabled:opacity-50 @error($id) border-error @enderror">{{ $value }}</textarea>
+		class="text-base disabled:opacity-50 @error($id) border-error @enderror"
+	/>
 
 	@if(!empty($desc))
 		<x-afields::description>{!! $desc !!}</x-afields::description>

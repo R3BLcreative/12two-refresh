@@ -7,8 +7,8 @@
 		</div>
 
 		<div class="item-header flex items-center gap-4">
-			<span class="item-label uppercase font-semibold"></span>
-			<span class="item-type uppercase italic text-xs font-medium"></span>
+			<span class="item-type uppercase italic text-xs font-medium">(type)</span>
+			<span class="item-label uppercase font-semibold">Label</span>
 		</div>
 
 		<div class="flex items-center justify-end gap-4">
@@ -34,7 +34,7 @@
 		<div class="border-b border-x rounded-b border-gray-300 p-8 grid grid-cols-8 gap-7 mx-2">
 			<x-afields::section label="Standard Options" />
 
-			<x-afields::select
+			<x-admin.fields.select
 				id="type"
 				label="Type"
 				class="field-type col-span-2"
@@ -43,9 +43,9 @@
 				placeholder="Select a field type"
 				value="{{ $item->type ?? '' }}"
 				required="1"
-				:options="$fieldTypes" />
+				type="fields" />
 
-			<x-afields::string
+			<x-admin.fields.input
 				id="label"
 				label="Label"
 				class="field-label col-span-3"
@@ -56,38 +56,38 @@
 				value="{{ $item->label ?? '' }}"
 				required="1" />
 
-			<x-afields::string
+			<x-admin.fields.input
 				id="placeholder"
 				label="Placeholder"
 				class="col-span-3"
 				name="form_fields[{{ $id }}][placeholder]"
 				tabindex="{{ ($count == 1) ? '0' : '-1' }}"
-				placeholder="Descriptive text here..."
+				placeholder="Placeholder"
 				desc="The placeholder text for the empty field."
 				value="{{ $item->placeholder ?? '' }}" />
 
 			{{-- These should be toggle buttons --}}
-			<x-afields::string
+			<x-admin.fields.input
 				id="class"
-				label="Class"
+				label="Grid Class"
 				class="col-span-2"
 				name="form_fields[{{ $id }}][class]"
 				tabindex="{{ ($count == 1) ? '0' : '-1' }}"
-				placeholder="text-center uppercase italic..."
+				placeholder="col-span-full"
 				desc='Enter valid <a href="https://tailwindcss.com" rel="external noopener nofollow" target="_blank" class="basic-link">Tailwindcss</a> class names here.'
 				value="{{ $item->class ?? '' }}" />
 
-			<x-afields::text
+			<x-admin.fields.text
 				id="desc"
 				label="Description Text"
 				class="col-span-3"
 				name="form_fields[{{ $id }}][desc]"
 				tabindex="{{ ($count == 1) ? '0' : '-1' }}"
-				placeholder="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+				placeholder="Description"
 				desc="Text describing the field's purpose, allowed values, etc."
 				value="{{ $item->desc ?? '' }}" />
 
-			<x-afields::checkbox
+			<x-admin.fields.checkbox
 				id="forms"
 				label="Form Visibility"
 				class="col-span-3"
@@ -105,35 +105,29 @@
 			@php
 				$rules_desc = 'Validation rules must follow the <a href="https://laravel.com/docs/10.x/validation#available-validation-rules" rel="external noopener nofollow" target="_blank" class="basic-link">Laravel string validation</a> parameters and requirements.';
 			@endphp
-			<div id="rules_section" class="col-span-full hidden">
-				<x-afields::section label="Validation Rules" :desc="$rules_desc" />
-			</div>
+			<x-afields::section id="rules_section" class="col-span-full hidden" label="Validation Rules" :desc="$rules_desc" />
 
-			<div id="rules_new" class="col-span-4 hidden">
-				<x-afields::string
-					id="new_rules"
-					label="New/Create Rules"
-					class="new-rules w-full"
-					name="form_fields[{{ $id }}][new_rules]"
-					tabindex="{{ ($count == 1) ? '0' : '-1' }}"
-					placeholder="required|email|etc"
-					desc="Validation rules for the new/create form"
-					required="1"
-					value="{{ $item->rule ?? '' }}" />
-			</div>
+			<x-admin.fields.input
+				id="new_rules"
+				label="New/Create Rules"
+				name="form_fields[{{ $id }}][new_rules]"
+				class="col-span-4 hidden"
+				tabindex="{{ ($count == 1) ? '0' : '-1' }}"
+				placeholder="required|email|etc"
+				desc="Validation rules for the new/create form"
+				required="1"
+				value="{{ $item->rule ?? '' }}" />
 
-			<div id="rules_edit" class="col-span-4 hidden">
-				<x-afields::string
-					id="edit_rules"
-					label="Edit/Update Rules"
-					class="edit-rules w-full"
-					name="form_fields[{{ $id }}][edit_rules]"
-					tabindex="{{ ($count == 1) ? '0' : '-1' }}"
-					placeholder="required|email|etc"
-					desc="Validation rules for the new/create form"
-					required="1"
-					value="{{ $item->rule ?? '' }}" />
-			</div>
+			<x-admin.fields.input
+				id="edit_rules"
+				label="Edit/Update Rules"
+				class="col-span-4 hidden"
+				name="form_fields[{{ $id }}][edit_rules]"
+				tabindex="{{ ($count == 1) ? '0' : '-1' }}"
+				placeholder="required|email|etc"
+				desc="Validation rules for the new/create form"
+				required="1"
+				value="{{ $item->rule ?? '' }}" />
 
 			{{-- <x-afields::section label="Additional Options" desc="Additional options based on the field type." /> --}}
 		</div>

@@ -5,7 +5,7 @@
 		<i class="fa-solid fa-grip-dots-vertical"></i>
 	</div>
 
-	<x-afields::string
+	<x-admin.fields.input
 		id="label"
 		name="menu_items[{{ $id }}][label]"
 		class=""
@@ -15,7 +15,7 @@
 	@php
 		$target = (isset($item->target) && $item->target === true) ? '1' : '0';
 	@endphp
-	<x-afields::select
+	<x-admin.fields.select
 		id="target"
 		name="menu_items[{{ $id }}][target]"
 		class=""
@@ -26,13 +26,13 @@
 			'1' => 'Blank'
 		]" />
 
-	<x-afields::select
+	<x-admin.fields.select
+		type="collections"
 		id="link"
 		name="menu_items[{{ $id }}][link]"
 		class="link-select"
 		placeholder="Links to..."
-		value="{{ $item->type ?? '' }}"
-		:options="$ctSelect" />
+		value="{{ $item->type ?? '' }}" />
 
 	<div class="url-field">
 		<input

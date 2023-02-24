@@ -20,15 +20,16 @@
 
 	@foreach ($fields as $field)
 		<x-dynamic-component
-			component="{{ 'admin.fields.' . $field['type'] }}"
-			class="{{ $field['class'] ?? '' }}"
+			component="{{ 'admin.fields.' . $field['field'] }}"
+			:type="$field['type']"
+			:class="$field['class']"
 			:id="$field['name']"
 			:label="$field['label']"
 			value="{{ old($field['name']) ?? option($field['name']) }}"
-			placeholder="{{ $field['placeholder'] ?? '' }}"
-			desc="{{ $field['desc'] ?? '' }}"
-			required="{{ $field['required'] ?? '' }}"
-			:options="$field['options'] ?? []" />
+			:placeholder="$field['placeholder']"
+			:desc="$field['desc']"
+			:required="$field['required']"
+			:options="$field['options']" />
 	@endforeach
 
 	<div class="col-span-full flex justify-end">
