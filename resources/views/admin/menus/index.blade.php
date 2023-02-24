@@ -1,24 +1,24 @@
-<x-layouts::admin :title="$title">
+@extends('layouts.admin')
 
-	<x-slot:main>
-		<x-acomponents::titlebar
-			:icon="$icon"
-			:title="$title"
-			:subtext="$subtext">
-		</x-acomponents::titlebar>
+@section('title', $title)
 
-		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-			{{-- CREATE FORM --}}
-			<x-aforms::new-menu
-				:action="route('admin.menus.store')"
-				method="post"
-				btnStyle="primary"
-				btnIcon="fa-up-from-bracket"
-				btnText="Create" />
+@section('main')
+	<x-acomponents::titlebar
+		:icon="$icon"
+		:title="$title"
+		:subtext="$subtext">
+	</x-acomponents::titlebar>
 
-			{{-- MENU LIST --}}
-			<x-acomponents::menus-table :items="$items" />
-		</div>
-	</x-slot:main>
+	<div class="w-full relative flex flex-col flex-auto overflow-hidden">
+		{{-- CREATE FORM --}}
+		<x-aforms::new-menu
+			:action="route('admin.menus.store')"
+			method="post"
+			btnStyle="primary"
+			btnIcon="fa-up-from-bracket"
+			btnText="Create" />
 
-</x-layouts::admin>
+		{{-- MENU LIST --}}
+		<x-acomponents::menus-table :items="$items" />
+	</div>
+@endsection

@@ -1,17 +1,17 @@
-<x-layouts::admin :title="$title">
+@extends('layouts.admin')
 
-	<x-slot:main>
-		<x-acomponents::titlebar
-			:icon="$collectionType->icon"
-			:title="$title"
-			:subtext="$collectionType->desc">
+@section('title', $title)
 
-			<x-acomponents::create-button route="{{ route('admin.collections.create', $collectionType) }}" />
-		</x-acomponents::titlebar>
+@section('main')
+	<x-acomponents::titlebar
+		:icon="$collectionType->icon"
+		:title="$title"
+		:subtext="$collectionType->desc">
 
-		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-			<x-acomponents::collections-table :items="$items" :collectionType="$collectionType" />
-		</div>
-	</x-slot:main>
+		<x-acomponents::create-button route="{{ route('admin.collections.create', $collectionType) }}" />
+	</x-acomponents::titlebar>
 
-</x-layouts::admin>
+	<div class="w-full relative flex flex-col flex-auto overflow-hidden">
+		<x-acomponents::collections-table :items="$items" :collectionType="$collectionType" />
+	</div>
+@endsection

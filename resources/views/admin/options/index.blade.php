@@ -1,23 +1,23 @@
-<x-layouts::admin :title="$title">
+@extends('layouts.admin')
 
-	<x-slot:main>
-		<x-acomponents::titlebar
-			:icon="$icon"
-			:title="$title"
-			:subtext="$subtext"></x-acomponents::titlebar>
+@section('title', $title)
 
-		<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-			{{-- TABS --}}
-			<x-acomponents::tabs :tabs="$tabs" />
-			{{-- UPDATE FORM --}}
-			<x-aforms::options
-				:action="route('admin.options.update', ['slug' => $slug])"
-				method="put"
-				btnStyle="primary"
-				btnIcon="fa-up-from-bracket"
-				btnText="Update"
-				:fields="$fields" />
-		</div>
-	</x-slot:main>
+@section('main')
+	<x-acomponents::titlebar
+		:icon="$icon"
+		:title="$title"
+		:subtext="$subtext"></x-acomponents::titlebar>
 
-</x-layouts::admin>
+	<div class="w-full relative flex flex-col flex-auto overflow-hidden">
+		{{-- TABS --}}
+		<x-acomponents::tabs :tabs="$tabs" />
+		{{-- UPDATE FORM --}}
+		<x-aforms::options
+			:action="route('admin.options.update', ['slug' => $slug])"
+			method="put"
+			btnStyle="primary"
+			btnIcon="fa-up-from-bracket"
+			btnText="Update"
+			:fields="$fields" />
+	</div>
+@endsection

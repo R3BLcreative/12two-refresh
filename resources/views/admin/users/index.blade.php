@@ -1,6 +1,8 @@
-<x-layouts::admin :title="$title">
+@extends('layouts.admin')
 
-	<x-slot:main>
+@section('title', $title)
+
+@section('main')
 		<x-acomponents::titlebar
 			:icon="$icon"
 			:title="$title"
@@ -34,6 +36,4 @@
 			{{-- USERS LIST --}}
 			<x-acomponents::users-table :users="$users" />
 		</div>
-	</x-slot:main>
-
-</x-layouts::admin>
+@endsection
