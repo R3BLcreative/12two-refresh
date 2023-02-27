@@ -57,10 +57,10 @@
 		<ul id="menu-builder" class="w-full">
 			@if(count($menu->items) > 0)
 				@foreach($menu->items as $key => $item)
-					<x-afields::menu-builder-list :id="$key" :item="$item" :count="count($menu->items)" />
+					<x-afields::menu-builder-list :index="$key" :item="$item" :count="count($menu->items)" />
 				@endforeach
 			@else
-				<x-afields::menu-builder-list id="1" />
+				<x-afields::menu-builder-list index="1" />
 			@endif
 		</ul>
 	</div>
@@ -73,5 +73,5 @@
 </form>
 
 <template id="menu-builder-item-template">
-	<x-afields::menu-builder-list id="1" />
+	<x-afields::menu-builder-list index="1" />
 </template>

@@ -8,7 +8,7 @@
 
 	<meta name="robots" content="noindex, nofollow">
 
-	<title>INFINITE CMS - @yield('title')</title>
+	<title>INFINITE CMS - @yield('head.title')</title>
 
 	<link rel="preconnect" href="https://kit.fontawesome.com">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,8 +27,7 @@
 	<!-- Scripts & Styles -->
 	@vite(['resources/css/admin.css', 'resources/js/admin.js'])
 
-	@section('head')
-	@show
+	@yield('head')
 </head>
 
 <body class="bg-surface-light font-body text-body-dark font-normal text-base antialiased relative flex flex-auto w-full">
@@ -42,9 +41,13 @@
 
 		{{-- MAIN CONTENT --}}
 		<main id="content" tabindex="-1" role="main" class="flex flex-col flex-auto bg-white relative overflow-hidden">
-			@yield('titlebar', '')
+			<div class="px-8 z-20 bg-surface-light flex flex-col">
+				@yield('titlebar', '')
+			</div>
 
-			@yield('main')
+			<div class="w-full relative flex flex-col flex-auto overflow-hidden">
+				@yield('main')
+			</div>
 
 		</main>
 
@@ -54,7 +57,6 @@
 
 </body>
 
-@section('foot')
-@show
+@yield('foot')
 
 </html>

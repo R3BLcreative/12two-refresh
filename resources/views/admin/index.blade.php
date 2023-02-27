@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
-@section('title', $title)
+@section('head.title', $head['title'])
+
+@section('titlebar')
+	<x-acomponents::titlebar
+		icon="fa-circle-user"
+		:title="$page['title']"
+		:subtext="$page['subtext'] ?? ''"
+	></x-acomponents::titlebar>
+@endsection
 
 @section('main')
-	<div class="flex items-center gap-4 px-8 py-6">
-		<i class="fa-duotone fa-circle-user text-8xl"></i>
-		<x-acomponents::heading tag="h1" style="h1" subtext="Here's the latest details of what has happened while you were away.">
-			Welcome back, {{ Auth::user()->name }}!
-		</x-acomponents::heading>
-	</div>
-
-	<div class="w-full relative flex flex-col flex-auto overflow-hidden"></div>
 @endsection

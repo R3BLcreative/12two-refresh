@@ -56,7 +56,10 @@ return new class extends Migration {
 			$table->string('label');
 			$table->string('slug')->unique();
 			$table->string('type');
-			$table->string('class');
+			$table->string('placeholder')->nullable();
+			$table->string('class')->nullable();
+			$table->text('desc')->nullable();
+			$table->json('forms');
 			$table->json('options')->nullable();
 			$table->unsignedBigInteger('collection_type_id');
 			$table->foreign('collection_type_id')->references('id')->on('collection_types');

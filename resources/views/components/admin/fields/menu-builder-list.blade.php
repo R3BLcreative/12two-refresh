@@ -1,4 +1,4 @@
-@props(['id', 'item' => NULL, 'count' => 1])
+@props(['index', 'item' => NULL, 'count' => 1])
 
 <li class="col-span-full grid grid-cols-[25px_150px_125px_200px_auto_100px] gap-6 items-center odd:bg-surface-light even:bg-surface-light-600 py-2 px-4 group">
 	<div class="handle cursor-move">
@@ -7,7 +7,7 @@
 
 	<x-admin.fields.input
 		id="label"
-		name="menu_items[{{ $id }}][label]"
+		name="menu_items[{{ $index }}][label]"
 		class=""
 		placeholder="Label"
 		value="{{ $item->label ?? '' }}" />
@@ -17,7 +17,7 @@
 	@endphp
 	<x-admin.fields.select
 		id="target"
-		name="menu_items[{{ $id }}][target]"
+		name="menu_items[{{ $index }}][target]"
 		class=""
 		placeholder="Target"
 		value="{{ $target ?? '' }}"
@@ -29,7 +29,7 @@
 	<x-admin.fields.select
 		type="collections"
 		id="link"
-		name="menu_items[{{ $id }}][link]"
+		name="menu_items[{{ $index }}][link]"
 		class="link-select"
 		placeholder="Links to..."
 		value="{{ $item->type ?? '' }}" />
@@ -37,7 +37,7 @@
 	<div class="url-field">
 		<input
 			id="url"
-			name="menu_items[{{ $id }}][url]"
+			name="menu_items[{{ $index }}][url]"
 			@if(isset($item->type) && $item->type != 'custom') type="hidden" @else type="text" @endif
 			value="{{ $item->link ?? '' }}"
 			placeholder="URL"

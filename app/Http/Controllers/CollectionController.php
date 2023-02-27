@@ -41,7 +41,13 @@ class CollectionController extends Controller {
 		}
 
 		return view('admin.collections.index', [
-			'title' => $title,
+			'head' => [
+				'title' => $title,
+			],
+			'page' => [
+				'title' => $title,
+				'subtext' => $collectionType->desc,
+			],
 			'items' => $items,
 		]);
 	}
@@ -56,7 +62,12 @@ class CollectionController extends Controller {
 	 */
 	public function create(CollectionType $collectionType) {
 		return view('admin.collections.create', [
-			'title' => 'New: ' . $collectionType->label,
+			'head' => [
+				'title' => 'New: ' . $collectionType->label,
+			],
+			'page' => [
+				'title' => 'New: ' . $collectionType->label,
+			],
 		]);
 	}
 
@@ -149,8 +160,13 @@ class CollectionController extends Controller {
 		}
 
 		return view('admin.collections.edit', [
-			'title' => $title,
-			'subtext' => $subtext,
+			'head' => [
+				'title' => $title,
+			],
+			'page' => [
+				'title' => $title,
+				'subtext' => $subtext,
+			],
 			'item' => $item,
 		]);
 	}
@@ -277,9 +293,38 @@ class CollectionController extends Controller {
 		$title = ($item->force_single) ? $item->label : Str::plural($item->label);
 
 		return view('admin.collections.form', [
-			'title' => $title . ': Form Builder',
+			'head' => [
+				'title' => $title . ': Form Builder',
+			],
+			'page' => [
+				'title' => $title . ': Form Builder',
+				'subtext' => 'Use the form builder below to create the form for managing collection records of this type.',
+			],
 			'item' => $item,
 		]);
+	}
+
+
+	/**
+	 * * UPDATE FORM BUILDER
+	 * 
+	 * Store/update form builder records
+	 * 
+	 * @var request | Illuminate\Http\Request
+	 * @var collectionType | App\Models\CollectionType
+	 * @var id | The record ID
+	 */
+	public function update_form(Request $request, CollectionType $collectionType, $id) {
+		$item = CollectionType::where('id', $id)->first();
+
+		// Validate request
+		$request->validate(
+			[
+				'form_fields.*.type' => 'required',
+				'form_fields.*.label' => 'required',
+				'form_fields.*.forms' => 'required',
+			]
+		);
 	}
 
 

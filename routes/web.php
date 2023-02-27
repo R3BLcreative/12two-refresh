@@ -11,6 +11,7 @@ use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\DonateController;
 use App\Http\Controllers\ConnectController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -25,18 +26,18 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-	return view('pages.home');
+	return view('frontend.home');
 })->name('home');
 
 
 // ABOUT
 Route::name('12two.')->prefix('12two')->group(function () {
 	Route::get('/', function () {
-		return view('pages.12two');
+		return view('frontend.12two');
 	})->name('index');
 
 	Route::get('/beliefs', function () {
-		return view('pages.beliefs');
+		return view('frontend.beliefs');
 	})->name('beliefs');
 });
 
@@ -44,19 +45,19 @@ Route::name('12two.')->prefix('12two')->group(function () {
 // PROGRAMS
 Route::name('programs.')->prefix('programs')->group(function () {
 	Route::get('/', function () {
-		return view('pages.programs');
+		return view('frontend.programs');
 	})->name('index');
 
 	Route::get('/sports', function () {
-		return view('pages.sports');
+		return view('frontend.sports');
 	})->name('sports');
 
 	Route::get('/churches', function () {
-		return view('pages.churches');
+		return view('frontend.churches');
 	})->name('churches');
 
 	Route::get('/ambassadors', function () {
-		return view('pages.ambassadors');
+		return view('frontend.ambassadors');
 	})->name('ambassadors');
 });
 
@@ -64,19 +65,19 @@ Route::name('programs.')->prefix('programs')->group(function () {
 // MISSIONS
 Route::name('missions.')->prefix('missions')->group(function () {
 	Route::get('/', function () {
-		return view('pages.missions');
+		return view('frontend.missions');
 	})->name('index');
 
 	Route::get('/communities', function () {
-		return view('pages.communities');
+		return view('frontend.communities');
 	})->name('communities');
 
 	Route::get('/missionaries', function () {
-		return view('pages.missionaries');
+		return view('frontend.missionaries');
 	})->name('missionaries');
 
 	Route::get('/disaster-relief', function () {
-		return view('pages.disaster-relief');
+		return view('frontend.disaster-relief');
 	})->name('disaster-relief');
 });
 
@@ -84,37 +85,37 @@ Route::name('missions.')->prefix('missions')->group(function () {
 // JOURNALS
 Route::name('journals.')->prefix('journals')->group(function () {
 	Route::get('/', function () {
-		return view('pages.journals');
+		return view('frontend.journals');
 	})->name('index');
 
 	Route::get('/news', function () {
-		return view('pages.news');
+		return view('frontend.news');
 	})->name('news');
 
 	Route::get('/blog', function () {
-		return view('pages.blog');
+		return view('frontend.blog');
 	})->name('blog');
 
 	Route::get('/trips', function () {
-		return view('pages.trip-journals');
+		return view('frontend.trip-journals');
 	})->name('trips');
 });
 
 
 // BOOKING/TEACHING
 Route::get('/teaching', function () {
-	return view('pages.teaching');
+	return view('frontend.teaching');
 })->name('teaching');
 
 
 // DONATIONS
 Route::name('donate.')->prefix('donate')->group(function () {
 	Route::get('/', function () {
-		return view('pages.donate');
+		return view('frontend.donate');
 	})->name('index');
 
 	Route::get('/thanks', function () {
-		return view('pages.thanks');
+		return view('frontend.thanks');
 	})->name('thanks');
 
 	Route::post('/', [DonateController::class, 'store'])->name('donate.store');
@@ -130,7 +131,7 @@ Route::name('subscribe.')->prefix('subscribe')->group(function () {
 Route::name('connect.')->prefix('connect')->group(function () {
 	// Redirect to FAQS page
 	Route::get('/', function () {
-		return view('pages.faqs');
+		return view('frontend.faqs');
 	})->name('index');
 
 	Route::post('/', [ConnectController::class, 'store'])->name('store');
@@ -139,19 +140,19 @@ Route::name('connect.')->prefix('connect')->group(function () {
 // LEGAL
 Route::name('legal.')->prefix('legal')->group(function () {
 	Route::get('/', function () {
-		return view('pages.terms');
+		return view('frontend.terms');
 	})->name('index');
 
 	Route::get('/terms', function () {
-		return view('pages.terms');
+		return view('frontend.terms');
 	})->name('terms');
 
 	Route::get('/privacy', function () {
-		return view('pages.privacy');
+		return view('frontend.privacy');
 	})->name('privacy');
 
 	Route::get('/cookies', function () {
-		return view('pages.cookies');
+		return view('frontend.cookies');
 	})->name('cookies');
 });
 
@@ -159,11 +160,11 @@ Route::name('legal.')->prefix('legal')->group(function () {
 // FAQS
 Route::name('faqs.')->prefix('faqs')->group(function () {
 	Route::get('/', function () {
-		return view('pages.faqs');
+		return view('frontend.faqs');
 	})->name('index');
 
 	Route::get('/{cat}', function ($cat) {
-		return view('pages.faqs');
+		return view('frontend.faqs');
 	})->name('category');
 });
 
@@ -171,42 +172,42 @@ Route::name('faqs.')->prefix('faqs')->group(function () {
 // DASHBOARD
 Route::name('dashboard.')->prefix('dashboard')->middleware(['account'])->group(function () {
 	Route::get('/', function () {
-		return view('dashboard.index');
+		return view('frontend.dashboard.index');
 	})->name('index');
 
 	// USER
 	Route::get('/profile', function () {
-		return view('dashboard.profile');
+		return view('frontend.dashboard.profile');
 	})->name('profile');
 
 	Route::get('/security', function () {
-		return view('dashboard.security');
+		return view('frontend.dashboard.security');
 	})->name('security');
 
 	Route::get('/trips', function () {
-		return view('dashboard.trips');
+		return view('frontend.dashboard.trips');
 	})->name('trips');
 
 	Route::get('/donations', function () {
-		return view('dashboard.donations');
+		return view('frontend.dashboard.donations');
 	})->name('donations');
 
 	// LEADERS
 	Route::middleware(['account'])->name('groups')->prefix('groups')->group(function () {
 		Route::get('/', function () {
-			return view('dashboard.groups');
+			return view('frontend.dashboard.groups');
 		})->name('index');
 
 		Route::get('/trips', function () {
-			return view('dashboard.group-trips');
+			return view('frontend.dashboard.group-trips');
 		})->name('trips');
 
 		Route::get('/participants', function () {
-			return view('dashboard.group-participants');
+			return view('frontend.dashboard.group-participants');
 		})->name('participants');
 
 		Route::get('/resources', function () {
-			return view('dashboard.group-resources');
+			return view('frontend.dashboard.group-resources');
 		})->name('resources');
 	});
 });
@@ -214,9 +215,7 @@ Route::name('dashboard.')->prefix('dashboard')->middleware(['account'])->group(f
 
 // BACKEND
 Route::name('admin.')->prefix('admin')->middleware('backend')->group(function () {
-	Route::get('/', function () {
-		return view('admin.index', ['title' => 'Dashboard']);
-	})->name('dashboard');
+	Route::get('/', [AdminDashController::class, 'index'])->name('dashboard');
 
 
 	// USERS

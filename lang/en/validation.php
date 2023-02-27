@@ -194,6 +194,9 @@ return [
 			'required' => 'Please enter a valid URL in the URL field.',
 			'url' => 'Please enter a valid URL in the URL field.',
 		],
+		'form_fields.*.forms' => [
+			'required' => 'At least one item should be checked here.',
+		],
 	],
 
 	/*

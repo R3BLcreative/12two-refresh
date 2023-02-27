@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
-@section('title', $title)
+@section('head.title', $head['title'])
 
-@section('main')
+@section('titlebar')
 	<x-acomponents::titlebar
 		:icon="$collectionType->icon"
-		:title="$title"
-		:subtext="$collectionType->desc">
+		:title="$page['title']"
+		:subtext="$page['subtext'] ?? ''">
 
 		<x-acomponents::create-button route="{{ route('admin.collections.create', $collectionType) }}" />
 	</x-acomponents::titlebar>
+@endsection
 
-	<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-		<x-acomponents::collections-table :items="$items" :collectionType="$collectionType" />
-	</div>
+@section('main')
+	<x-acomponents::collections-table :items="$items" :collectionType="$collectionType" />
 @endsection

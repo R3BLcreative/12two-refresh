@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
-@section('title', $title)
+@section('head.title', $head['title'])
+
+@section('titlebar')
+	<x-acomponents::titlebar
+		:icon="$page['icon']"
+		:title="$page['title']"
+		:subtext="$page['subtext'] ?? ''">
+	</x-acomponents::titlebar>
+@endsection
 
 @section('main')
-	<x-acomponents::titlebar
-		:icon="$icon"
-		:title="$title"
-		:subtext="$subtext">
-	</x-acomponents::titlebar>
-
-	<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-		{{-- EDIT FORM --}}
-		<x-aforms::edit-menu
-			:action="route('admin.menus.update', [$menu])"
-			method="put"
-			btnStyle="primary"
-			btnIcon="fa-up-from-bracket"
-			btnText="Update"
-			:menu="$menu" />
-	</div>
+	{{-- EDIT FORM --}}
+	<x-aforms::edit-menu
+		:action="route('admin.menus.update', [$menu])"
+		method="put"
+		btnStyle="primary"
+		btnIcon="fa-up-from-bracket"
+		btnText="Update"
+		:menu="$menu" />
 @endsection

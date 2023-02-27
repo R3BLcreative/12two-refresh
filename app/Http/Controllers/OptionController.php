@@ -27,9 +27,14 @@ class OptionController extends Controller {
 		}
 
 		return view('admin.options.index', [
-			'icon' => $options[$slug]['icon'],
-			'title' => $options[$slug]['title'],
-			'subtext' => $options[$slug]['desc'],
+			'head' => [
+				'title' => $options[$slug]['title'],
+			],
+			'page' => [
+				'icon' => $options[$slug]['icon'],
+				'title' => $options[$slug]['title'],
+				'subtext' => $options[$slug]['desc'],
+			],
 			'slug' => $slug,
 			'tabs' => $tabs,
 			'fields' => $options[$slug]['fields'],

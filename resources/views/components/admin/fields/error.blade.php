@@ -1,3 +1,3 @@
-<div class="col-span-full w-full text-md font-semibold text-error">
+<div class="text-xs font-medium text-error italic">
 	{{ $slot }}
 </div>

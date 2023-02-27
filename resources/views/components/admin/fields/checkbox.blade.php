@@ -23,8 +23,4 @@
 			</li>
 		@endforeach
 	</ul>
-
-	@error($id)
-		<x-afields::error>{!! $message !!}</x-afields::error>
-	@enderror
 </div>

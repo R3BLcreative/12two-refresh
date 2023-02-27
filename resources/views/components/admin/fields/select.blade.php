@@ -33,8 +33,4 @@
 	@if(!empty($desc))
 		<x-afields::description>{!! $desc !!}</x-afields::description>
 	@endif
-
-	@error($id)
-		<x-afields::error>{!! $message !!}</x-afields::error>
-	@enderror
 </div>

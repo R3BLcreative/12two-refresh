@@ -23,18 +23,10 @@
 		label="Form Fields"
 		desc="" />
 
-	@if($errors->any())
-		<ul class="list-disc col-span-full w-full ml-8">
-			@foreach($errors->all() as $error)
-				<li><x-afields::error>{{ $error }}</x-afields::error></li>
-			@endforeach
-		</ul>
-	@enderror
-
 	{{-- FORM BUILDER --}}
 	<div class="col-span-full">
 		<ul id="form-builder" class="w-full flex flex-col gap-4">
-			<x-afields::form-builder-list id="1" />
+			<x-afields::form-builder-list index="1" />
 		</ul>
 	</div>
 
@@ -46,5 +38,5 @@
 </form>
 
 <template id="form-builder-item-template">
-	<x-afields::form-builder-list id="1" />
+	<x-afields::form-builder-list index="1" />
 </template>

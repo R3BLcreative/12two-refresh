@@ -1,1 +1,0 @@
-{{-- FOOTER LOADED SCRIPTS HERE --}}

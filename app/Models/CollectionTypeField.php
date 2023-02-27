@@ -14,7 +14,10 @@ class CollectionTypeField extends Model {
 		'label',
 		'slug',
 		'type',
+		'placeholder',
 		'class',
+		'desc',
+		'forms',
 		'options',
 		'collection_type_id',
 	];
@@ -34,6 +37,13 @@ class CollectionTypeField extends Model {
 	protected function slug(): Attribute {
 		return Attribute::make(
 			set: fn ($value) => Str::slug($value),
+		);
+	}
+
+	protected function forms(): Attribute {
+		return Attribute::make(
+			get: fn ($value) => json_decode($value),
+			set: fn ($value) => json_encode($value),
 		);
 	}
 

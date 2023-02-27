@@ -31,9 +31,14 @@ class UserController extends Controller {
 		}
 
 		return view('admin.users.index', [
-			'icon' => 'fa-users',
-			'title' => 'Users',
-			'subtext' => 'Manage all application users',
+			'head' => [
+				'title' => 'Users',
+			],
+			'page' => [
+				'icon' => 'fa-users',
+				'title' => 'Users',
+				'subtext' => 'Manage all application users',
+			],
 			'users' => $users,
 		]);
 	}
@@ -48,8 +53,13 @@ class UserController extends Controller {
 	 */
 	public function create() {
 		return view('admin.users.create', [
-			'icon' => 'fa-user-plus',
-			'title' => 'Create New User',
+			'head' => [
+				'title' => 'Create New User',
+			],
+			'page' => [
+				'icon' => 'fa-user-plus',
+				'title' => 'Create New User',
+			],
 			'subtext' => '',
 		]);
 	}
@@ -102,9 +112,14 @@ class UserController extends Controller {
 	 */
 	public function edit(User $user) {
 		return view('admin.users.edit', [
-			'icon' => 'fa-user-pen',
-			'title' => 'Edit User',
-			'subtext' => '',
+			'head' => [
+				'title' => 'Edit User',
+			],
+			'page' => [
+				'icon' => 'fa-user-pen',
+				'title' => 'Edit User',
+				'subtext' => '',
+			],
 			'user' => $user,
 		]);
 	}

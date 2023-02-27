@@ -18,9 +18,14 @@ class MenuController extends Controller {
 	 */
 	public function index() {
 		return view('admin.menus.index', [
-			'icon' => 'fa-list-dropdown',
-			'title' => 'Menus',
-			'subtext' => 'Frontend navigation structures',
+			'head' => [
+				'title' => 'Menus',
+			],
+			'page' => [
+				'icon' => 'fa-list-dropdown',
+				'title' => 'Menus',
+				'subtext' => 'Frontend navigation structures',
+			],
 			'items' => Menu::all(),
 		]);
 	}
@@ -66,9 +71,14 @@ class MenuController extends Controller {
 	 */
 	public function edit(Menu $menu) {
 		return view('admin.menus.edit', [
-			'icon' => 'fa-pen-to-square',
-			'title' => 'Edit: ' . $menu->title,
-			'subtext' => '',
+			'head' => [
+				'title' => 'Edit: ' . $menu->title,
+			],
+			'page' => [
+				'icon' => 'fa-pen-to-square',
+				'title' => 'Edit: ' . $menu->title,
+				'subtext' => '',
+			],
 			'menu' => Menu::where('id', $menu->id)->first(),
 		]);
 	}

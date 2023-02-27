@@ -1,23 +1,23 @@
 @extends('layouts.admin')
 
-@section('title', $title)
+@section('head.title', $head['title'])
 
-@section('main')
+@section('titlebar')
 	<x-acomponents::titlebar
 		icon="fa-square-plus"
-		:title="$title"
-		subtext=""
+		:title="$page['title']"
+		:subtext="$page['subtext'] ?? ''"
 	></x-acomponents::titlebar>
+@endsection
 
-	<div class="w-full relative flex flex-col flex-auto overflow-hidden">
-		<x-aforms::collections
-			id="admin-add-form"
-			action="{{ route('admin.collections.store', [$collectionType]) }}"
-			method="post"
-			:collectionType="$collectionType"
-			btnStyle="primary"
-			btnIcon="fa-up-from-bracket"
-			btnText="Create"
-		/>
-	</div>
+@section('main')
+	<x-aforms::collections
+		id="admin-add-form"
+		action="{{ route('admin.collections.store', [$collectionType]) }}"
+		method="post"
+		:collectionType="$collectionType"
+		btnStyle="primary"
+		btnIcon="fa-up-from-bracket"
+		btnText="Create"
+	/>
 @endsection

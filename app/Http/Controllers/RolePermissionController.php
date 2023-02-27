@@ -32,9 +32,14 @@ class RolePermissionController extends Controller {
 		}
 
 		return view('admin.roles-permissions.index', [
-			'icon' => $icon,
-			'title' => $title,
-			'subtext' => $subtext,
+			'head' => [
+				'title' => $title,
+			],
+			'page' => [
+				'icon' => $icon,
+				'title' => $title,
+				'subtext' => $subtext,
+			],
 			'items' => $items,
 			'slug' => $slug,
 		]);
@@ -60,9 +65,14 @@ class RolePermissionController extends Controller {
 		}
 
 		return view('admin.roles-permissions.create', [
-			'icon' => $icon,
-			'title' => $title,
-			'subtext' => $subtext,
+			'head' => [
+				'title' => $title,
+			],
+			'page' => [
+				'icon' => $icon,
+				'title' => $title,
+				'subtext' => $subtext,
+			],
 			'slug' => $slug,
 		]);
 	}
@@ -146,9 +156,14 @@ class RolePermissionController extends Controller {
 		}
 
 		return view('admin.roles-permissions.edit', [
-			'icon' => $icon,
-			'title' => $title,
-			'subtext' => $subtext,
+			'head' => [
+				'title' => $title,
+			],
+			'page' => [
+				'icon' => $icon,
+				'title' => $title,
+				'subtext' => $subtext,
+			],
 			'slug' => $slug,
 			'item' => $item,
 		]);
