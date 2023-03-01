@@ -2,7 +2,7 @@
 	<div class="flex gap-4 justify-between items-center p-3">
 		{{-- LOGO --}}
 		<a href="{{ route('admin.dashboard') }}" class="px-4" aria-label="Return to homepage">
-			<x-components::svg id="header-logo" image="infinite.svg#img" width="60" height="34" alt="Infinite CMS" class="text-primary-400 max-w-[60px] drop-shadow-md" />
+			<x-components::svg id="header-logo" image="infinite.svg#img" alt="Infinite CMS" class="text-primary-400 w-[60px] h-[34px] drop-shadow-md" />
 		</a>
 
 		<div class="flex items-center justify-end w-fit">

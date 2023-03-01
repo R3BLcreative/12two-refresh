@@ -3,10 +3,10 @@
 'image',
 'alt',
 'class' => 'w-full h-auto',
-'width',
-'height',
 ])
 
-<svg id="{{ $id ?? '' }}" alt="{{ $alt ?? '' }}" class="{{ $class }}" width="{{ $width }}" height="{{ $height }}">
-	<use href="{{ asset('images/'.$image) }}"></use>
-</svg>
+<div role="img" aria-label="{{ $alt ?? '' }}" id="{{ $id ?? '' }}" class="{{ $class }}">
+	@php
+		echo file_get_contents(asset('images/'.$image));
+	@endphp
+</div>
