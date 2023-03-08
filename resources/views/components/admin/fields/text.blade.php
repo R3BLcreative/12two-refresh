@@ -7,6 +7,7 @@
 		id="{{ $id }}"
 		name="{{ $name ?? $id }}"
 		tabindex="{{ $tabindex }}"
+		rows="{{ $options['rows'] ?? 5 }}"
 		placeholder="{{ $placeholder}}"
 		@if($disabled === true) disabled @endif
 		class="text-base w-full disabled:opacity-50 @error($id) border-error @enderror">{{ $value }}</textarea>
