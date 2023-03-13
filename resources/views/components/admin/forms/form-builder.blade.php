@@ -38,5 +38,5 @@
 </form>
 
 <template id="form-builder-item-template">
-	<x-afields::form-builder-list index="1" />
+	<x-afields::form-builder-list index="2" />
 </template>

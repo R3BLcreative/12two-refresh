@@ -1,6 +1,6 @@
 @props(['index', 'item' => NULL, 'count' => 1])
 
-<li class="field-item col-span-full">
+<li class="field-item col-span-full" data-index="{{ $index }}">
 	<div class="grid grid-cols-[25px_auto_100px] gap-6 items-center odd:bg-surface-light even:bg-surface-light-600 py-2 px-4 group border border-gray-300 rounded">
 		<div class="handle cursor-move">
 			<i class="fa-solid fa-grip-dots-vertical"></i>
@@ -35,7 +35,7 @@
 			<x-afields::section label="Standard Options" />
 
 			<x-admin.fields.select
-				id="form_fields.{{ $index }}.type"
+				id="type"
 				label="Type"
 				class="field-type col-span-2"
 				name="form_fields[{{ $index }}][type]"
@@ -46,7 +46,7 @@
 				type="fields" />
 
 			<x-admin.fields.input
-				id="form_fields.{{ $index }}.label"
+				id="label"
 				label="Label"
 				class="field-label col-span-3"
 				name="form_fields[{{ $index }}][label]"
@@ -57,7 +57,7 @@
 				required="1" />
 
 			<x-admin.fields.input
-				id="form_fields.{{ $index }}.placeholder"
+				id="placeholder"
 				label="Placeholder"
 				class="col-span-3"
 				name="form_fields[{{ $index }}][placeholder]"
@@ -68,7 +68,7 @@
 
 			{{-- These should be toggle buttons --}}
 			<x-admin.fields.input
-				id="form_fields.{{ $index }}.class"
+				id="class"
 				label="Grid Class"
 				class="col-span-2"
 				name="form_fields[{{ $index }}][class]"
@@ -78,7 +78,7 @@
 				value="{{ $item->class ?? '' }}" />
 
 			<x-admin.fields.text
-				id="form_fields.{{ $index }}.desc"
+				id="desc"
 				label="Description Text"
 				class="col-span-3"
 				name="form_fields[{{ $index }}][desc]"
@@ -88,7 +88,7 @@
 				value="{{ $item->desc ?? '' }}" />
 
 			<x-admin.fields.checkbox
-				id="form_fields.{{ $index }}.forms"
+				id="forms"
 				label="Form Visibility"
 				class="col-span-3"
 				name="form_fields[{{ $index }}][forms]"
@@ -109,7 +109,7 @@
 			<x-afields::section id="rules_section" class="col-span-full hidden" label="Validation Rules" :desc="$rules_desc" />
 
 			<x-admin.fields.input
-				id="form_fields.{{ $index }}.new_rules"
+				id="new_rules"
 				label="New/Create Rules"
 				name="form_fields[{{ $index }}][new_rules]"
 				class="col-span-4 hidden"
@@ -120,7 +120,7 @@
 				value="{{ $item->rule ?? '' }}" />
 
 			<x-admin.fields.input
-				id="form_fields.{{ $index }}.edit_rules"
+				id="edit_rules"
 				label="Edit/Update Rules"
 				class="col-span-4 hidden"
 				name="form_fields[{{ $index }}][edit_rules]"

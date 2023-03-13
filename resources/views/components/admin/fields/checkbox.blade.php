@@ -13,7 +13,7 @@
 				<input
 					type="checkbox"
 					id="{{ $id }}_{{ $cid }}"
-					name="{{ $id }}[{{ $cid }}]"
+					name="{{ $name ?? $id }}[{{ $cid }}]"
 					tabindex="{{ $tabindex }}"
 					value="{{ $cid }}"
 					@if($disabled === true) disabled @endif

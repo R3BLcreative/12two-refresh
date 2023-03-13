@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				const el = e.currentTarget;
 				const parent =
 					el.parentElement.parentElement.parentElement.parentElement;
+				const index = parseInt(parent.dataset.index);
 				const createCb = parent.querySelector('#forms_create');
 				const editCb = parent.querySelector('#forms_edit');
 				const rules_section = parent.querySelector('#rules_section');
